@@ -5,7 +5,7 @@
     "license": "GNU GENERAL PUBLIC LICENSE",
     "autoload": {
         "psr-4": {
-            "MXSFWNWppGenerator2\\": "includes/"
+            "MXSFWNWPPGNext\\": "includes/"
         }
     },
     "authors": [

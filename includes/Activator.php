@@ -1,15 +1,26 @@
 <?php
 
-namespace MXSFWNWppGenerator2;
+namespace MXSFWNWPPGNext;
+
+use MXSFWNWPPGNext\Admin\Utilities\CPTGenerator;
 
 class Activator
 {
 
-    public static function init()
+    public static function init(): void
     {
 
-        mxsfwnDebugToFile('activate');
+        self::activateCPT();
+    }
 
-        return 'activate';
+    /**
+     * Activate CPT.
+     * 
+     * @return void Add an option for CPT.
+     */
+    public static function activateCPT(): void
+    {
+
+        CPTGenerator::activate();
     }
 }

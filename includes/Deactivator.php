@@ -1,6 +1,6 @@
 <?php
 
-namespace MXSFWNWppGenerator2;
+namespace MXSFWNWPPGNext;
 
 class Deactivator
 {

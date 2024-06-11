@@ -1,15 +1,21 @@
 <?php
 
-namespace MXSFWNWppGenerator2\Admin;
+namespace MXSFWNWPPGNext\Admin;
 
 defined( 'ABSPATH' ) || exit;
 
 class AdminSoul
 {
 
-    public static function init()
+    public function __construct()
     {
 
-        return 'init';
+        $this->routing();
+    }
+
+    public function routing()
+    {
+
+        require_once MXSFWN_PLUGIN_ABS_PATH . 'includes/admin/routes.php';
     }
 }
