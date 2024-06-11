@@ -15,7 +15,7 @@ global $wpdb;
 // Table name.
 $table_names   = [];
 
-$table_names[] = $wpdb->prefix . 'mxsfw_table_slug';
+$table_names[] = $wpdb->prefix . 'mxsfwn_table_slug';
 
 // Drop table(s).
 foreach ($table_names as $table_name) {
@@ -26,7 +26,7 @@ foreach ($table_names as $table_name) {
 }
 
 // Delete CPTs.
-$posts = get_posts(['post_type' => 'mxsfw_book', 'numberposts' => -1]);
+$posts = get_posts(['post_type' => 'mxsfwn_book', 'numberposts' => -1]);
 
 foreach ($posts as $post) {
     wp_delete_post($post->ID, true);
