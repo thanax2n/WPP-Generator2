@@ -1,3 +1,7 @@
 <?php
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
+
+mxsfwnView('main', [
+    'message' => 'Hello, world!'
+]);

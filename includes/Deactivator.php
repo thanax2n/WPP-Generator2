@@ -8,7 +8,7 @@ class Deactivator
     public static function init()
     {
 
-        mxsfwnDebugToFile('Deactivate');
+        mxsfwnDebug('Deactivate');
 
         return 'Deactivate';
     }

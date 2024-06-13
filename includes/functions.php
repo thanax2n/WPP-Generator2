@@ -1,11 +1,11 @@
 <?php
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
 /*
 * Debugging
 */
-if (!function_exists('mxsfwnDebugToFile')) {
+if (!function_exists('mxsfwnDebug')) {
     /**
      * Debug anything. The result will be collected 
      * in \wp-content\plugins\stuff-for-wpp2/mx-debug/mx-debug.txt file in the root of
@@ -15,9 +15,10 @@ if (!function_exists('mxsfwnDebugToFile')) {
      *
      * @return void
      */
-    function mxsfwnDebugToFile( ...$content ) {
+    function mxsfwnDebug(...$content)
+    {
 
-        $content = mxsfwnContentToString( ...$content );
+        $content = mxsfwnContentToString(...$content);
 
         $dir = MXSFWN_PLUGIN_ABS_PATH . 'mx-debug';
 
@@ -39,8 +40,8 @@ if (!function_exists('mxsfwnDebugToFile')) {
             $current = '>>>' . date('Y/m/d H:i:s', time()) . ':' . "\n";
 
             $current .= $content . "\n";
-            
-            $current .= '_____________________________________' . "\n";          
+
+            $current .= '_____________________________________' . "\n";
 
             $current .= file_get_contents($file) . "\n";
 
@@ -52,18 +53,49 @@ if (!function_exists('mxsfwnDebugToFile')) {
 if (!function_exists('mxsfwnContentToString')) {
     /**
      * This function is a part of the
-     * mxsfwnDebugToFile function.
+     * mxsfwnDebug function.
      * 
      * @param string $content   List of parameters (coma separated).
      *
      * @return string
      */
-    function mxsfwnContentToString( ...$content ) {
+    function mxsfwnContentToString(...$content)
+    {
 
         ob_start();
 
-        var_dump( ...$content );
+        var_dump(...$content);
 
         return ob_get_clean();
+    }
+}
+
+if (!function_exists('mxsfwnView')) {
+    /**
+     * This function allow you to connect view to controller.
+     * Use this function in \includes\admin\controllers\{file}.php
+     * 
+     * @param string $view       File name in the \includes\admin\views\ folder.
+     *                           Use without ".view.php".
+     * 
+     * @param array $attributes  Here you can pass any number of variables
+     *                           to use them in the view file.
+     *
+     * @return view
+     */
+
+    function mxsfwnView($view, $attributes = [])
+    {
+        extract($attributes);
+
+        $path = MXSFWN_PLUGIN_ABS_PATH . "includes/admin/views/{$view}.view.php";
+
+        if (!file_exists($path)) {
+
+            echo 'No View File Found!';
+            return;
+        }
+
+        require $path;
     }
 }

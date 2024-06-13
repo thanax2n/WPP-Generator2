@@ -80,21 +80,7 @@ require_once MXSFWN_PLUGIN_ABS_PATH . 'includes/functions.php';
  */
 require_once MXSFWN_PLUGIN_ABS_PATH . 'install.php';
 
-
-/*
-* Include the main MXSFWNStuffForWpp class.
-*/
-// if (!class_exists('MXSFWNStuffForWpp')) {
-
-//     require_once plugin_dir_path(__FILE__) . 'includes/final-class.php';
-
-//     /*
-// 	* Translate plugin.
-// 	*/
-//     function mxsfwn_translate()
-//     {
-
-//         load_plugin_textdomain('stuff-for-wpp2', false, dirname(plugin_basename(__FILE__)) . '/languages/');
-//     }
-//     add_action('plugins_loaded', 'mxsfwn_translate');
-// }
+/**
+ * Run plugin parts
+ */
+require_once MXSFWN_PLUGIN_ABS_PATH . 'index.php';
