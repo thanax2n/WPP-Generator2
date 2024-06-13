@@ -8,7 +8,7 @@ class AdminMenu
     protected $menuAction = 'addMenuPage';
 
     protected $properties = [
-        'pageTitle'  => 'WPP Generator Next',
+        'pageTitle'  => 'WPP Generator',
         'menuTitle'  => 'WPP Generator',
         'capability' => 'manage_options',
         'menuSlug'   => 'mxsfwn-admin-page',

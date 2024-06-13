@@ -2,9 +2,12 @@
 
 defined('ABSPATH') || exit;
 
+use MXSFWNWPPGNext\Core\Exceptions\ViewException;
+
 /*
 * Debugging
 */
+
 if (!function_exists('mxsfwnDebug')) {
     /**
      * Debug anything. The result will be collected 
@@ -92,10 +95,13 @@ if (!function_exists('mxsfwnView')) {
 
         if (!file_exists($path)) {
 
-            echo 'No View File Found!';
+            // Doesn't work
+            ViewException::throw("File {$path} DOES NOT exists");
+
             return;
         }
-
+            
         require $path;
+
     }
 }

@@ -7,7 +7,7 @@ use MXSFWNWPPGNext\Admin\Router;
 $router = new Router();
 
 $router->get('mxsfwn-settings-page', 'main.php')->properties([
-    'menuSlug' => 'mxsfwn-admin-page'
+    'pageTitle' => 'WPP Generator Next'
 ]);
 
 $router->route();

@@ -2,7 +2,7 @@
 
 namespace MXSFWNWPPGNext\Admin;
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
 class AdminSoul
 {

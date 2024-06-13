@@ -21,7 +21,7 @@ class Router
         $this->routes[] = [
             'controller' => $controller,
             'properties' => [
-                'pageTitle' => 'WPP Generator Next',
+                'pageTitle' => 'WPP Generator',
                 'menuTitle' => 'WPP Generator',
                 'capability' => 'manage_options',
                 'menuSlug'  => 'mxsfwn-page',

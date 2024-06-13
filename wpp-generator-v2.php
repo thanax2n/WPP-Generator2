@@ -73,14 +73,14 @@ require MXSFWN_PLUGIN_ABS_PATH . 'vendor/autoload.php';
 /**
  * Helper functions.
  */
-require_once MXSFWN_PLUGIN_ABS_PATH . 'includes/functions.php';
+require_once MXSFWN_PLUGIN_ABS_PATH . 'includes/core/functions.php';
 
 /**
- * activation|deactivation
+ * activation|deactivation.
  */
 require_once MXSFWN_PLUGIN_ABS_PATH . 'install.php';
 
 /**
- * Run plugin parts
+ * Run plugin parts.
  */
 require_once MXSFWN_PLUGIN_ABS_PATH . 'index.php';
