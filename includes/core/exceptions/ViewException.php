@@ -2,16 +2,16 @@
 
 namespace MXSFWNWPPGNext\Core\Exceptions;
 
-use MXSFWNWPPGNext\Core\AdminNotices;
+use MXSFWNWPPGNext\Admin\Utilities\AdminNotices;
 
 class ViewException extends AdminNotices
 {
 
     public static function throw($error)
     {
-      
+
         $instance = new static('error');
-        
-        $instance->addMessage($error)->display();        
+
+        $instance->addMessage($error)->display();
     }
 }

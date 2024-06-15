@@ -4,15 +4,10 @@ defined('ABSPATH') || exit;
 
 use MXSFWNWPPGNext\Core\Exceptions\ViewException;
 
-/*
-* Debugging
-*/
-
 if (!function_exists('mxsfwnDebug')) {
     /**
      * Debug anything. The result will be collected 
-     * in \wp-content\plugins\stuff-for-wpp2/mx-debug/mx-debug.txt file in the root of
-     * the plugin.
+     * in \wp-content\plugins\stuff-for-wpp2/mx-debug/mx-debug.txt file
      * 
      * @param string $content   List of parameters (coma separated).
      *
@@ -27,29 +22,19 @@ if (!function_exists('mxsfwnDebug')) {
 
         $file = $dir . '/mx-debug.txt';
 
+        $dateLine = '>>>' . date('Y/m/d H:i:s', time()) . ':' . "\n";
+
+        $current = "{$dateLine}{$content}\n_____________________________________\n";
+
         if (!file_exists($dir)) {
 
             mkdir($dir, 0777, true);
-
-            $current = '>>>' . date('Y/m/d H:i:s', time()) . ':' . "\n";
-
-            $current .= $content . "\n";
-
-            $current .= '_____________________________________' . "\n";
-
-            file_put_contents($file, $current);
         } else {
 
-            $current = '>>>' . date('Y/m/d H:i:s', time()) . ':' . "\n";
-
-            $current .= $content . "\n";
-
-            $current .= '_____________________________________' . "\n";
-
             $current .= file_get_contents($file) . "\n";
-
-            file_put_contents($file, $current);
         }
+
+        file_put_contents($file, $current);
     }
 }
 
@@ -95,13 +80,12 @@ if (!function_exists('mxsfwnView')) {
 
         if (!file_exists($path)) {
 
-            // Doesn't work
+            // Doesn't work!
             ViewException::throw("File {$path} DOES NOT exists");
 
             return;
         }
-            
-        require $path;
 
+        require $path;
     }
 }
