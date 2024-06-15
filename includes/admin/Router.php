@@ -9,38 +9,25 @@ class Router
 
     protected $routes = [];
 
-    protected $menuActions = [
-        'addMenuPage',
-        'addSubmenuPage',
-        'addOptionsPage'
-    ];
-
-    public function add($slug, $controller)
+    public function add($controller): object
     {
 
         $this->routes[] = [
-            'controller' => $controller,
-            'properties' => [
-                'pageTitle' => 'WPP Generator',
-                'menuTitle' => 'WPP Generator',
-                'capability' => 'manage_options',
-                'menuSlug'  => 'mxsfwn-page',
-                'dashicons'  => 'dashicons-image-filter',
-                'position'   => 111,
-                'menuAction'  => 'addMenuPage'
-            ]
+            'file'       => $controller,
+            'properties' => [],
+            'menuAction' => 'addMenuPage'
         ];
 
         return $this;
     }
 
-    public function get($slug, $controller)
+    public function get($controller): object
     {
 
-        return $this->add($slug, $controller);
+        return $this->add($controller);
     }
 
-    public function properties($attributes)
+    public function properties($attributes): object
     {
 
         $properties = wp_parse_args($attributes, $this->routes[array_key_last($this->routes)]['properties']);
@@ -50,22 +37,27 @@ class Router
         return $this;
     }
 
-    public function route()
+    public function menuAction($action): object
+    {
+
+        $this->routes[array_key_last($this->routes)]['menuAction'] = $action;
+
+        return $this;
+    }
+
+    public function route(): void
     {
 
         foreach ($this->routes as $route) {
 
-            if(in_array($route['properties']['menuAction'], $this->menuActions)) {
-
-                $this->menuPage($route['properties']['menuAction'], $route['properties'], $route['controller']);
-            }
+            $this->menuPage($route);
         }
     }
 
-    public function menuPage($menuAction, $properties, $controller)
+    public function menuPage($route): void
     {
 
-        $menuPage = new AdminMenu($menuAction, $properties, $controller);
+        $menuPage = new AdminMenu($route);
 
         $menuPage->add();
     }
