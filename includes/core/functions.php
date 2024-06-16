@@ -2,8 +2,6 @@
 
 defined('ABSPATH') || exit;
 
-use MXSFWNWPPGNext\Core\Exceptions\ViewException;
-
 if (!function_exists('mxsfwnDebug')) {
     /**
      * Debug anything. The result will be collected 
@@ -78,13 +76,7 @@ if (!function_exists('mxsfwnView')) {
 
         $path = MXSFWN_PLUGIN_ABS_PATH . "includes/admin/views/{$view}.view.php";
 
-        if (!file_exists($path)) {
-
-            // Doesn't work!
-            ViewException::throw("File {$path} DOES NOT exists");
-
-            return;
-        }
+        if (!file_exists($path)) return;
 
         require $path;
     }

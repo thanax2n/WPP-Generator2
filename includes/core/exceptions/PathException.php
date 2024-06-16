@@ -4,7 +4,7 @@ namespace MXSFWNWPPGNext\Core\Exceptions;
 
 use MXSFWNWPPGNext\Admin\Utilities\AdminNotices;
 
-class ViewException extends AdminNotices
+class PathException extends AdminNotices
 {
 
     public static function throw($error)

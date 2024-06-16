@@ -2,6 +2,8 @@
 
 namespace MXSFWNWPPGNext\Admin\Utilities;
 
+use MXSFWNWPPGNext\Core\Exceptions\PathException;
+
 class AdminMenu
 {
 
@@ -14,9 +16,11 @@ class AdminMenu
 
     protected $menuAction = 'addMenuPage';
 
-    protected $page = 'main';
+    protected $file = 'main';
 
     protected $rootFolder = 'includes/admin/controllers/';
+
+    protected $path = NULL;
 
     protected $properties = [
         'pageTitle'  => 'WPP Generator',
@@ -55,7 +59,9 @@ class AdminMenu
             $this->menuAction = $menuAttributes['menuAction'];
         }
 
-        $this->page = $menuAttributes['file'];
+        $this->file = $menuAttributes['file'];
+
+        $this->path = MXSFWN_PLUGIN_ABS_PATH . "{$this->rootFolder}{$this->file}.php";
     }
 
     /**
@@ -76,6 +82,13 @@ class AdminMenu
 
     public function add()
     {
+
+        if (!file_exists($this->path)) {
+
+            PathException::throw("File \"{$this->path}\" DOES NOT exists");
+
+            return;
+        }
 
         add_action('admin_menu', [$this, $this->menuAction]);
     }
@@ -162,10 +175,8 @@ class AdminMenu
     public function render(): void
     {
 
-        $page = MXSFWN_PLUGIN_ABS_PATH . "{$this->rootFolder}{$this->page}.php";
+        if (!file_exists($this->path)) return;
 
-        if (!file_exists($page)) return;
-
-        require_once $page;
+        require_once $this->path;
     }
 }
