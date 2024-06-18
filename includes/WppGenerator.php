@@ -11,8 +11,8 @@ final class WppGenerator
     public function __construct()
     {
 
-        return new AdminSoul;
+        new AdminSoul;
 
-        return new FrontendSoul;
+        new FrontendSoul;
     }
 }
