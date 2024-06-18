@@ -7,12 +7,12 @@ use MXSFWNWPPGNext\Core\CustomPostType;
 class CPTGenerator extends CustomPostType
 {
 
-    public static function create(string $postType, array $label, array $properties)
+    public static function create(string $postType, array $labels, array $properties)
     {
 
         $instance = new static($postType);
 
-        $instance->labels($label);
+        $instance->labels($labels);
 
         $instance->properties($properties);
 

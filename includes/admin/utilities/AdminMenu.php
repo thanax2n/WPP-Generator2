@@ -165,7 +165,7 @@ class AdminMenu
     public function addLink($links): array
     {
 
-        $settingsLink = '<a href="' . get_admin_url() . 'options-general.php?page=' . $this->properties['menuSlug'] . '">' . sprintf(esc_html__('%s', 'stuff-for-wpp2'), $this->properties['menuTitle']) . '</a>';
+        $settingsLink = '<a href="' . get_admin_url() . 'options-general.php?page=' . $this->properties['menuSlug'] . '">' . sprintf(esc_html__('%s', 'wpp-generator-v2'), $this->properties['menuTitle']) . '</a>';
 
         array_push($links, $settingsLink);
 

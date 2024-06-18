@@ -9,8 +9,6 @@ class CustomPostType
 
     protected $postType;
 
-    protected $taxonomy;
-
     protected $labels = [
         'name'               => 'Books',
         'singular_name'      => 'Book',

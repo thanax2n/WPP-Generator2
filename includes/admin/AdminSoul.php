@@ -4,6 +4,7 @@ namespace MXSFWNWPPGNext\Admin;
 
 use MXSFWNWPPGNext\Admin\Utilities\AdminEnqueueScripts;
 use MXSFWNWPPGNext\Admin\Utilities\CPTGenerator;
+use MXSFWNWPPGNext\Admin\Utilities\TaxonomyGenerator;
 
 class AdminSoul
 {
@@ -16,6 +17,8 @@ class AdminSoul
         $this->enqueueScripts();
 
         $this->registerPostType();
+
+        $this->registerTaxonomy();
     }
 
     public function routing()
@@ -35,20 +38,41 @@ class AdminSoul
     public function registerPostType()
     {
 
-        CPTGenerator::create('framework', [
-            'name'               => 'Frameworks',
-            'singular_name'      => 'Framework',
-            'add_new'            => 'Add a new one',
-            'add_new_item'       => 'Add a new Framework',
-            'edit_item'          => 'Edit the Framework',
-            'new_item'           => 'New Framework',
-            'view_item'          => 'See the Framework',
-            'search_items'       => 'Find a Framework',
-            'not_found'          => 'Frameworks not found',
-            'not_found_in_trash' => 'No Frameworks found in the trash',
-            'menu_name'          => 'Frameworks',
-        ], [
-            'rewrite'            => ['slug' => 'famous-framework'],
-        ]);
+        CPTGenerator::create(
+            'framework',
+            [
+                'name'               => __('Frameworks', 'wpp-generator-v2'),
+                'singular_name'      => __('Framework', 'wpp-generator-v2'),
+                'add_new'            => __('Add a new one', 'wpp-generator-v2'),
+                'add_new_item'       => __('Add a new Framework', 'wpp-generator-v2'),
+                'edit_item'          => __('Edit the Framework', 'wpp-generator-v2'),
+                'new_item'           => __('New Framework', 'wpp-generator-v2'),
+                'view_item'          => __('See the Framework', 'wpp-generator-v2'),
+                'search_items'       => __('Find a Framework', 'wpp-generator-v2'),
+                'not_found'          => __('Frameworks not found', 'wpp-generator-v2'),
+                'not_found_in_trash' => __('No Frameworks found in the trash', 'wpp-generator-v2'),
+                'menu_name'          => __('Frameworks', 'wpp-generator-v2'),
+            ],
+            [
+                'rewrite'            => ['slug' => 'famous-framework'],
+            ]
+        );
+    }
+
+    public function registerTaxonomy()
+    {
+
+        TaxonomyGenerator::create(
+            'language',
+            [
+                'framework'
+            ],
+            [
+                'name' => __('Programming Language', 'wpp-generator-v2'),
+            ],
+            [
+                'rewrite'      => ['slug' => 'programming-language'],
+            ]
+        );
     }
 }

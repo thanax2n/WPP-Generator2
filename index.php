@@ -16,6 +16,6 @@ if (!class_exists('WppGenerator')) {
     */
     add_action('plugins_loaded', function () {
 
-        load_plugin_textdomain('stuff-for-wpp2', false, dirname(plugin_basename(__FILE__)) . '/languages/');
+        load_plugin_textdomain('wpp-generator-v2', false, dirname(plugin_basename(__FILE__)) . '/languages/');
     });
 }

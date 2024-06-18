@@ -5,7 +5,7 @@ defined('ABSPATH') || exit;
 if (!function_exists('mxsfwnDebug')) {
     /**
      * Debug anything. The result will be collected 
-     * in \wp-content\plugins\stuff-for-wpp2/mx-debug/mx-debug.txt file
+     * in \wp-content\plugins\wpp-generator-v2/mx-debug/mx-debug.txt file
      * 
      * @param string $content   List of parameters (coma separated).
      *
