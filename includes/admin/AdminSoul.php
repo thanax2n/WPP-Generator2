@@ -2,7 +2,7 @@
 
 namespace MXSFWNWPPGNext\Admin;
 
-defined('ABSPATH') || exit;
+use MXSFWNWPPGNext\Admin\Utilities\AdminEnqueueScripts;
 
 class AdminSoul
 {
@@ -11,11 +11,21 @@ class AdminSoul
     {
 
         $this->routing();
+
+        $this->enqueueScripts();
     }
 
     public function routing()
     {
 
         require_once MXSFWN_PLUGIN_ABS_PATH . 'includes/admin/routes.php';
+    }
+
+    public function enqueueScripts()
+    {
+
+        AdminEnqueueScripts::addStyle('admin-style', 'styles.css');
+
+        AdminEnqueueScripts::addScript('admin-script', 'scripts.js');
     }
 }

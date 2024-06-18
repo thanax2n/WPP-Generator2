@@ -3,6 +3,7 @@
 namespace MXSFWNWPPGNext;
 
 use MXSFWNWPPGNext\Admin\AdminSoul;
+use MXSFWNWPPGNext\Frontend\FrontendSoul;
 
 final class WppGenerator
 {
@@ -10,13 +11,8 @@ final class WppGenerator
     public function __construct()
     {
 
-        $this->admin();
-    }
+        return new AdminSoul;
 
-    public function admin()
-    {
-
-        new AdminSoul;
+        return new FrontendSoul;
     }
-    
 }

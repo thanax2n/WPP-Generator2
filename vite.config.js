@@ -9,7 +9,7 @@ export default defineConfig({
     rollupOptions: {
       input: '/includes/frontend/assets/src/main.js',
       output: {
-        dir: 'includes/frontend/assets/build/',
+        dir: 'includes/frontend/assets/built/',
         entryFileNames: 'index.js',
         assetFileNames: 'index.css'
       }

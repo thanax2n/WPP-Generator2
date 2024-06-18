@@ -64,7 +64,7 @@ my-plugin/
 |   |       └──
 |   |
 |   ├── frontend/
-|   |   ├── build/
+|   |   ├── built/
 |   |   |   ├── index.js
 |   |   |   └── index.css
 |   |   |
