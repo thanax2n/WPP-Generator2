@@ -2,14 +2,21 @@
 
 namespace MXSFWNWPPGNext\Admin\Utilities;
 
-class CPTGenerator
+use MXSFWNWPPGNext\Core\CustomPostType;
+
+class CPTGenerator extends CustomPostType
 {
 
-    // Register a CPT...
-
-    public static function activate()
+    public static function create(string $postType, array $label, array $properties)
     {
 
-        add_option('mxsfwn_rewrite_rules', 'flush');
+        $instance = new static($postType);
+
+        $instance->labels($label);
+
+        $instance->properties($properties);
+
+        $instance->register();
     }
+    
 }

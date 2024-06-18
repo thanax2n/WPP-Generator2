@@ -5,10 +5,8 @@ namespace MXSFWNWPPGNext;
 class Deactivator
 {
 
-    public static function init()
+    public static function init(): string
     {
-
-        mxsfwnDebug('Deactivate');
 
         return 'Deactivate';
     }
