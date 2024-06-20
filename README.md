@@ -32,9 +32,12 @@ my-plugin/
 |   |   |   └── sub-menu.php
 |   |   |
 |   |   ├── Utilities/
+|   |   |   ├── Exceptions/
+|   |   |   |  └── PathException.php
+|   |   |   |
 |   |   |   ├── AdminMenu.php
 |   |   |   ├── AdminNotices.php
-|   |   |   ├── CTPGenerator.php
+|   |   |   ├── PostTypeGenerator.php
 |   |   |   └── AdminEnqueueScripts.php
 |   |   |
 |   |   ├── views/
@@ -47,10 +50,10 @@ my-plugin/
 |   │   ├── Router.php
 |   |   └── routes.php
 |   |
-|   ├── Core/
-|   |   ├── exceptions/
-|   |   |   └── PathException.php
-|   |   |   
+|   ├── Shared/
+|   |   ├── PostType.php
+|   |   ├── Taxonomy.php
+|   |   ├── EnqueueScripts.php
 |   |   └── functions.php
 |   |
 |   ├── Features/
