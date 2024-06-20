@@ -7,7 +7,7 @@ use MXSFWNWPPGNext\Core\EnqueueScripts;
 class WPEnqueueScripts extends EnqueueScripts
 {
 
-    protected static $assetsPath = MXSFWN_PLUGIN_URL . 'includes/frontend/built/';
+    protected static $assetsPath = MXSFWN_PLUGIN_URL . 'includes/Frontend/built/';
 
     public static function addStyle(string $handle, string $file)
     {

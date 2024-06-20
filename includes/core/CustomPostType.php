@@ -55,8 +55,10 @@ class CustomPostType
         return $this;
     }
 
-    public function properties(array $properties): object
+    public function properties($properties)
     {
+
+        if(!is_array($properties)) return;
 
         $this->properties = wp_parse_args($properties, $this->properties);
 

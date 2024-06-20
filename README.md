@@ -18,7 +18,7 @@ my-plugin/
 |           └── prod.js
 │
 ├── includes/
-|   ├── admin/
+|   ├── Admin/
 |   |   ├── assets/
 |   |   |   ├── css/
 |   |   |   |   └── styles.css
@@ -31,11 +31,11 @@ my-plugin/
 |   |   |   ├── settings-menu.php
 |   |   |   └── sub-menu.php
 |   |   |
-|   |   ├── utilities/
+|   |   ├── Utilities/
 |   |   |   ├── AdminMenu.php
 |   |   |   ├── AdminNotices.php
 |   |   |   ├── CTPGenerator.php
-|   |   |   └── EnqueueScripts.php
+|   |   |   └── AdminEnqueueScripts.php
 |   |   |
 |   |   ├── views/
 |   |   |   ├── hidden-menu.view.php
@@ -47,23 +47,20 @@ my-plugin/
 |   │   ├── Router.php
 |   |   └── routes.php
 |   |
-|   ├── core/
+|   ├── Core/
 |   |   ├── exceptions/
 |   |   |   └── PathException.php
 |   |   |   
 |   |   └── functions.php
 |   |
-|   ├── features/
-|   |   ├── api/
+|   ├── Features/
+|   |   ├── API/
 |   |   |   └── endpoint1.php
 |   |   |
-|   |   ├── gutenberg/
-|   |   |   └──
-|   |   |
-|   |   └── vue-spa/
-|   |       └──
+|   |   └── Gutenberg/
+|   |      └──
 |   |
-|   ├── frontend/
+|   ├── Frontend/
 |   |   ├── built/
 |   |   |   ├── index.js
 |   |   |   └── index.css
@@ -83,7 +80,7 @@ my-plugin/
 |   |   |   |
 |   |   |   └── main.js
 |   |   |
-|   |   ├── utilities/
+|   |   ├── Utilities/
 |   |   |   └── EnqueueScripts.php
 |   |   |
 |   |   └── FrontendSoul.php

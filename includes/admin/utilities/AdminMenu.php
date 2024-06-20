@@ -18,7 +18,7 @@ class AdminMenu
 
     protected $file = 'main';
 
-    protected $rootFolder = 'includes/admin/controllers/';
+    protected $rootFolder = 'includes/Admin/controllers/';
 
     protected $path = NULL;
 
@@ -35,7 +35,7 @@ class AdminMenu
     /** 
      * @param array $menuAttributes   List of menu properties:
      *   [
-     *      'file'            Rendered file (includes/admin/controllers/)
+     *      'file'            Rendered file (includes/Admin/controllers/)
      *      'properties'      List of menu properties:
      *      [
      *          'pageTitle'   Default 'WPP Generator'
@@ -68,7 +68,7 @@ class AdminMenu
      * Set root folder where the files are collected.
      * 
      * @param string   $path   Relative path to the folder
-     *                         (eg. 'includes/admin/controllers/').
+     *                         (eg. 'includes/Admin/controllers/').
      * 
      * @return object   Return current class instance.
      */

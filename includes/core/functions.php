@@ -59,9 +59,9 @@ if (!function_exists('mxsfwnContentToString')) {
 if (!function_exists('mxsfwnView')) {
     /**
      * This function allow you to connect view to controller.
-     * Use this function in \includes\admin\controllers\{file}.php
+     * Use this function in \includes\Admin\controllers\{file}.php
      * 
-     * @param string $view       File name in the \includes\admin\views\ folder.
+     * @param string $view       File name in the \includes\Admin\views\ folder.
      *                           Use without ".view.php".
      * 
      * @param array $attributes  Here you can pass any number of variables
@@ -74,7 +74,7 @@ if (!function_exists('mxsfwnView')) {
     {
         extract($attributes);
 
-        $path = MXSFWN_PLUGIN_ABS_PATH . "includes/admin/views/{$view}.view.php";
+        $path = MXSFWN_PLUGIN_ABS_PATH . "includes/Admin/views/{$view}.view.php";
 
         if (!file_exists($path)) return;
 

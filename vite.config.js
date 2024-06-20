@@ -4,12 +4,12 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   build: {
     watch: {
-      include: 'includes/frontend/assets/src/**'
+      include: 'includes/Frontend/assets/src/**'
     },
     rollupOptions: {
-      input: '/includes/frontend/assets/src/main.js',
+      input: '/includes/Frontend/assets/src/main.js',
       output: {
-        dir: 'includes/frontend/assets/built/',
+        dir: 'includes/Frontend/assets/built/',
         entryFileNames: 'index.js',
         assetFileNames: 'index.css'
       }

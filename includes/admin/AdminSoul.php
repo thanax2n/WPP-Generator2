@@ -3,7 +3,7 @@
 namespace MXSFWNWPPGNext\Admin;
 
 use MXSFWNWPPGNext\Admin\Utilities\AdminEnqueueScripts;
-use MXSFWNWPPGNext\Admin\Utilities\CPTGenerator;
+use MXSFWNWPPGNext\Admin\Utilities\CustomPostTypeGenerator;
 use MXSFWNWPPGNext\Admin\Utilities\TaxonomyGenerator;
 
 class AdminSoul
@@ -24,7 +24,7 @@ class AdminSoul
     public function routing()
     {
 
-        require_once MXSFWN_PLUGIN_ABS_PATH . 'includes/admin/routes.php';
+        require_once MXSFWN_PLUGIN_ABS_PATH . 'includes/Admin/routes.php';
     }
 
     public function enqueueScripts()
@@ -38,7 +38,7 @@ class AdminSoul
     public function registerPostType()
     {
 
-        CPTGenerator::create(
+        CustomPostTypeGenerator::create(
             'framework',
             [
                 'name'               => __('Frameworks', 'wpp-generator-v2'),
@@ -68,10 +68,10 @@ class AdminSoul
                 'framework'
             ],
             [
-                'name' => __('Programming Language', 'wpp-generator-v2'),
+                'name'    => __('Programming Language', 'wpp-generator-v2'),
             ],
             [
-                'rewrite'      => ['slug' => 'programming-language'],
+                'rewrite' => ['slug' => 'programming-language'],
             ]
         );
     }

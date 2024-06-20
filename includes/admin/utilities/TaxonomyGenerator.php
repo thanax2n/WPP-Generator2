@@ -19,3 +19,4 @@ class TaxonomyGenerator extends CustomTaxonomy
         $instance->register();
     }
 }
+
