@@ -2,7 +2,7 @@
 
 namespace MXSFWNWPPGNext\Core;
 
-class CustomPostType
+class PostType
 {
 
     protected $uniqueString = 'mxsfwn';
@@ -58,7 +58,7 @@ class CustomPostType
     public function properties($properties)
     {
 
-        if(!is_array($properties)) return;
+        if (!is_array($properties)) return;
 
         $this->properties = wp_parse_args($properties, $this->properties);
 
@@ -70,10 +70,13 @@ class CustomPostType
 
         add_action('init', function () {
 
-            register_post_type($this->postType, [
+            $options = [
                 'labels' => $this->labels,
-                ...$this->properties
-            ]);
+            ];
+
+            $options = array_merge($options, $this->properties);
+
+            register_post_type($this->postType, $options);
 
             $this->activate();
         });

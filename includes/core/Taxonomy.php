@@ -2,7 +2,7 @@
 
 namespace MXSFWNWPPGNext\Core;
 
-class CustomTaxonomy
+class Taxonomy
 {
 
     protected $postTypes;
@@ -51,10 +51,13 @@ class CustomTaxonomy
 
         add_action('init', function () {
 
-            register_taxonomy($this->taxonomy, $this->postTypes, [
+            $options = [
                 'labels' => $this->labels,
-                ...$this->properties
-            ]);
+            ];
+
+            $options = array_merge($options, $this->properties);
+
+            register_taxonomy($this->taxonomy, $this->postTypes, $options);
         });
     }
 }

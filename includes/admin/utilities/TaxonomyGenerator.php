@@ -2,9 +2,9 @@
 
 namespace MXSFWNWPPGNext\Admin\Utilities;
 
-use MXSFWNWPPGNext\Core\CustomTaxonomy;
+use MXSFWNWPPGNext\Core\Taxonomy;
 
-class TaxonomyGenerator extends CustomTaxonomy
+class TaxonomyGenerator extends Taxonomy
 {
 
     public static function create(string $taxonomy, array $postTypes, array $labels, array $properties)

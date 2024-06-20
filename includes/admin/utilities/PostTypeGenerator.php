@@ -2,9 +2,9 @@
 
 namespace MXSFWNWPPGNext\Admin\Utilities;
 
-use MXSFWNWPPGNext\Core\CustomPostType;
+use MXSFWNWPPGNext\Core\PostType;
 
-class CustomPostTypeGenerator extends CustomPostType
+class PostTypeGenerator extends PostType
 {
 
     public static function create(string $postType, array $labels, array $properties)
