@@ -61,7 +61,7 @@ my-plugin/
 |   |   |   └── endpoint1.php
 |   |   |
 |   |   └── Gutenberg/
-|   |      └──
+|   |      └── ...
 |   |
 |   ├── Frontend/
 |   |   ├── built/

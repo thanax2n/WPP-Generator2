@@ -1,13 +1,28 @@
 <?php
 
-/*
-Plugin Name: WPPG Next
-Plugin URI: https://github.com/Maksym-Marko/wp-plugin-skeleton
-Description: This is my extremely useful plugin
-Author: Maksym Marko
-Version: 1.0
-Author URI: https://github.com/Maksym-Marko
-*/
+/**
+ * WPPG Next
+ * 
+ * @package           MXSFWNWPPGNext ???
+ * @author            Maksym Marko
+ * @copyright         2024 Free Software Foundation
+ * @license           GPL-2.0-or-later
+ * 
+ * @wordpress-plugin
+ * 
+ * Plugin Name:       WPPG Next
+ * Plugin URI:        https://github.com/Maksym-Marko/wp-plugin-skeleton
+ * Description:       This is my extremely useful plugin
+ * Version:           1.0
+ * Requires at least: 5.9
+ * Requires PHP:      7.4
+ * Author:            Maksym Marko
+ * Author URI:        https://github.com/Maksym-Marko
+ * Text Domain:       wpp-generator-v2
+ * License:           GPL v2 or later
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Requires Plugins:
+ */
 
 defined('ABSPATH') || exit;
 
