@@ -20,35 +20,37 @@ class Router
         if (!file_exists($path)) {
 
             PathNotice::throw($path);
-        } else {
-
-            $this->routes[] = [
-                'path'       => $path,
-                'properties' => [],
-                'menuAction' => 'addMenuPage'
-            ];
         }
+
+        $this->routes[] = [
+            'path'       => $path,
+            'properties' => [],
+            'menuAction' => 'addMenuPage'
+        ];
 
         return $this;
     }
 
-    public function get($controller): object
+    public function get(string $controller): object
     {
 
         return $this->add($controller);
     }
 
-    public function properties($attributes): object
+    public function properties(array $attributes): object
     {
 
-        $properties = wp_parse_args($attributes, $this->routes[array_key_last($this->routes)]['properties']);
+        if (!empty($this->routes)) {
 
-        $this->routes[array_key_last($this->routes)]['properties'] = $properties;
+            $properties = wp_parse_args($attributes, $this->routes[array_key_last($this->routes)]['properties']);
+
+            $this->routes[array_key_last($this->routes)]['properties'] = $properties;
+        }
 
         return $this;
     }
 
-    public function menuAction($action): object
+    public function menuAction(string $action): object
     {
 
         $this->routes[array_key_last($this->routes)]['menuAction'] = $action;
