@@ -2,8 +2,6 @@
 
 namespace MXSFWNWPPGNext\Admin\Utilities;
 
-use MXSFWNWPPGNext\Admin\Utilities\Notices\PathNotice;
-
 class AdminMenu
 {
 
@@ -11,14 +9,10 @@ class AdminMenu
         'addMenuPage',
         'addSubmenuPage',
         'addOptionsPage',
-        'addOpitionLink'
+        'addOptionLink'
     ];
 
     protected $menuAction = 'addMenuPage';
-
-    protected $file = 'main';
-
-    protected $rootFolder = 'includes/Admin/controllers/';
 
     protected $path = NULL;
 
@@ -59,36 +53,11 @@ class AdminMenu
             $this->menuAction = $menuAttributes['menuAction'];
         }
 
-        $this->file = $menuAttributes['file'];
-
-        $this->path = MXSFWN_PLUGIN_ABS_PATH . "{$this->rootFolder}{$this->file}.php";
-    }
-
-    /**
-     * Set root folder where the files are collected.
-     * 
-     * @param string   $path   Relative path to the folder
-     *                         (eg. 'includes/Admin/controllers/').
-     * 
-     * @return object   Return current class instance.
-     */
-    public function rootFolder($path): object
-    {
-
-        $this->rootFolder = $path;
-
-        return $this;
+        $this->path = $menuAttributes['path'];
     }
 
     public function add()
     {
-
-        if (!file_exists($this->path)) {
-
-            PathNotice::throw($this->path);
-
-            return;
-        }
 
         add_action('admin_menu', [$this, $this->menuAction]);
     }
@@ -154,7 +123,7 @@ class AdminMenu
      * 
      * @return void   Add a link to created options page.
      */
-    public function addOpitionLink(): void
+    public function addOptionLink(): void
     {
 
         $baseName = MXSFWN_PLUGIN_BASE_NAME;

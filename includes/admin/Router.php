@@ -3,20 +3,31 @@
 namespace MXSFWNWPPGNext\Admin;
 
 use MXSFWNWPPGNext\Admin\Utilities\AdminMenu;
+use MXSFWNWPPGNext\Admin\Utilities\Notices\PathNotice;
 
 class Router
 {
+
+    protected $rootFolder = 'includes/Admin/controllers/';
 
     protected $routes = [];
 
     public function add($controller): object
     {
 
-        $this->routes[] = [
-            'file'       => $controller,
-            'properties' => [],
-            'menuAction' => 'addMenuPage'
-        ];
+        $path = MXSFWN_PLUGIN_ABS_PATH . "{$this->rootFolder}{$controller}.php";
+
+        if (!file_exists($path)) {
+
+            PathNotice::throw($path);
+        } else {
+
+            $this->routes[] = [
+                'path'       => $path,
+                'properties' => [],
+                'menuAction' => 'addMenuPage'
+            ];
+        }
 
         return $this;
     }

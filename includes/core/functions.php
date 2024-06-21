@@ -67,7 +67,7 @@ if (!function_exists('mxsfwnView')) {
      * @param array $attributes  Here you can pass any number of variables
      *                           to use them in the view file.
      *
-     * @return view
+     * @return void              require a PHP file
      */
 
     function mxsfwnView($view, $attributes = [])

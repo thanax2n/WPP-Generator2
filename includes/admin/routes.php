@@ -8,12 +8,20 @@ $router = new Router();
 
 $mainMenuSlug = 'wppg-next';
 
-// Add Main Menu Item.
+/**
+ * Add Main Menu Item.
+ * 
+ * /wp-admin/admin.php?page=wppg-next
+ * */
 $router->get('main')->properties([
     'menuSlug' => $mainMenuSlug
 ]);
 
-// Add Sub Menu Item.
+/**
+ * Add Sub Menu Item.
+ * 
+ * /wp-admin/admin.php?page=wppg-next-sub
+ * */
 $router->get('sub-menu')
     ->menuAction('addSubmenuPage')
     ->properties([
@@ -23,7 +31,11 @@ $router->get('sub-menu')
         'menuSlug'   => 'wppg-next-sub'
     ]);
 
-// Add Hidden Menu Item.
+/**
+ * Add Hidden Menu Item.
+ * 
+ * /wp-admin/admin.php?page=wppg-next-hidden
+ * */
 $router->get('hidden-menu')
     ->menuAction('addSubmenuPage')
     ->properties([
@@ -32,7 +44,11 @@ $router->get('hidden-menu')
         'menuSlug'   => 'wppg-next-hidden'
     ]);
 
-// Add Option Menu Item.
+/**
+ * Add Option Menu Item.
+ * 
+ * /wp-admin/options-general.php?page=wppg-next-settings
+ * */
 $optionSlug = 'settings-menu';
 $router->get($optionSlug)
     ->menuAction('addOptionsPage')
@@ -44,7 +60,7 @@ $router->get($optionSlug)
 
 // Add link to the Options page on the plugins page.
 $router->get($optionSlug)
-    ->menuAction('addOpitionLink')
+    ->menuAction('addOptionLink')
     ->properties([
         'menuTitle'  => 'WPPG Next',
         'menuSlug'   => 'wppg-next-settings'
