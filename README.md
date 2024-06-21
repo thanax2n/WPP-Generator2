@@ -32,8 +32,8 @@ my-plugin/
 |   |   |   └── sub-menu.php
 |   |   |
 |   |   ├── Utilities/
-|   |   |   ├── Exceptions/
-|   |   |   |  └── PathException.php
+|   |   |   ├── Notices/
+|   |   |   |  └── PathNotice.php
 |   |   |   |
 |   |   |   ├── AdminMenu.php
 |   |   |   ├── AdminNotices.php

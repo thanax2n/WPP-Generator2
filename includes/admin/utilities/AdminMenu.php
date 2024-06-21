@@ -2,7 +2,7 @@
 
 namespace MXSFWNWPPGNext\Admin\Utilities;
 
-use MXSFWNWPPGNext\Core\Exceptions\PathException;
+use MXSFWNWPPGNext\Admin\Utilities\Notices\PathNotice;
 
 class AdminMenu
 {
@@ -85,7 +85,7 @@ class AdminMenu
 
         if (!file_exists($this->path)) {
 
-            PathException::throw("File \"{$this->path}\" DOES NOT exists");
+            PathNotice::throw($this->path);
 
             return;
         }
