@@ -9,6 +9,8 @@ use MXSFWNWPPGNext\Admin\Utilities\TaxonomyGenerator;
 class AdminSoul
 {
 
+    protected $uniqueString = MXSFWN_PLUGIN_UNIQUE_STRING;
+
     public function __construct()
     {
 
@@ -30,9 +32,22 @@ class AdminSoul
     public function enqueueScripts()
     {
 
-        AdminEnqueueScripts::addStyle('admin-style', 'styles.css');
+        // Admin Styles
+        $adminStyleHandle = "{$this->uniqueString}-admin-styles";
+        (new AdminEnqueueScripts)
+            ->addStyle($adminStyleHandle, 'styles.css')
+            ->args('all')
+            ->enqueue();
 
-        AdminEnqueueScripts::addScript('admin-script', 'scripts.js');
+        // Admin Scripts
+        $adminScriptHandle = "{$this->uniqueString}-admin-scripts";
+        (new AdminEnqueueScripts)
+            ->addScript($adminScriptHandle, 'scripts.js')
+            ->dependency('jquery')
+            ->localization([
+                'ajaxURL'   => admin_url('admin-ajax.php'),
+            ])
+            ->enqueue();
     }
 
     public function registerPostType()

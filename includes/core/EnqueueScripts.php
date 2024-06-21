@@ -5,8 +5,6 @@ namespace MXSFWNWPPGNext\Core;
 class EnqueueScripts
 {
 
-    protected $uniqueString = 'mxsfwn';
-
     protected $handle;
 
     protected $src;
@@ -19,7 +17,6 @@ class EnqueueScripts
 
     /**
      * Area types.
-     * 
      */
     const AREAS = [
         'admin',
@@ -30,13 +27,11 @@ class EnqueueScripts
      * Action Prefix.
      * 
      * @param string $prefix   admin|wp.
-     *
      */
     protected $prefix = 'admin';
 
     /**
      * Script types.
-     * 
      */
     const TYPES = [
         'script',
@@ -47,13 +42,12 @@ class EnqueueScripts
      * Callback name.
      * 
      * @param string $callback   script|style.
-     *
      */
     protected $callback = 'script';
 
     protected $localization = [];
 
-    protected $localizerName = 'wppgn_object';
+    protected $localizerName = MXSFWN_PLUGIN_UNIQUE_STRING . '_object';
 
     public function __construct(string $handle, string $src)
     {
@@ -72,17 +66,17 @@ class EnqueueScripts
     public function script(): void
     {
 
-        wp_enqueue_script("{$this->uniqueString}-{$this->handle}", $this->src, $this->dependencies, $this->version, $this->args);
+        wp_enqueue_script($this->handle, $this->src, $this->dependencies, $this->version, $this->args);
 
         if (empty($this->localization)) return;
 
-        $this->localizeScript("{$this->uniqueString}-{$this->handle}");
+        $this->localizeScript($this->handle);
     }
 
     public function style(): void
     {
 
-        wp_enqueue_style("{$this->uniqueString}-{$this->handle}", $this->src, $this->dependencies, $this->version, $this->args);
+        wp_enqueue_style($this->handle, $this->src, $this->dependencies, $this->version, $this->args);
     }
 
     public function dependency(string $dependency): object

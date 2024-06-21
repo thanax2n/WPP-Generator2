@@ -4,38 +4,42 @@ namespace MXSFWNWPPGNext\Frontend\Utilities;
 
 use MXSFWNWPPGNext\Core\EnqueueScripts;
 
-class WPEnqueueScripts extends EnqueueScripts
+class WPEnqueueScripts
 {
+    
+    protected $assetsPath = MXSFWN_PLUGIN_URL . 'includes/Frontend/built/';
 
-    protected static $assetsPath = MXSFWN_PLUGIN_URL . 'includes/Frontend/built/';
-
-    public static function addStyle(string $handle, string $file)
+    public function addStyle(string $handle, string $file): object
     {
 
-        $styleSrc = self::$assetsPath . $file;
-        $instance = new static($handle, $styleSrc);
+        $styleSrc = $this->assetsPath . $file;
+
+        $instance = new EnqueueScripts($handle, $styleSrc);
 
         $instance->area('frontend');
 
         $instance->callback('style');
 
-        $instance->args('all');
-
-        $instance->enqueue();
+        return $instance;
     }
 
-    public static function addScript(string $handle, string $file)
+    public function addScript(string $handle, string $file): object
     {
 
-        $scriptSrc = self::$assetsPath . $file;
-        $instance = new static($handle, $scriptSrc);
+        $scriptSrc = $this->assetsPath . $file;
+
+        $instance = new EnqueueScripts($handle, $scriptSrc);
 
         $instance->area('frontend');
 
-        $instance->localization([
-            'ajaxURL'   => admin_url('admin-ajax.php'),
-        ]);
+        return $instance;
+    }
 
-        $instance->enqueue();
+    public function assetsPath(string $path): object
+    {
+
+        $this->assetsPath = $path;
+
+        return $this;
     }
 }

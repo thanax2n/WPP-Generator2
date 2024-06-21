@@ -4,34 +4,32 @@ namespace MXSFWNWPPGNext\Admin\Utilities;
 
 use MXSFWNWPPGNext\Core\EnqueueScripts;
 
-class AdminEnqueueScripts extends EnqueueScripts
+class AdminEnqueueScripts
 {
 
-    protected static $assetsPath = MXSFWN_PLUGIN_URL . 'includes/Admin/assets/';
+    protected $assetsPath = MXSFWN_PLUGIN_URL . 'includes/Admin/assets/';
 
-    public static function addStyle(string $handle, string $file)
+    public function addStyle(string $handle, string $file): object
     {
 
-        $styleSrc = self::$assetsPath . "css/{$file}";
-        $instance = new static($handle, $styleSrc);
+        $styleSrc = $this->assetsPath . "css/{$file}";
+
+        $instance = new EnqueueScripts($handle, $styleSrc);
 
         $instance->callback('style');
 
         $instance->args('all');
 
-        $instance->enqueue();
+        return $instance;
     }
 
-    public static function addScript(string $handle, string $file)
+    public function addScript(string $handle, string $file): object
     {
 
-        $scriptSrc = self::$assetsPath . "js/{$file}";
-        $instance = new static($handle, $scriptSrc);
+        $scriptSrc = $this->assetsPath . "js/{$file}";
 
-        $instance->localization([
-            'ajaxURL'   => admin_url('admin-ajax.php'),
-        ]);
+        $instance = new EnqueueScripts($handle, $scriptSrc);
 
-        $instance->enqueue();
+        return $instance;
     }
 }
