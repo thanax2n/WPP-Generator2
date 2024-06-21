@@ -1,15 +1,6 @@
 <?php
 
 /**
- * WPPG Next
- * 
- * @package           MXSFWNWPPGNext ???
- * @author            Maksym Marko
- * @copyright         2024 Free Software Foundation
- * @license           GPL-2.0-or-later
- * 
- * @wordpress-plugin
- * 
  * Plugin Name:       WPPG Next
  * Plugin URI:        https://github.com/Maksym-Marko/wp-plugin-skeleton
  * Description:       This is my extremely useful plugin
