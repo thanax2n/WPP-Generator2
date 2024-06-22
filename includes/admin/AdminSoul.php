@@ -5,6 +5,7 @@ namespace MXSFWNWPPGNext\Admin;
 use MXSFWNWPPGNext\Admin\Utilities\AdminEnqueueScripts;
 use MXSFWNWPPGNext\Admin\Utilities\PostTypeGenerator;
 use MXSFWNWPPGNext\Admin\Utilities\TaxonomyGenerator;
+use MXSFWNWPPGNext\Admin\Utilities\MetaBoxGenerator;
 
 class AdminSoul
 {
@@ -21,6 +22,8 @@ class AdminSoul
         $this->registerPostType();
 
         $this->registerTaxonomy();
+
+        $this->addMetaBoxes();
     }
 
     public function routing()
@@ -103,5 +106,11 @@ class AdminSoul
             $labels,
             $properties
         );
+    }
+
+    public function addMetaBoxes()
+    {
+
+        MetaBoxGenerator::add([]);
     }
 }
