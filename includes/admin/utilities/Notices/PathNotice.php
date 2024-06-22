@@ -2,7 +2,7 @@
 
 namespace MXSFWNWPPGNext\Admin\Utilities\Notices;
 
-use MXSFWNWPPGNext\Admin\Utilities\AdminNotices;
+use MXSFWNWPPGNext\Admin\Entities\AdminNotices;
 
 class PathNotice extends AdminNotices
 {

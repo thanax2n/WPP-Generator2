@@ -2,7 +2,7 @@
 
 namespace MXSFWNWPPGNext\Admin\Utilities;
 
-use MXSFWNWPPGNext\Core\EnqueueScripts;
+use MXSFWNWPPGNext\Shared\EnqueueScripts;
 
 class AdminEnqueueScripts
 {

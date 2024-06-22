@@ -2,7 +2,7 @@
 
 namespace MXSFWNWPPGNext\Frontend\Utilities;
 
-use MXSFWNWPPGNext\Core\EnqueueScripts;
+use MXSFWNWPPGNext\Shared\EnqueueScripts;
 
 class WPEnqueueScripts
 {

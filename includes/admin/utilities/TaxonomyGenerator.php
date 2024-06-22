@@ -2,7 +2,7 @@
 
 namespace MXSFWNWPPGNext\Admin\Utilities;
 
-use MXSFWNWPPGNext\Core\Taxonomy;
+use MXSFWNWPPGNext\Admin\Entities\Taxonomy;
 
 class TaxonomyGenerator extends Taxonomy
 {

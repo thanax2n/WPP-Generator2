@@ -1,6 +1,6 @@
 <?php
 
-namespace MXSFWNWPPGNext\Admin\Utilities;
+namespace MXSFWNWPPGNext\Admin\Entities;
 
 class AdminNotices
 {

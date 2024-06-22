@@ -2,7 +2,7 @@
 
 namespace MXSFWNWPPGNext\Admin;
 
-use MXSFWNWPPGNext\Admin\Utilities\AdminMenu;
+use MXSFWNWPPGNext\Admin\Entities\AdminMenu;
 use MXSFWNWPPGNext\Admin\Utilities\Notices\PathNotice;
 
 class Router

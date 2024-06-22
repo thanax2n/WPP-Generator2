@@ -1,6 +1,6 @@
 <?php
 
-namespace MXSFWNWPPGNext\Core;
+namespace MXSFWNWPPGNext\Admin\Entities;
 
 class PostType
 {

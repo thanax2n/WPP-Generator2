@@ -2,7 +2,7 @@
 
 namespace MXSFWNWPPGNext\Admin\Utilities;
 
-use MXSFWNWPPGNext\Core\PostType;
+use MXSFWNWPPGNext\Admin\Entities\PostType;
 
 class PostTypeGenerator extends PostType
 {

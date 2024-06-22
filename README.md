@@ -31,12 +31,16 @@ my-plugin/
 |   |   |   ├── settings-menu.php
 |   |   |   └── sub-menu.php
 |   |   |
+|   |   ├── Entities/
+|   |   |   ├── AdminMenu.php
+|   |   |   ├── AdminNotices.php
+|   |   |   ├── PostType.php
+|   |   |   └── Taxonomy.php
+|   |   |
 |   |   ├── Utilities/
 |   |   |   ├── Notices/
 |   |   |   |  └── PathNotice.php
 |   |   |   |
-|   |   |   ├── AdminMenu.php
-|   |   |   ├── AdminNotices.php
 |   |   |   ├── PostTypeGenerator.php
 |   |   |   └── AdminEnqueueScripts.php
 |   |   |
@@ -49,12 +53,6 @@ my-plugin/
 |   |   ├── AdminSoul.php
 |   │   ├── Router.php
 |   |   └── routes.php
-|   |
-|   ├── Shared/
-|   |   ├── PostType.php
-|   |   ├── Taxonomy.php
-|   |   ├── EnqueueScripts.php
-|   |   └── functions.php
 |   |
 |   ├── Features/
 |   |   ├── API/
@@ -84,9 +82,13 @@ my-plugin/
 |   |   |   └── main.js
 |   |   |
 |   |   ├── Utilities/
-|   |   |   └── EnqueueScripts.php
+|   |   |   └── WPEnqueueScripts.php
 |   |   |
 |   |   └── FrontendSoul.php
+|   |
+|   ├── Shared/
+|   |   ├── EnqueueScripts.php
+|   |   └── functions.php
 │   |
 │   ├── Activator.php
 │   ├── Deactivator.php
