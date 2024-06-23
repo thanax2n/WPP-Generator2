@@ -2,8 +2,23 @@
 
 namespace MXSFWNWPPGNext\Admin\Entities;
 
+use MXSFWNWPPGNext\Admin\Utilities\Notices\MetaBoxTypeNotice;
+
 class MetaBox
 {
+
+    const TYPES = [
+        'text',
+        'email',
+        'url',
+        'int',
+        'float',
+        'textarea',
+        'image',
+        'radio',
+        'select',
+        'checkbox'
+    ];
 
     private $args = [];
 
@@ -58,6 +73,13 @@ class MetaBox
 
         $this->args = wp_parse_args($metaBoxArguments, $this->defaults);
 
+        if (!$this->validateMetaBoxType()) {
+
+            MetaBoxTypeNotice::throw($this->args['metaBoxType']);
+
+            return;
+        }
+
         $this->setMetaBoxId();
 
         $this->setPostMetaKey();
@@ -65,6 +87,12 @@ class MetaBox
         $this->nonceManager();
 
         $this->actionsManager();
+    }
+
+    protected function validateMetaBoxType(): bool
+    {
+
+        return in_array($this->args['metaBoxType'], self::TYPES);
     }
 
     protected function setMetaBoxId()
@@ -125,26 +153,32 @@ class MetaBox
     public function saveMetaBox($postId)
     {
 
-        if(!isset($_POST)) return;
+        if (!isset($_POST)) return;
 
-        if(!isset($_POST[$this->args['nonceName']]) || !wp_verify_nonce(wp_unslash($_POST[$this->args['nonceName']]), $this->args['nonceAction'])) return;
+        if (!isset($_POST[$this->args['nonceName']]) || !wp_verify_nonce(wp_unslash($_POST[$this->args['nonceName']]), $this->args['nonceAction'])) return;
 
-        if(!current_user_can('edit_post', $postId)) return;
+        if (!current_user_can('edit_post', $postId)) return;
 
-        if(!isset($_POST[$this->args['postMetaKey']])) return;
+        if (!isset($_POST[$this->args['postMetaKey']])) return;
 
-        $value = $this->saveMetaBoxText();
+        $metaBoxType = ucfirst(strtolower($this->args['metaBoxType']));
 
-        if(!$value) return;
+        $value = NULL;
+
+        if (method_exists($this, "saveMetaBox{$metaBoxType}")) {
+
+            $value = call_user_func([$this, "saveMetaBox{$metaBoxType}"]);
+        }
+
+        if ($value === NULL) return;
 
         update_post_meta($postId, $this->args['postMetaKey'], $value);
-
     }
 
     public function saveMetaBoxText()
     {
 
-        if($this->args['metaBoxType'] !== 'text') return false;
+        if ($this->args['metaBoxType'] !== 'text') return false;
 
         return sanitize_text_field(wp_unslash($_POST[$this->args['postMetaKey']]));
     }
@@ -158,11 +192,19 @@ class MetaBox
             true
         );
 
-        mxsfwnView('meta-boxes/text', [
+        if (empty($metaBoxValue)) {
+
+            $metaBoxValue = $this->args['defaultValue'];
+        }
+
+        if (!mxsfwnView("meta-boxes/{$this->args['metaBoxType']}", [
             'metaBoxValue' => $metaBoxValue,
             'postMetaKey'  => $this->args['postMetaKey'],
             'readonly'     => $this->args['readonly']
-        ]);
+        ])) {
+
+            mxsfwnView('meta-boxes/404');
+        }
 
         wp_nonce_field($this->args['nonceAction'], $this->args['nonceName'], true, true);
     }

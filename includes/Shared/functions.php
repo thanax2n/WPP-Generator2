@@ -76,8 +76,8 @@ if (!function_exists('mxsfwnView')) {
 
         $path = MXSFWN_PLUGIN_ABS_PATH . "includes/Admin/views/{$view}.view.php";
 
-        if (!file_exists($path)) return;
+        if (!file_exists($path)) return false;
 
-        require $path;
+        return require $path;
     }
 }

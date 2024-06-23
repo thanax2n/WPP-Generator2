@@ -3,12 +3,12 @@
 defined('ABSPATH') || exit;
 
 /**
- * Input type text.
+ * Input type email.
 */
 ?>
 
 <input 
-    type="text"
+    type="email"
     id="<?php echo esc_attr($postMetaKey); ?>"
     name="<?php echo esc_attr($postMetaKey); ?>"
     value="<?php echo esc_html($metaBoxValue); ?>"

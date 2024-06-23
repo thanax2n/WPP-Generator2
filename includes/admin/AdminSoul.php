@@ -111,6 +111,47 @@ class AdminSoul
     public function addMetaBoxes()
     {
 
-        MetaBoxGenerator::add([]);
+        // Type Text
+        MetaBoxGenerator::add([
+            'id'           => "{$this->uniqueString}-author-name",
+            'name'         => 'Author Name',
+        ]);
+
+        // Type Email
+        MetaBoxGenerator::add([
+            'id'           => "{$this->uniqueString}-author-email",
+            'metaBoxType'  => 'email',
+            'name'         => 'Author Email',
+        ]);
+
+        // Type Url
+        MetaBoxGenerator::add([
+            'id'           => "{$this->uniqueString}-author-website",
+            'metaBoxType'  => 'url',
+            'name'         => 'Author Website',
+        ]);
+
+        // Type Integer
+        MetaBoxGenerator::add([
+            'id'           => "{$this->uniqueString}-author-age",
+            'metaBoxType'  => 'int',
+            'name'         => 'Author Age',
+            'defaultValue' => 30,
+        ]);
+
+        // Type Float
+        MetaBoxGenerator::add([
+            'id'           => "{$this->uniqueString}-author-salary",
+            'metaBoxType'  => 'float',
+            'name'         => 'Author Salary',
+            'defaultValue' => '500.9',
+        ]);
+
+        // Type Textarea
+        MetaBoxGenerator::add([
+            'id'           => "{$this->uniqueString}-author-bio",
+            'metaBoxType'  => 'textarea',
+            'name'         => 'Author Bio',
+        ]);
     }
 }
