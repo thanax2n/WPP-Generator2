@@ -114,28 +114,28 @@ class AdminSoul
         // Type Text
         MetaBoxGenerator::add([
             'id'           => "{$this->uniqueString}-author-name",
-            'name'         => 'Author Name',
+            'title'        => 'Author Name',
         ]);
 
         // Type Email
         MetaBoxGenerator::add([
             'id'           => "{$this->uniqueString}-author-email",
             'metaBoxType'  => 'email',
-            'name'         => 'Author Email',
+            'title'        => 'Author Email',
         ]);
 
         // Type Url
         MetaBoxGenerator::add([
             'id'           => "{$this->uniqueString}-author-website",
             'metaBoxType'  => 'url',
-            'name'         => 'Author Website',
+            'title'        => 'Author Website',
         ]);
 
         // Type Integer
         MetaBoxGenerator::add([
             'id'           => "{$this->uniqueString}-author-age",
             'metaBoxType'  => 'int',
-            'name'         => 'Author Age',
+            'title'        => 'Author Age',
             'defaultValue' => 30,
         ]);
 
@@ -143,7 +143,7 @@ class AdminSoul
         MetaBoxGenerator::add([
             'id'           => "{$this->uniqueString}-author-salary",
             'metaBoxType'  => 'float',
-            'name'         => 'Author Salary',
+            'title'        => 'Author Salary',
             'defaultValue' => '500.9',
         ]);
 
@@ -151,7 +151,76 @@ class AdminSoul
         MetaBoxGenerator::add([
             'id'           => "{$this->uniqueString}-author-bio",
             'metaBoxType'  => 'textarea',
-            'name'         => 'Author Bio',
+            'title'        => 'Author Bio',
         ]);
+
+        // Type Radio
+        MetaBoxGenerator::add([
+            'id'           => "{$this->uniqueString}-favorite-color",
+            'metaBoxType'  => 'radio',
+            'title'        => 'Favorite Color',
+            'options'      => [
+                [
+                    'label'   => 'Red',
+                    'value'   => 'red'
+                ],
+                [
+                    'label'   => 'Green',
+                    'value'   => 'green'
+                ],
+                [
+                    'label'   => 'Yellow',
+                    'value'   => 'yellow',
+                    'checked' => true
+                ]
+            ]
+        ]);
+
+        // Type Checkbox
+        MetaBoxGenerator::add([
+            'id'           => "{$this->uniqueString}-favorite-season",
+            'metaBoxType'  => 'checkbox',
+            'title'        => 'Favorite Season',
+            'options'      => [
+                [
+                    'label'   => 'Spring',
+                    'value'   => 'spring'
+                ],
+                [
+                    'label'   => 'Summer',
+                    'value'   => 'summer',
+                ],
+                [
+                    'label'   => 'Autumn',
+                    'value'   => 'autumn'
+                ],
+                [
+                    'label'   => 'Winter',
+                    'value'   => 'winter'
+                ]
+            ]
+        ]);
+
+        // Select
+        MetaBoxGenerator::add([
+            'id'           => "{$this->uniqueString}-favorite-animal",
+            'metaBoxType'  => 'select',
+            'title'        => 'Favorite Animal',
+            'options'      => [
+                [
+                    'label'    => 'Dog',
+                    'value'    => 'dog'
+                ],
+                [
+                    'label'    => 'Cat',
+                    'value'    => 'cat',
+                    'selected' => true
+                ],
+                [
+                    'label'    => 'Fish',
+                    'value'    => 'fish'
+                ]
+            ]
+        ]);        
     }
 }

@@ -25,7 +25,7 @@ class MetaBox
     protected $defaults = [
         'id'           => 'mx-meta-box',
         'postTypes'    => 'page',
-        'name'         => 'Meta Box',
+        'title'         => 'Meta Box',
         'metaBoxType'  => 'text',
         'options'      => [],
         'context'      => 'normal',
@@ -40,7 +40,7 @@ class MetaBox
      *   [
      *      'id'           'mx-meta-box' (string)
      *      'postTypes'    'page' (string|array) can be: ['page', 'post']
-     *      'name'         'Meta Box' (string)
+     *      'title'         'Meta Box' (string)
      *      'metaBoxType'  'text'   (string)     can be: 'email',
      *                                                   'url',
      *                                                   'int',
@@ -140,7 +140,7 @@ class MetaBox
 
         add_meta_box(
             $this->args['metaBoxId'],
-            $this->args['name'],
+            $this->args['title'],
             [$this, 'render'],
             $this->args['postTypes'],
             $this->args['context'],
@@ -178,10 +178,71 @@ class MetaBox
     public function saveMetaBoxText()
     {
 
-        if ($this->args['metaBoxType'] !== 'text') return false;
+        return sanitize_text_field(wp_unslash($_POST[$this->args['postMetaKey']]));
+    }
+
+    public function saveMetaBoxEmail()
+    {
+
+        return sanitize_email(wp_unslash($_POST[$this->args['postMetaKey']]));
+    }
+
+    public function saveMetaBoxUrl()
+    {
+
+        return esc_url_raw($_POST[$this->args['postMetaKey']]);
+    }
+
+    public function saveMetaBoxInt()
+    {
+
+        return intval($_POST[$this->args['postMetaKey']]);
+    }
+
+    public function saveMetaBoxFloat()
+    {
+
+        return floatval($_POST[$this->args['postMetaKey']]);
+    }
+
+    public function saveMetaBoxTextarea()
+    {
+
+        return sanitize_textarea_field($_POST[$this->args['postMetaKey']]);
+    }
+
+    public function saveMetaBoxRadio()
+    {
 
         return sanitize_text_field(wp_unslash($_POST[$this->args['postMetaKey']]));
     }
+
+    public function saveMetaBoxSelect()
+    {
+
+        return sanitize_text_field(wp_unslash($_POST[$this->args['postMetaKey']]));
+    }
+
+    public function saveMetaBoxCheckbox()
+    {
+
+        $options = [];
+
+        $postMetaKey = $this->args['postMetaKey'];
+
+        foreach ($_POST as $key => $value) {
+
+            preg_match("/($postMetaKey\d+)/", $key, $matches);
+
+            if (!empty($matches)) {
+
+                array_push($options, $value);
+            }
+        }
+
+        return implode(',', $options);
+    }
+
 
     public function render($post, $meta)
     {
@@ -200,7 +261,9 @@ class MetaBox
         if (!mxsfwnView("meta-boxes/{$this->args['metaBoxType']}", [
             'metaBoxValue' => $metaBoxValue,
             'postMetaKey'  => $this->args['postMetaKey'],
-            'readonly'     => $this->args['readonly']
+            'readonly'     => $this->args['readonly'],
+            'options'      => $this->args['options'],
+            'title'        => $this->args['title'],
         ])) {
 
             mxsfwnView('meta-boxes/404');
