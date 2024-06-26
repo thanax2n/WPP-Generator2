@@ -3,6 +3,7 @@
 namespace MXSFWNWPPGNext\Admin\Entities;
 
 use MXSFWNWPPGNext\Admin\Utilities\Notices\MetaBoxTypeNotice;
+use MXSFWNWPPGNext\Admin\Utilities\AdminEnqueueScripts;
 
 class MetaBox
 {
@@ -87,6 +88,8 @@ class MetaBox
         $this->nonceManager();
 
         $this->actionsManager();
+
+        $this->imageUploadManager();
     }
 
     protected function validateMetaBoxType(): bool
@@ -133,6 +136,19 @@ class MetaBox
         add_action('add_meta_boxes', [$this, 'addMetaBox']);
 
         add_action('save_post', [$this, 'saveMetaBox']);
+    }
+
+    protected function imageUploadManager()
+    {
+
+        if($this->args['metaBoxType'] !== 'image') return;
+        
+        // Image Upload Scripts
+        $adminScriptHandle = "meta-box-image-upload";
+        (new AdminEnqueueScripts)
+            ->addScript($adminScriptHandle, 'meta-box-image-upload.js')
+            ->dependency('jquery')
+            ->enqueue();
     }
 
     public function addMetaBox()
@@ -243,6 +259,11 @@ class MetaBox
         return implode(',', $options);
     }
 
+    public function saveMetaBoxImage()
+    {
+
+        return intval($_POST[$this->args['postMetaKey']]);
+    }
 
     public function render($post, $meta)
     {

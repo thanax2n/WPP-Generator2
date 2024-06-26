@@ -220,7 +220,14 @@ class AdminSoul
                     'label'    => 'Fish',
                     'value'    => 'fish'
                 ]
-            ]
-        ]);        
+            ],
+        ]);
+
+        // Image Upload
+        MetaBoxGenerator::add([
+            'id'           => "{$this->uniqueString}-author-photo",
+            'metaBoxType'  => 'image',
+            'title'        => 'Author Photo',
+        ]); 
     }
 }
