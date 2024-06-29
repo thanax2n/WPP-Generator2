@@ -21,7 +21,7 @@ class FrontendSoul
         // Font Awesome
         $fontAwesomeHandle = "{$this->uniqueString}-font-awesome";
         (new WPEnqueueScripts)
-            ->assetsPath(MXSFWN_PLUGIN_URL . 'assets/packages/font-awesome-4.6.3/css/')
+            ->assetsPath(MXSFWN_PLUGIN_URL . 'assets/packages/font-awesome-4.6.3/')
             ->addStyle($fontAwesomeHandle, 'font-awesome.min.css')
             ->args('all')
             ->enqueue();
@@ -29,7 +29,7 @@ class FrontendSoul
         // Frontend Styles
         $frontendStyleHandle = "{$this->uniqueString}-frontend-styles";
         (new WPEnqueueScripts)
-            ->addStyle($frontendStyleHandle, 'index.css')
+            ->addStyle($frontendStyleHandle, 'styles.css')
             ->dependency($fontAwesomeHandle)
             ->args('all')
             ->enqueue();
@@ -45,7 +45,7 @@ class FrontendSoul
         // Frontend Scripts
         $frontendScriptHandle = "{$this->uniqueString}-frontend-scripts";
         (new WPEnqueueScripts)
-            ->addScript($frontendScriptHandle, 'index.js')
+            ->addScript($frontendScriptHandle, 'scripts.js')
             ->dependency($vueJsHandle)
             ->dependency('jquery')
             ->localization([

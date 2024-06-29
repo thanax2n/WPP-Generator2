@@ -7,7 +7,7 @@ use MXSFWNWPPGNext\Shared\EnqueueScripts;
 class AdminEnqueueScripts
 {
 
-    protected $assetsPath = MXSFWN_PLUGIN_URL . 'includes/Admin/assets/';
+    protected $assetsPath = MXSFWN_PLUGIN_URL . 'assets/admin/';
 
     public function addStyle(string $handle, string $file): object
     {

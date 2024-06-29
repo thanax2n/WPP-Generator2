@@ -6,6 +6,18 @@ my-plugin/
 |   ├── images/
 |   |   └── example.png
 |   |
+|   ├── admin/
+|   |   ├──  css/
+|   |   |   └── styles.css
+|   |   └── js/
+|   |       └── scripts.js
+|   |
+|   ├── frontend/
+|   |   ├──  css/
+|   |   |   └── styles.css
+|   |   └── js/
+|   |       └── scripts.js
+|   |
 |   └── packages/
 |       ├── font-awesome-4.6.3/
 |       |   ├── css/
@@ -14,17 +26,12 @@ my-plugin/
 |       |       └── ...
 |       |
 |       └── vue/
-|           ├── dev.js
-|           └── prod.js
+|           └── js/
+|               ├── development.js
+|               └── production.js
 │
 ├── includes/
 |   ├── Admin/
-|   |   ├── assets/
-|   |   |   ├── css/
-|   |   |   |   └── styles.css
-|   |   |   └── js/
-|   |   |       └── scripts.js
-|   |   |
 |   |   ├── controllers/
 |   |   |   ├── hidden-menu.php
 |   |   |   ├── main.php
@@ -34,17 +41,33 @@ my-plugin/
 |   |   ├── Entities/
 |   |   |   ├── AdminMenu.php
 |   |   |   ├── AdminNotices.php
+|   |   |   ├── MetaBox.php
 |   |   |   ├── PostType.php
 |   |   |   └── Taxonomy.php
 |   |   |
 |   |   ├── Utilities/
 |   |   |   ├── Notices/
+|   |   |   |  ├── MetaBoxTypeNotice.php
 |   |   |   |  └── PathNotice.php
 |   |   |   |
+|   |   |   ├── AdminEnqueueScripts.php
+|   |   |   ├── MetaBoxGenerator.php
 |   |   |   ├── PostTypeGenerator.php
-|   |   |   └── AdminEnqueueScripts.php
+|   |   |   └── TaxonomyGenerator.php
 |   |   |
 |   |   ├── views/
+|   |   |   ├── meta-boxes/
+|   |   |   |   ├── 404.view.php
+|   |   |   |   ├── checkbox.view.php
+|   |   |   |   ├── email.view.php
+|   |   |   |   ├── float.view.php
+|   |   |   |   ├── image.view.php
+|   |   |   |   ├── int.view.php
+|   |   |   |   ├── radio.view.php
+|   |   |   |   ├── select.view.php
+|   |   |   |   ├── textarea.view.php
+|   |   |   |   └── url.view.php
+|   |   |   |
 |   |   |   ├── hidden-menu.view.php
 |   |   |   ├── main.view.php
 |   |   |   ├── settings-menu.view.php
@@ -62,24 +85,8 @@ my-plugin/
 |   |      └── ...
 |   |
 |   ├── Frontend/
-|   |   ├── built/
-|   |   |   ├── index.js
-|   |   |   └── index.css
-|   |   |
 |   |   ├── components/
-|   |   |   └── contact-form.php
-|   |   |
-|   |   ├── src/
-|   |   |   ├── main.js
-|   |   |   |
-|   |   |   ├── assets/
-|   |   |   |   ├── components/
-|   |   |   |   |   └── ...
-|   |   |   |   |
-|   |   |   |   └── scss/
-|   |   |   |       └── style.scss
-|   |   |   |
-|   |   |   └── main.js
+|   |   |   └── short-code.php
 |   |   |
 |   |   ├── Utilities/
 |   |   |   └── WPEnqueueScripts.php
@@ -110,6 +117,12 @@ my-plugin/
 |   ├── screenshot-1.jpg
 |   └── screenshot-2.jpg
 │
+├── src/
+|   ├── admin/
+|   |   └── ...
+|   └── frontend/
+|       └── ...
+|
 ├── composer.json
 ├── example.gitignore
 ├── index.php
@@ -118,7 +131,7 @@ my-plugin/
 ├── package.json
 ├── readme.txt
 ├── uninstall.php
-├── vite.config.js
+├── vite.config.js ?
 ├── my-plugin.php
 └── README.md
 ```

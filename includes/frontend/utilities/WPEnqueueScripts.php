@@ -7,12 +7,12 @@ use MXSFWNWPPGNext\Shared\EnqueueScripts;
 class WPEnqueueScripts
 {
     
-    protected $assetsPath = MXSFWN_PLUGIN_URL . 'includes/Frontend/built/';
+    protected $assetsPath = MXSFWN_PLUGIN_URL . 'assets/frontend/';
 
     public function addStyle(string $handle, string $file): object
     {
 
-        $styleSrc = $this->assetsPath . $file;
+        $styleSrc = $this->assetsPath . "css/{$file}";
 
         $instance = new EnqueueScripts($handle, $styleSrc);
 
@@ -26,7 +26,7 @@ class WPEnqueueScripts
     public function addScript(string $handle, string $file): object
     {
 
-        $scriptSrc = $this->assetsPath . $file;
+        $scriptSrc = $this->assetsPath . "js/{$file}";
 
         $instance = new EnqueueScripts($handle, $scriptSrc);
 
