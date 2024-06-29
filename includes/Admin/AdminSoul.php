@@ -228,6 +228,6 @@ class AdminSoul
             'id'           => "{$this->uniqueString}-author-photo",
             'metaBoxType'  => 'image',
             'title'        => 'Author Photo',
-        ]); 
+        ]);
     }
 }

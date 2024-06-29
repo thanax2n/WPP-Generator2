@@ -1,88 +1,103 @@
-; (function ($) {
-	$(function () {
+; (function (C) {
 
-		// upload image
-		$( '.mxsfwn_upload_image' ).on( 'click', function( e ) { 
+	const addButtons = document.querySelectorAll(C)
 
-			var mx_upload_button = $( this );
+	if (addButtons.length === 0) return
 
-			e.preventDefault();
+	addButtons.forEach(function (v, i) {
 
-			var frame;
+		openFrame(i)
+	})
+
+	// Add image
+	function openFrame(i) {
+
+		let frame = null
+
+		addButtons[i].onclick = function (e) {
+
+			const frameButton = this
+
+			const parent = frameButton.closest('div')
+
+			e.preventDefault()
 
 			if (frame) {
-				frame.open();
-				return;
+				frame.open()
+				return
 			}
 
-			frame = wp.media.frames.customBackground = wp.media( {
+			frame = wp.media.frames.metaBoxUploadImage = wp.media({
 
-				title: 'choose image',
+				title: 'Choose image',
 
 				library: {
 					type: 'image'
 				},
 
 				button: {
-
 					text: 'Upload'
 				},
 
 				multyple: false
-			} );
+			})
 
+			frame.on('select', function () {
 
-			frame.on( 'select', function() {
-
-				var attachment = frame.state().get( 'selection' ).first();
-
-                console.log(attachment);
+				var attachment = frame.state().get('selection').first()
 
 				// and show the image's data
-				var image_id = attachment.id;
+				var imageId = attachment.id
 
-				var image_url = attachment.attributes.url;
+				var imageUrl = attachment.attributes.url
 
-				// pace an id
-				mx_upload_button.parent().find( '.mxsfwn_upload_image_save' ).val( image_id );
+				parent.querySelector(`${C}--save`).value = imageId
 
-				// show an image
-				mx_upload_button.parent().find( '.mxsfwn_upload_image_show' ).attr( 'src', image_url );
-					mx_upload_button.parent().find( '.mxsfwn_upload_image_show' ).show();
+				parent.querySelector(`${C}--show`).setAttribute('src', imageUrl)
 
-				// show "remove button"
-				mx_upload_button.parent().find( '.mxsfwn_upload_image_remove' ).show();
+				parent.querySelector(`${C}--show`).style.display = 'block'
+				parent.querySelector(`${C}--remove`).style.display = 'block'
 
-				// hide "upload" button
-				mx_upload_button.hide();
+				parent.querySelector(C).style.display = 'block'
 
-			} );
+				frameButton.style.display = 'none'
 
-			frame.open();
+			})
 
-		} );
+			frame.open()
 
-		// remove image
-		$( '.mxsfwn_upload_image_remove' ).on( 'click', function( e ) {
+		}
+	}
 
-			var remove_button = $( this );
+	const removeButtons = document.querySelectorAll(`${C}--remove`)
 
-			e.preventDefault();
+	if (removeButtons.length === 0) return
 
-			// remove an id
-			remove_button.parent().find( '.mxsfwn_upload_image_save' ).val( '' );
+	removeButtons.forEach(function (v, i) {
 
-			// hide an image
-			remove_button.parent().find( '.mxsfwn_upload_image_show' ).attr( 'src', '' );
-				remove_button.parent().find( '.mxsfwn_upload_image_show' ).hide();
+		removeImage(i)
+	})
 
-			// show "Upload button"
-			remove_button.parent().find( '.mxsfwn_upload_image' ).show();
+	// Remove image
+	function removeImage(i) {
 
-			// hide "remove" button
-			remove_button.hide();
+		removeButtons[i].onclick = function (e) {
 
-		} );
+			e.preventDefault()
 
-	});
-})(jQuery);
+			const button = this
+
+			const parent = button.closest('div')
+
+			parent.querySelector(`${C}--save`).value = ''
+
+			parent.querySelector(`${C}--show`).setAttribute('src', '')
+
+			parent.querySelector(`${C}--remove`).style.display = 'none'
+
+			parent.querySelector(C).style.display = 'block'
+
+		}
+	}
+
+})('.mxsfwn_upload_image');

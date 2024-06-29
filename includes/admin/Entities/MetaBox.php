@@ -141,8 +141,8 @@ class MetaBox
     protected function imageUploadManager()
     {
 
-        if($this->args['metaBoxType'] !== 'image') return;
-        
+        if ($this->args['metaBoxType'] !== 'image') return;
+
         // Image Upload Scripts
         $adminScriptHandle = "meta-box-image-upload";
         (new AdminEnqueueScripts)
