@@ -18,5 +18,29 @@ class TaxonomyGenerator extends Taxonomy
 
         $instance->register();
     }
-}
 
+    public static function registerLanguageTaxonomy(): void
+    {
+
+        $taxonomy = 'language';
+
+        $postTypes = [
+            'framework'
+        ];
+
+        $labels = [
+            'name'    => __('Programming Language', 'wpp-generator-v2'),
+        ];
+
+        $properties = [
+            'rewrite' => ['slug' => 'programming-language'],
+        ];
+
+        self::create(
+            $taxonomy,
+            $postTypes,
+            $labels,
+            $properties
+        );
+    }
+}
