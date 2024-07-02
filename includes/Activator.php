@@ -2,12 +2,21 @@
 
 namespace MXSFWNWPPGNext;
 
+use MXSFWNWPPGNext\Activate\CreateDataTablesAndSeed;
+
 class Activator
 {
 
-    public static function init(): string
+    public static function init(): void
     {
 
-        return 'Activate';
+        (new static)->createTables();
+    }
+
+    public function createTables(): void
+    {
+
+        // Create robots table
+        CreateDataTablesAndSeed::createRobotsTable();
     }
 }
