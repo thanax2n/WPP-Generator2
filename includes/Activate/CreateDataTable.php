@@ -6,19 +6,19 @@ class CreateDataTable
 {
 
     // Table name.
-    private $table         = 'wppgn_table';
+    protected $table         = 'mxsfwn_table';
 
     // Columns.
-    private $columns       = [];
+    protected $columns       = [];
 
     // SQL query.
-    private $sqlContainer = NULL;
+    protected $sqlContainer = NULL;
 
     // Global $wpdb.
-    private $wpdb          = NULL;
+    protected $wpdb          = NULL;
 
     // Datetime.
-    private $datetime      = NULL;
+    protected $datetime      = NULL;
 
     public function __construct(string $tableName)
     {

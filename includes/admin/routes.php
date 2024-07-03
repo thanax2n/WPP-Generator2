@@ -66,5 +66,29 @@ $router->get($optionSlug)
         'menuSlug'   => 'wppg-next-settings'
     ]);
 
+/**
+ * Custom table example.
+ * Robots table.
+*/
+$router->get('robots-table/main')->properties([
+    'menuSlug' => 'ai-robots',
+    'pageTitle'  => 'AI robots',
+    'menuTitle'  => 'AI robots',
+]);
+
+/**
+ * Add single robot Menu Item.
+ * 
+ * /wp-admin/admin.php?page=single-ai-robot
+ * */
+$router->get('robots-table/single')
+    ->menuAction('addSubmenuPage')
+    ->properties([
+        'pageTitle'  => 'Single robot',
+        'menuTitle'  => 'Single robot',
+        'menuSlug'   => 'single-ai-robot'
+    ]);
+
+
 // Render all the pages.
 $router->route();

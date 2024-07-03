@@ -2,39 +2,35 @@
 
 namespace MXSFWNWPPGNext\Activate;
 
-use MXSFWNWPPGNext\Activate\CreateDataTable;
-
-class CreateDataTablesAndSeed
+class CreateDataTables extends CreateDataTable
 {
 
-    public static function createRobotsTable()
+    public static function robots(): object
     {
 
-        $robotsTable = (new CreateDataTable('ai_robots_seven'))
+        $instance = new static('ai_robots');
+
+        $instance
             ->varchar('title', 200, true, 'text')
-            ->longtext('description')
+            ->longText('description')
             ->varchar('status', 20, true, 'publish')
             ->datetime('created_at')
             ->createTable();
 
-        if (!$robotsTable) return;
-
-        self::seedeRobotsTable();
+        return $instance;
     }
 
-    public static function seedeRobotsTable(): void
+    public function seedRobots()
     {
 
         $data = require_once(MXSFWN_PLUGIN_ABS_PATH . 'includes/Activate/seeder/ai-robots.php');
 
         if (!is_array($data)) return;
 
-        global $wpdb;
-
         foreach ($data as $value) {
 
-            $wpdb->insert(
-                $wpdb->prefix . 'ai_robots_seven',
+            $this->wpdb->insert(
+                $this->table,
                 [
                     'title'       => esc_html($value['title']),
                     'description' => esc_html($value['description']),

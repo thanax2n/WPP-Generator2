@@ -6,7 +6,7 @@
  * Description:       This is my extremely useful plugin
  * Version:           1.0
  * Requires at least: 5.9
- * Requires PHP:      7.4
+ * Requires PHP:      7.4.3
  * Author:            Maksym Marko
  * Author URI:        https://github.com/Maksym-Marko
  * Text Domain:       wpp-generator-v2
@@ -79,21 +79,30 @@ if (!defined('MXSFWN_PLUGIN_VERSION')) {
 }
 
 /**
- * Autoload.
+ * PHP >= 7.4.30
+ * MySQL >= 5.7.28
+ * Mariadb?
  */
-require MXSFWN_PLUGIN_ABS_PATH . 'vendor/autoload.php';
 
-/**
- * Helper functions.
- */
-require_once MXSFWN_PLUGIN_ABS_PATH . 'includes/Shared/functions.php';
+if (PHP_VERSION_ID >= 70430) {
 
-/**
- * activation|deactivation.
- */
-require_once MXSFWN_PLUGIN_ABS_PATH . 'install.php';
+    /**
+     * Autoload.
+     */
+    require MXSFWN_PLUGIN_ABS_PATH . 'vendor/autoload.php';
 
-/**
- * Run plugin parts.
- */
-require_once MXSFWN_PLUGIN_ABS_PATH . 'index.php';
+    /**
+     * Helper functions.
+     */
+    require_once MXSFWN_PLUGIN_ABS_PATH . 'includes/Shared/functions.php';
+
+    /**
+     * activation|deactivation.
+     */
+    require_once MXSFWN_PLUGIN_ABS_PATH . 'install.php';
+
+    /**
+     * Run plugin parts.
+     */
+    require_once MXSFWN_PLUGIN_ABS_PATH . 'index.php';
+}

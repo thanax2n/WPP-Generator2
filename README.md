@@ -31,6 +31,13 @@ my-plugin/
 |               └── production.js
 │
 ├── includes/
+|   ├── Activate/
+|   |   ├── seeder/
+|   |   |   └── ai-robots.php
+|   |   |   
+|   |   ├── CreateDataTable.php
+|   |   └── CreateDataTables.php
+|   |
 |   ├── Admin/
 |   |   ├── controllers/
 |   |   |   ├── hidden-menu.php

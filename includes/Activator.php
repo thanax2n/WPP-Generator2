@@ -2,7 +2,7 @@
 
 namespace MXSFWNWPPGNext;
 
-use MXSFWNWPPGNext\Activate\CreateDataTablesAndSeed;
+use MXSFWNWPPGNext\Activate\CreateDataTables;
 
 class Activator
 {
@@ -16,7 +16,7 @@ class Activator
     public function createTables(): void
     {
 
-        // Create robots table
-        CreateDataTablesAndSeed::createRobotsTable();
+        // Create robots table.
+        CreateDataTables::robots()->seedRobots();
     }
 }

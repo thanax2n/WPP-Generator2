@@ -11,7 +11,7 @@ class AdminEnqueueScripts
 
     protected $assetsPath = MXSFWN_PLUGIN_URL . 'assets/admin/';
 
-    public function addStyle(string $handle, string $file): object
+    public function addStyle(string $handle, string $file): EnqueueScripts
     {
 
         $styleSrc = $this->assetsPath . "css/{$file}";
@@ -25,7 +25,7 @@ class AdminEnqueueScripts
         return $instance;
     }
 
-    public function addScript(string $handle, string $file): object
+    public function addScript(string $handle, string $file): EnqueueScripts
     {
 
         $scriptSrc = $this->assetsPath . "js/{$file}";
