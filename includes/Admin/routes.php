@@ -89,6 +89,22 @@ $router->get('robots-table/single')
         'menuSlug'   => 'single-ai-robot'
     ]);
 
+/**
+ * Actions for robots:
+ *   Trash
+ *   Restore
+ *   Delete
+ * 
+ * /wp-admin/admin.php?page=ai-robot-actions
+ * */
+$router->get('robots-table/actions')
+    ->menuAction('addSubmenuPage')
+    ->properties([
+        'pageTitle'  => 'Single robot',
+        'menuTitle'  => 'Single robot',
+        'menuSlug'   => 'ai-robot-actions'
+    ]);
+
 
 // Render all the pages.
 $router->route();

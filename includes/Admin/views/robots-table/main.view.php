@@ -20,7 +20,14 @@ if ($isTable) : ?>
 
     $tableInstance->views();
 
-    echo '<form id="' . $uniqueString . '_custom_table_search_form" method="post">';
+    echo '<form id="' . $uniqueString . '_custom_table_search_form" method="get">';
+
+        foreach ($_GET as $key => $value) {
+
+            if('s' === $key) continue;
+
+            printf('<input type="hidden" name="%s" value="%s">', $key, $value);
+        }
 
         $tableInstance->search_box(esc_html__('Search Robots', 'wpp-generator-v2'), '' . $uniqueString . '_robots_table_search_input');
     echo '</form>';

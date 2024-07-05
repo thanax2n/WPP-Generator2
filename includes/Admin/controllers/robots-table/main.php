@@ -19,7 +19,7 @@ $isTable = $wpdb->get_var(
 
 mxsfwnView('robots-table/main', [
     'message' => 'The table is not available!',
-    'tableInstance' => new RobotsTable(),
+    'tableInstance' => $robotsTableInstance,
     'isTable' => $isTable,
     'uniqueString' => MXSFWN_PLUGIN_UNIQUE_STRING
 ]);
