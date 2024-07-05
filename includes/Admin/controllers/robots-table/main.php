@@ -11,8 +11,10 @@ global $wpdb;
 $tableName = $wpdb->prefix . 'ai_robots';
 
 $isTable = $wpdb->get_var(
-
-    $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $tableName ) )
+    $wpdb->prepare(
+        'SHOW TABLES LIKE %s',
+        $wpdb->esc_like($tableName)
+    )
 );
 
 mxsfwnView('robots-table/main', [

@@ -20,12 +20,12 @@ if ($isTable) : ?>
 
     $tableInstance->views();
 
-    echo '<form id="' . $uniqueString . '_custom_talbe_search_form" method="post">';
+    echo '<form id="' . $uniqueString . '_custom_table_search_form" method="post">';
 
-        $tableInstance->search_box(esc_html__('Search Robots', 'wpp-generator-v2'), '' . $uniqueString . '_robots_talbe_search_input');
+        $tableInstance->search_box(esc_html__('Search Robots', 'wpp-generator-v2'), '' . $uniqueString . '_robots_table_search_input');
     echo '</form>';
 
-    echo '<form id="' . $uniqueString . '_custom_talbe_form" method="post">';
+    echo '<form id="' . $uniqueString . '_custom_table_form" method="post">';
 
         $tableInstance->display();
     echo '</form>';

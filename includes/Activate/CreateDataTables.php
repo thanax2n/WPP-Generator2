@@ -20,7 +20,7 @@ class CreateDataTables extends CreateDataTable
         return $instance;
     }
 
-    public function seedRobots()
+    public function seedRobots(): void
     {
 
         $data = require_once(MXSFWN_PLUGIN_ABS_PATH . 'includes/Activate/seeder/ai-robots.php');

@@ -8,17 +8,17 @@ use wpdb;
 class RobotsTable extends WP_List_Table
 {
 
-    protected $uniqueString = MXSFWN_PLUGIN_UNIQUE_STRING;
+    protected $uniqueString   = MXSFWN_PLUGIN_UNIQUE_STRING;
 
     protected $table;
 
-    protected $mainMenuSlug = 'ai-robots';
+    protected $mainMenuSlug   = 'ai-robots';
 
     protected $singleMenuSlug = 'single-ai-robot';
 
-    protected $perPage = 20;
+    protected $perPage        = 20;
 
-    protected $searchSQL = '';
+    protected $searchSQL      = '';
 
     public function __construct($args = [])
     {

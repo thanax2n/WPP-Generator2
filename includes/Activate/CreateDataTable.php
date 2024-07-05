@@ -5,19 +5,19 @@ namespace MXSFWNWPPGNext\Activate;
 class CreateDataTable
 {
 
-    // Table name.
+    // Table name
     protected $table         = 'mxsfwn_table';
 
-    // Columns.
+    // Columns
     protected $columns       = [];
 
-    // SQL query.
+    // SQL query
     protected $sqlContainer = NULL;
 
-    // Global $wpdb.
+    // Global $wpdb
     protected $wpdb          = NULL;
 
-    // Datetime.
+    // Datetime
     protected $datetime      = NULL;
 
     public function __construct(string $tableName)
@@ -47,7 +47,7 @@ class CreateDataTable
         return $this;
     }
 
-    // longtext column.
+    // longtext column
     public function longText(string $columnName = 'text', bool $notNull = false): object
     {
 
@@ -65,7 +65,7 @@ class CreateDataTable
         return $this;
     }
 
-    // int column.
+    // int column
     public function int(string $columnName = 'integer'): object
     {
 
@@ -76,7 +76,7 @@ class CreateDataTable
         return $this;
     }
 
-    // datetime colmn.
+    // datetime column
     public function datetime(string $columnName = 'created', string $default = NULL): object
     {
 
@@ -98,7 +98,7 @@ class CreateDataTable
 
         if ($this->wpdb->get_var("SHOW TABLES LIKE '" . $this->table . "'") != $this->table) {
 
-            // Create a table.
+            // Create a table
             $this->wpdb->query($this->sqlContainer);
 
             return true;
@@ -120,7 +120,7 @@ class CreateDataTable
             $collate = $wpdb->get_charset_collate();
         }
 
-        // Get all columns.
+        // Get all columns
         $columns = implode(',', $this->columns);
 
         if (count($this->columns) === 0) {
