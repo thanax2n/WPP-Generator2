@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Controller.
+ * This file is used for Custom table.
+ * Here there will be display a custom table.
+ */
+
 defined('ABSPATH') || exit;
 
 use MXSFWNWPPGNext\Admin\Utilities\RobotsTable;
@@ -19,7 +25,7 @@ $isTable = $wpdb->get_var(
 
 mxsfwnView('robots-table/main', [
     'message' => 'The table is not available!',
-    'tableInstance' => $robotsTableInstance,
+    'tableInstance' => new RobotsTable(),
     'isTable' => $isTable,
     'uniqueString' => MXSFWN_PLUGIN_UNIQUE_STRING
 ]);

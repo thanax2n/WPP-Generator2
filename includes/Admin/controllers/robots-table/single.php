@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Controller.
+ * This file is used for Custom table single item.
+ * Here will be commited edit action on an item.
+ */
+
 defined('ABSPATH') || exit;
 
 $itemId = isset( $_GET['edit-item'] ) ? trim( sanitize_text_field( $_GET['edit-item'] ) ) : 0;

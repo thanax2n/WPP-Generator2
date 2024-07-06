@@ -1,10 +1,19 @@
 <?php
 
+/**
+ * Class AdminMenu.
+ * This class is used to craete admin menu items
+ * and pages. Generally this class uses Router.php file.
+ */
+
 namespace MXSFWNWPPGNext\Admin\Entities;
 
 class AdminMenu
 {
 
+    /**
+	 * List of allowed actions.
+	 */
     const ACTIONS = [
         'addMenuPage',
         'addSubmenuPage',
@@ -12,10 +21,20 @@ class AdminMenu
         'addOptionLink'
     ];
 
+    /**
+	 * The default action (create a high level menu item).
+	 */
     protected $menuAction = 'addMenuPage';
 
+    /**
+	 * Path (URL) to a Style/Script file.
+	 */
     protected $path = NULL;
 
+    /**
+	 * These properties are used for admin menu
+     * and page maintenance.
+	 */
     protected $properties = [
         'pageTitle'  => 'WPP Generator',
         'menuTitle'  => 'WPP Generator',
@@ -56,6 +75,12 @@ class AdminMenu
         $this->path = $menuAttributes['path'];
     }
 
+    /**
+     * This function dynamically runs particular
+     * menu action (eg. create main menu or sub menu).
+     * 
+     * @return void   Fire "admin_menu" action.
+     */
     public function add()
     {
 
@@ -131,6 +156,12 @@ class AdminMenu
         add_filter("plugin_action_links_{$baseName}", [$this, 'addLink']);
     }
 
+    /**
+     * Add any number of links below plugin name
+     * on plugins page.
+     * 
+     * @return array    Array of links.
+     */
     public function addLink($links): array
     {
 
@@ -141,6 +172,11 @@ class AdminMenu
         return $links;
     }
 
+    /**
+     * This function requires a Style/Script file.
+     * 
+     * @return array    Array of links.
+     */
     public function render(): void
     {
 
