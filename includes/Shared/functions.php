@@ -81,3 +81,21 @@ if (!function_exists('mxsfwnView')) {
         return require $path;
     }
 }
+
+if (!function_exists('mxsfwnGoBack')) {
+    /**
+     * This function can be used for redirect purpose.
+     * 
+     * @param string $defaultUrl   This is a default url if HTTP_REFERER
+     *                             didn't specified.
+     *
+     * @return void     redirect to previous page or to default one.
+     */
+
+    function mxsfwnGoBack($defaultUrl)
+    {
+        $backLink = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : $defaultUrl;
+
+        printf('<script>;window.location.href="%s";</script>', $backLink);
+    }
+}

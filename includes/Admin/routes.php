@@ -90,7 +90,7 @@ $router->get('robots-table/single')
     ]);
 
 /**
- * Actions for robots:
+ * GET actions for robots:
  *   Trash
  *   Restore
  *   Delete
@@ -105,6 +105,18 @@ $router->get('robots-table/actions')
         'menuSlug'   => 'ai-robot-actions'
     ]);
 
+/**
+ * PATCH (Edit) action for robots.
+ * 
+ * /wp-admin/admin.php?page=edit-ai-robot
+ * */
+$router->get('robots-table/edit-robot')
+    ->menuAction('addSubmenuPage')
+    ->properties([
+        'pageTitle'  => 'Edit robot',
+        'menuTitle'  => 'Edit robot',
+        'menuSlug'   => 'edit-ai-robot'
+    ]);
 
 // Render all the pages.
 $router->route();

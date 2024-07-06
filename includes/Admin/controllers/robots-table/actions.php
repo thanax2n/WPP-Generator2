@@ -11,10 +11,8 @@ defined('ABSPATH') || exit;
 
 use MXSFWNWPPGNext\Admin\Utilities\RobotsTable;
 
-$robotsTableInstance = new RobotsTable();
+$instance = new RobotsTable();
 
-$actionDone = $robotsTableInstance->prepareActionAndCommit($_GET);
+$instance->prepareActionAndCommit($_GET);
 
-$backLink = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : admin_url();
-
-printf('<script>;window.location.href="%s";</script>', $backLink);
+mxsfwnGoBack(admin_url());

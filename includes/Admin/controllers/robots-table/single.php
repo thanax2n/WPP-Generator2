@@ -3,34 +3,43 @@
 /**
  * Controller.
  * This file is used for Custom table single item.
- * Here will be commited edit action on an item.
+ * Here a user can edit an element.
  */
 
 defined('ABSPATH') || exit;
 
-$itemId = isset( $_GET['edit-item'] ) ? trim( sanitize_text_field( $_GET['edit-item'] ) ) : 0;
+use MXSFWNWPPGNext\Admin\Utilities\RobotsTable;
 
-global $wpdb;
+$itemId = isset($_GET['edit-item']) ? trim(sanitize_text_field($_GET['edit-item'])) : 0;
 
-$table = "{$wpdb->prefix}ai_robots";
-        
-$robot = $wpdb->get_row( 
+if (0 === $itemId) {
 
-    $wpdb->prepare(
-        "SELECT * FROM $table
-        WHERE id='%d'",
-        $itemId
-    )
-);
-
-if($robot) {
-
-    mxsfwnView('robots-table/single', [
-        'robot' => $robot
-    ]);
+    mxsfwnGoBack(admin_url());
 } else {
 
-    mxsfwnView('robots-table/404', [
-        'message' => 'Robot not found!'
-    ]);
+    $instance = new RobotsTable();
+
+    $table = $instance->getTableName();
+
+    $robot = $instance->getWPDB()->get_row(
+
+        $instance->getWPDB()->prepare(
+            "SELECT * FROM $table
+            WHERE id='%d'",
+            $itemId
+        )
+    );
+
+    if ($robot) {
+
+        mxsfwnView('robots-table/single', [
+            'robot'         => $robot,
+            'robotsTable'   => $instance
+        ]);
+    } else {
+
+        mxsfwnView('robots-table/404', [
+            'message' => 'Robot not found!'
+        ]);
+    }
 }

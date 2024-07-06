@@ -12,8 +12,8 @@ class AdminMenu
 {
 
     /**
-	 * List of allowed actions.
-	 */
+     * List of allowed actions.
+     */
     const ACTIONS = [
         'addMenuPage',
         'addSubmenuPage',
@@ -22,19 +22,19 @@ class AdminMenu
     ];
 
     /**
-	 * The default action (create a high level menu item).
-	 */
+     * The default action (create a high level menu item).
+     */
     protected $menuAction = 'addMenuPage';
 
     /**
-	 * Path (URL) to a Style/Script file.
-	 */
+     * Path to a Style/Script file.
+     */
     protected $path = NULL;
 
     /**
-	 * These properties are used for admin menu
+     * These properties are used for admin menu
      * and page maintenance.
-	 */
+     */
     protected $properties = [
         'pageTitle'  => 'WPP Generator',
         'menuTitle'  => 'WPP Generator',
@@ -42,7 +42,7 @@ class AdminMenu
         'menuSlug'   => 'mxsfwn-admin-page',
         'dashicons'  => 'dashicons-image-filter',
         'position'   => 100,
-        'parentSlug' => 'hidden'
+        'parentSlug' => 'hidden',
     ];
 
     /** 

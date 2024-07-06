@@ -10,16 +10,14 @@ defined('ABSPATH') || exit;
 
 use MXSFWNWPPGNext\Admin\Utilities\RobotsTable;
 
-$robotsTableInstance = new RobotsTable();
+$instance = new RobotsTable();
 
-global $wpdb;
+$table = $instance->getTableName();
 
-$tableName = $wpdb->prefix . 'ai_robots';
-
-$isTable = $wpdb->get_var(
-    $wpdb->prepare(
+$isTable = $instance->getWPDB()->get_var(
+    $instance->getWPDB()->prepare(
         'SHOW TABLES LIKE %s',
-        $wpdb->esc_like($tableName)
+        $instance->getWPDB()->esc_like($table)
     )
 );
 

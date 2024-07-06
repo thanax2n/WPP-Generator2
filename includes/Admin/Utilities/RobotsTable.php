@@ -18,6 +18,7 @@ class RobotsTable extends WP_List_Table
 
     protected $actionsMenuSlug = 'ai-robot-actions';
 
+    protected $patchSlug       = 'edit-ai-robot';
 
     protected $perPage         = 20;
 
@@ -60,7 +61,7 @@ class RobotsTable extends WP_List_Table
         }
 
         // Status
-        $itemStatus = isset($_GET['item_status']) ? trim($_GET['item_status']) : 'publish';
+        $itemStatus = isset($_GET['item-status']) ? trim($_GET['item-status']) : 'publish';
 
         $status = "AND status = '$itemStatus'";
 
@@ -179,7 +180,7 @@ class RobotsTable extends WP_List_Table
                 ), $action, "{$this->uniqueString}_nonce"));
             };
 
-            if (isset($_GET['item_status']) && trim($_GET['item_status']) === 'trash') {
+            if (isset($_GET['item-status']) && trim($_GET['item-status']) === 'trash') {
 
                 $actions['restore'] = sprintf(
                     '<a aria-label="%s" href="%s">%s</a>',
@@ -257,7 +258,7 @@ class RobotsTable extends WP_List_Table
 
         if (!current_user_can('edit_posts')) return $action;
 
-        if (isset($_GET['item_status']) && trim($_GET['item_status']) === 'trash') {
+        if (isset($_GET['item-status']) && trim($_GET['item-status']) === 'trash') {
 
             $action['restore'] = __('Restore Items', 'wpp-generator-v2');
             $action['delete']  = __('Delete Permanently', 'wpp-generator-v2');
@@ -282,123 +283,123 @@ class RobotsTable extends WP_List_Table
             <?php submit_button(esc_html($text), '', '', false, [
                 'id' => "{$this->uniqueString}-search-submit"
             ]); ?>
-        </p><?php
-        }
+        </p>
+<?php
+    }
 
-        protected function get_views(): array
-        {
+    protected function get_views(): array
+    {
 
-            $itemStatus    = isset($_GET['item_status']) ? trim($_GET['item_status']) : 'publish';
-            $publishNumber = $this->wpdb()->get_var("SELECT COUNT(id) FROM {$this->table} WHERE status='publish';");
-            $trashNumber   = $this->wpdb()->get_var("SELECT COUNT(id) FROM {$this->table} WHERE status='trash';");
-            $url           = admin_url("admin.php?page={$this->mainMenuSlug}");
+        $itemStatus    = isset($_GET['item-status']) ? trim($_GET['item-status']) : 'publish';
+        $publishNumber = $this->wpdb()->get_var("SELECT COUNT(id) FROM {$this->table} WHERE status='publish';");
+        $trashNumber   = $this->wpdb()->get_var("SELECT COUNT(id) FROM {$this->table} WHERE status='trash';");
+        $url           = admin_url("admin.php?page={$this->mainMenuSlug}");
 
-            $statusLinks   = [];
+        $statusLinks   = [];
 
-            // Publish
-            if ($publishNumber > 0) {
+        // Publish
+        if ($publishNumber > 0) {
 
-                $statusLinks['publish'] = [
-                    'url'     => add_query_arg('item_status', 'publish', $url),
-                    'label'   => sprintf(
-                        _nx(
-                            'Publish <span class="count">(%s)</span>',
-                            'Publish <span class="count">(%s)</span>',
-                            $publishNumber,
-                            'publish'
-                        ),
-                        number_format_i18n($publishNumber)
+            $statusLinks['publish'] = [
+                'url'     => add_query_arg('item-status', 'publish', $url),
+                'label'   => sprintf(
+                    _nx(
+                        'Publish <span class="count">(%s)</span>',
+                        'Publish <span class="count">(%s)</span>',
+                        $publishNumber,
+                        'publish'
                     ),
-                    'current' => 'publish' === $itemStatus,
-                ];
-            }
+                    number_format_i18n($publishNumber)
+                ),
+                'current' => 'publish' === $itemStatus,
+            ];
+        }
 
-            // Trash
-            if ($trashNumber > 0) {
+        // Trash
+        if ($trashNumber > 0) {
 
-                $statusLinks['trash'] = [
-                    'url'     => add_query_arg('item_status', 'trash', $url),
-                    'label'   => sprintf(
-                        _nx(
-                            'Trash <span class="count">(%s)</span>',
-                            'Trash <span class="count">(%s)</span>',
-                            $trashNumber,
-                            'trash'
-                        ),
-                        number_format_i18n($trashNumber)
+            $statusLinks['trash'] = [
+                'url'     => add_query_arg('item-status', 'trash', $url),
+                'label'   => sprintf(
+                    _nx(
+                        'Trash <span class="count">(%s)</span>',
+                        'Trash <span class="count">(%s)</span>',
+                        $trashNumber,
+                        'trash'
                     ),
-                    'current' => 'trash' == $itemStatus,
-                ];
+                    number_format_i18n($trashNumber)
+                ),
+                'current' => 'trash' == $itemStatus,
+            ];
+        }
+
+        return $this->get_views_links($statusLinks);
+    }
+
+    public function no_items(): void
+    {
+
+        if (isset($_GET['item-status']) && trim($_GET['item-status']) === 'trash') {
+
+            _e('No items found in trash.');
+        } else {
+
+            _e('No items found.');
+        }
+    }
+
+    /**
+     * Actions:
+     *  Trash
+     *  Restore
+     *  Delete
+     */
+    public function prepareActionAndCommit()
+    {
+
+        $actions = ['trash', 'restore', 'delete'];
+
+        $currentAction = false;
+
+        // Check action
+        foreach ($actions as $action) {
+
+            if (isset($_GET[$action])) {
+
+                $currentAction = $action;
+                break;
             }
-
-            return $this->get_views_links($statusLinks);
         }
 
-        public function no_items(): void
-        {
+        if (!$currentAction) return false;
 
-            if (isset($_GET['item_status']) && trim($_GET['item_status']) === 'trash') {
+        $robotId = (int) trim(sanitize_text_field($_GET[$currentAction]));
 
-                _e('No items found in trash.');
-            } else {
+        // Check nonce
+        if (!isset($_GET["{$this->uniqueString}_nonce"]) || !wp_verify_nonce($_GET["{$this->uniqueString}_nonce"], $currentAction)) return false;
 
-                _e('No items found.');
-            }
-        }
+        // if method exists
+        $callback = "{$currentAction}Robot";
+        if (!method_exists($this, $callback)) return false;
 
-        /**
-         * Actions:
-         *  Trash
-         *  Restore
-         *  Delete
-         */
-        public function prepareActionAndCommit()
-        {
+        // commit
+        return call_user_func([$this, $callback], $robotId);
+    }
 
-            $actions = ['trash', 'restore', 'delete'];
+    protected function robotExists($robotId): bool
+    {
 
-            $currentAction = false;
+        $count = $this->wpdb()->get_var("SELECT COUNT(id) FROM {$this->table} WHERE id = '$robotId'");
 
+        if ($count === 0) return false;
 
-            // Check action
-            foreach ($actions as $action) {
+        return true;
+    }
 
-                if (isset($_GET[$action])) {
+    protected function deleteRobot($robotId): bool
+    {
 
-                    $currentAction = $action;
-                    break;
-                }
-            }
-
-            if (!$currentAction) return false;
-
-            $robotId = (int) trim(sanitize_text_field($_GET[$currentAction]));
-
-            // Check nonce
-            if (!isset($_GET["{$this->uniqueString}_nonce"]) || !wp_verify_nonce($_GET["{$this->uniqueString}_nonce"], $currentAction)) return false;
-
-            // if method exists
-            $callback = "{$currentAction}Robot";
-            if (!method_exists($this, $callback)) return false;
-
-            // commit
-            return call_user_func([$this, $callback], $robotId);
-        }
-
-        protected function robotExists($robotId): bool
-        {
-
-            $count = $this->wpdb()->get_var("SELECT COUNT(id) FROM {$this->table} WHERE id = '$robotId'");
-
-            if ($count === 0) return false;
-
-            return true;
-        }
-
-        protected function deleteRobot($robotId): bool
-        {
-
-            return $this->robotExists($robotId) ? 
+        return $this->robotExists($robotId) ?
             $this->wpdb()->delete(
                 $this->table,
                 [
@@ -409,12 +410,12 @@ class RobotsTable extends WP_List_Table
                 ]
             ) :
             false;
-        }
+    }
 
-        protected function restoreRobot($robotId): bool
-        {
+    protected function restoreRobot($robotId): bool
+    {
 
-            return $this->robotExists($robotId) ? 
+        return $this->robotExists($robotId) ?
             $this->wpdb()->update(
 
                 $this->table,
@@ -429,12 +430,12 @@ class RobotsTable extends WP_List_Table
                 ]
             ) :
             false;
-        }
+    }
 
-        protected function trashRobot($robotId): bool
-        {
+    protected function trashRobot($robotId): bool
+    {
 
-            return $this->robotExists($robotId) ?
+        return $this->robotExists($robotId) ?
             $this->wpdb()->update(
 
                 $this->table,
@@ -449,5 +450,74 @@ class RobotsTable extends WP_List_Table
                 ]
             ) :
             false;
-        }
     }
+
+    /**
+     * Edit item via post request
+     */
+    public function editRobot()
+    {
+
+        // Check nonce
+        if (!isset($_POST["{$this->uniqueString}-wp-nonce"]) || !wp_verify_nonce($_POST["{$this->uniqueString}-wp-nonce"], "{$this->uniqueString}-edit")) return false;
+
+        // Check robot id
+        if (!isset($_POST['edit-item']) || !is_numeric($_POST['edit-item'])) return false;
+
+        // Check if robot exists
+        if (!$this->robotExists(intval($_POST['edit-item']))) return false;
+
+        // Update robot
+        $title = sanitize_text_field($_POST['title']);
+        $description = sanitize_textarea_field($_POST['description']);
+
+        return $this->wpdb()->update(
+
+            $this->table,
+            [
+                'title'       => $title,
+                'description' => $description,
+            ],
+            [
+                'id'          => intval($_POST['edit-item']),
+            ],
+            [
+                '%s',
+                '%s',
+            ]
+        );
+    }
+
+    /**
+     * Getters
+     */
+    public function getTableName(): string
+    {
+
+        return $this->table;
+    }
+
+    public function getWPDB(): wpdb
+    {
+
+        return $this->wpdb();
+    }
+
+    public function mainMenuSlug(): string
+    {
+
+        return $this->mainMenuSlug;
+    }
+
+    public function getUniqueString(): string
+    {
+
+        return $this->uniqueString;
+    }
+
+    public function getPatchSlug(): string
+    {
+
+        return $this->patchSlug;
+    }
+}

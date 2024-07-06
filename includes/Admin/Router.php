@@ -25,7 +25,7 @@ class Router
         $this->routes[] = [
             'path'       => $path,
             'properties' => [],
-            'menuAction' => 'addMenuPage'
+            'menuAction' => 'addMenuPage',
         ];
 
         return $this;
