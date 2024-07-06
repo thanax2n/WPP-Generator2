@@ -18,7 +18,7 @@ defined('ABSPATH') || exit;
             id="<?= $robotsTable->getUniqueString() ?>_form_update"
             class="mx-settings"
             method="post"
-            action="<?= esc_url_raw(admin_url("admin.php?page={$robotsTable->getPatchSlug()}")); ?>"
+            action="<?= esc_url_raw(admin_url("admin.php?page={$robotsTable->getEditSlug()}")); ?>"
         >
 
             <input

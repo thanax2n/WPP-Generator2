@@ -106,7 +106,7 @@ $router->get('robots-table/actions')
     ]);
 
 /**
- * PATCH (Edit) action for robots.
+ * Edit action for robots.
  * 
  * /wp-admin/admin.php?page=edit-ai-robot
  * */
@@ -116,6 +116,19 @@ $router->get('robots-table/edit-robot')
         'pageTitle'  => 'Edit robot',
         'menuTitle'  => 'Edit robot',
         'menuSlug'   => 'edit-ai-robot'
+    ]);
+
+/**
+ * Bulk actions for robots.
+ * 
+ * /wp-admin/admin.php?page=bulk-ai-robot
+ * */
+$router->get('robots-table/bulk-robot')
+    ->menuAction('addSubmenuPage')
+    ->properties([
+        'pageTitle'  => 'Bulk actions for robots',
+        'menuTitle'  => 'Bulk actions for robots',
+        'menuSlug'   => 'bulk-ai-robot'
     ]);
 
 // Render all the pages.

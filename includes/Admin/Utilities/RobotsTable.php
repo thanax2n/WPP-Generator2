@@ -18,11 +18,19 @@ class RobotsTable extends WP_List_Table
 
     protected $actionsMenuSlug = 'ai-robot-actions';
 
-    protected $patchSlug       = 'edit-ai-robot';
+    protected $editSlug        = 'edit-ai-robot';
+
+    protected $bulkSlug        = 'bulk-ai-robot';
 
     protected $perPage         = 20;
 
     protected $searchSQL       = '';
+
+    const ACTIONS = [
+        'trash',
+        'restore',
+        'delete'
+    ];
 
     public function __construct($args = [])
     {
@@ -137,7 +145,7 @@ class RobotsTable extends WP_List_Table
     {
 
         printf(
-            '<input type="checkbox" class="%1$s_bulk_input" name="%1$s-action-%2$d" value="%2$d" />',
+            '<input type="checkbox" class="%1$s_bulk_input" name="%1$s-robot-ids[]" value="%2$d" />',
             $this->uniqueString,
             $item['id']
         );
@@ -357,12 +365,10 @@ class RobotsTable extends WP_List_Table
     public function prepareActionAndCommit()
     {
 
-        $actions = ['trash', 'restore', 'delete'];
-
         $currentAction = false;
 
         // Check action
-        foreach ($actions as $action) {
+        foreach (self::ACTIONS as $action) {
 
             if (isset($_GET[$action])) {
 
@@ -383,10 +389,10 @@ class RobotsTable extends WP_List_Table
         if (!method_exists($this, $callback)) return false;
 
         // commit
-        return call_user_func([$this, $callback], $robotId);
+        return call_user_func([$this, $callback], (int) $robotId);
     }
 
-    protected function robotExists($robotId): bool
+    protected function robotExists(int $robotId): bool
     {
 
         $count = $this->wpdb()->get_var("SELECT COUNT(id) FROM {$this->table} WHERE id = '$robotId'");
@@ -396,7 +402,7 @@ class RobotsTable extends WP_List_Table
         return true;
     }
 
-    protected function deleteRobot($robotId): bool
+    protected function deleteRobot(int $robotId): bool
     {
 
         return $this->robotExists($robotId) ?
@@ -412,7 +418,7 @@ class RobotsTable extends WP_List_Table
             false;
     }
 
-    protected function restoreRobot($robotId): bool
+    protected function restoreRobot(int $robotId): bool
     {
 
         return $this->robotExists($robotId) ?
@@ -432,7 +438,7 @@ class RobotsTable extends WP_List_Table
             false;
     }
 
-    protected function trashRobot($robotId): bool
+    protected function trashRobot(int $robotId): bool
     {
 
         return $this->robotExists($robotId) ?
@@ -453,7 +459,7 @@ class RobotsTable extends WP_List_Table
     }
 
     /**
-     * Edit item via post request
+     * Edit item
      */
     public function editRobot()
     {
@@ -489,6 +495,41 @@ class RobotsTable extends WP_List_Table
     }
 
     /**
+     * Bulk actions
+     */
+    public function bulkActions()
+    {
+
+        // Check nonce
+        if (!isset($_POST["{$this->uniqueString}-wp-nonce"]) || !wp_verify_nonce($_POST["{$this->uniqueString}-wp-nonce"], "{$this->uniqueString}-bulk")) return false;
+
+        // If an action is registered
+        $bulkAction = $_POST['action'];
+
+        if (!in_array($bulkAction, self::ACTIONS)) return false;
+
+        // If ids isset
+        $robotsIdsIndex = "{$this->uniqueString}-robot-ids";
+
+        if (!isset($_POST[$robotsIdsIndex])) return false;
+
+        // If ids in array
+        if (!is_array($_POST[$robotsIdsIndex])) return false;
+
+        // if method exists
+        $callback = "{$bulkAction}Robot";
+
+        if (!method_exists($this, $callback)) return false;
+
+        // Check each robot and commit action
+        foreach ($_POST[$robotsIdsIndex] as $robotId) {
+
+            // commit
+            call_user_func([$this, $callback], (int) $robotId);
+        }
+    }
+
+    /**
      * Getters
      */
     public function getTableName(): string
@@ -515,9 +556,15 @@ class RobotsTable extends WP_List_Table
         return $this->uniqueString;
     }
 
-    public function getPatchSlug(): string
+    public function getEditSlug(): string
     {
 
-        return $this->patchSlug;
+        return $this->editSlug;
+    }
+
+    public function getBulkSlug(): string
+    {
+
+        return $this->bulkSlug;
     }
 }

@@ -2,7 +2,7 @@
 
 /**
  * Class AdminMenu.
- * This class is used to craete admin menu items
+ * This class is used to create admin menu items
  * and pages. Generally this class uses Router.php file.
  */
 
@@ -27,7 +27,7 @@ class AdminMenu
     protected $menuAction = 'addMenuPage';
 
     /**
-     * Path to a Style/Script file.
+     * Path to controller (file).
      */
     protected $path = NULL;
 
@@ -173,7 +173,7 @@ class AdminMenu
     }
 
     /**
-     * This function requires a Style/Script file.
+     * This function requires a file's path.
      * 
      * @return array    Array of links.
      */
