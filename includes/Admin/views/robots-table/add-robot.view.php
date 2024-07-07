@@ -3,9 +3,9 @@
 /**
  * VIEW.
  * 
- * Single robot's page.
+ * Add a robot page.
  * 
- * CONTROLLER: \includes\Admin\controllers\robots-table\single.php
+ * CONTROLLER: \includes\Admin\controllers\robots-table\add-robot.php
  */
 
 defined('ABSPATH') || exit;
@@ -13,28 +13,23 @@ defined('ABSPATH') || exit;
 ?>
 <div class="mx-single-table-item-wrap">
 
-    <h1><?php esc_html_e( 'Edit Table Item', 'wpp-generator-v2' ); ?></h1>
+    <h1><?php esc_html_e( 'Create a Robot', 'wpp-generator-v2' ); ?></h1>
 
     <a href="<?php echo esc_url_raw(admin_url("admin.php?page={$robotsTable->mainMenuSlug()}")); ?>">
-
         <?php esc_html_e( 'Go Back', 'wpp-generator-v2' ); ?>
     </a>
+
+    <br>
+    <br>
 
     <div class="<?= $robotsTable->getUniqueString() ?>_block_wrap">
 
         <form 
-            id="<?= $robotsTable->getUniqueString() ?>_form_update"
+            id="<?= $robotsTable->getUniqueString() ?>_form_create"
             class="mx-settings"
             method="post"
-            action="<?= esc_url_raw(admin_url("admin.php?page={$robotsTable->getEditSlug()}")); ?>"
+            action="<?= esc_url_raw(admin_url("admin.php?page={$robotsTable->getStoreItemSlug()}")); ?>"
         >
-
-            <input
-                type="hidden"
-                id="edit-item"
-                name="edit-item"
-                value="<?= $robot->id; ?>"
-            />
 
             <div>
                 <label for="<?= $robotsTable->getUniqueString() ?>-title">                    
@@ -47,7 +42,7 @@ defined('ABSPATH') || exit;
                     type="text"
                     name="title"
                     id="<?= $robotsTable->getUniqueString() ?>-title"
-                    value="<?= $robot->title; ?>"
+                    value=""
                 />
             </div>
 
@@ -55,7 +50,6 @@ defined('ABSPATH') || exit;
 
             <div>
                 <label for="<?= $robotsTable->getUniqueString() ?>-description">
-
                     <?php esc_html_e( 'Description', 'wpp-generator-v2' ); ?>
                 </label>
 
@@ -66,7 +60,7 @@ defined('ABSPATH') || exit;
                     id="<?= $robotsTable->getUniqueString() ?>-description"
                     rows="8"
                     cols="60"
-                ><?php esc_html_e(trim($robot->description)); ?></textarea>
+                ></textarea>
             </div>
 
             <p class="mx-submit_button_wrap">
@@ -75,7 +69,7 @@ defined('ABSPATH') || exit;
                     type="hidden"
                     id="<?= $robotsTable->getUniqueString() ?>-wp-nonce"
                     name="<?= $robotsTable->getUniqueString() ?>-wp-nonce"
-                    value="<?= wp_create_nonce("{$robotsTable->getUniqueString()}-edit"); ?>"
+                    value="<?= wp_create_nonce("{$robotsTable->getUniqueString()}-store"); ?>"
                 />
 
                 <input

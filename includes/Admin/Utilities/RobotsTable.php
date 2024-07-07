@@ -22,6 +22,10 @@ class RobotsTable extends WP_List_Table
 
     protected $bulkSlug        = 'bulk-ai-robot';
 
+    protected $addItemSlug     = 'add-ai-robot';
+
+    protected $storeItemSlug   = 'store-ai-robot';
+
     protected $perPage         = 20;
 
     protected $searchSQL       = '';
@@ -493,6 +497,40 @@ class RobotsTable extends WP_List_Table
             ]
         );
     }
+    
+    /**
+     * Store item
+     */
+    public function storeRobot()
+    {
+
+        // Check nonce
+        if (!isset($_POST["{$this->uniqueString}-wp-nonce"]) || !wp_verify_nonce($_POST["{$this->uniqueString}-wp-nonce"], "{$this->uniqueString}-store")) return false;
+
+        // Sanitize title
+        $title = sanitize_text_field($_POST['title']);
+
+        // Sanitize description
+        $description = sanitize_textarea_field($_POST['description']);
+
+        // Store robot
+        $insert = $this->wpdb()->insert(
+
+            $this->table,
+            [
+                'title'       => $title,
+                'description' => $description,
+            ],
+            [
+                '%s',
+                '%s',
+            ]
+        );
+
+        if(!is_numeric($insert)) return false;
+
+        return $this->wpdb()->insert_id;
+    }
 
     /**
      * Bulk actions
@@ -566,5 +604,23 @@ class RobotsTable extends WP_List_Table
     {
 
         return $this->bulkSlug;
+    }
+
+    public function getAddItemSlug(): string
+    {
+
+        return $this->addItemSlug;
+    }
+
+    public function getStoreItemSlug(): string
+    {
+
+        return $this->storeItemSlug;
+    }
+
+    public function getSingleMenuSlug(): string
+    {
+
+        return $this->singleMenuSlug;
     }
 }

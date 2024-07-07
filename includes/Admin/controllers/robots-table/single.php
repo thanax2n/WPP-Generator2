@@ -1,9 +1,11 @@
 <?php
 
 /**
- * Controller.
- * This file is used for Custom table single item.
- * Here a user can edit an element.
+ * CONTROLLER.
+ * 
+ * Single robot's page.
+ * 
+ * VIEW: \includes\Admin\views\robots-table\single.view.php
  */
 
 defined('ABSPATH') || exit;

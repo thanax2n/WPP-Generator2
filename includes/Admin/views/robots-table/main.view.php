@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * VIEW.
+ * 
+ * Table with robots page.
+ * 
+ * CONTROLLER: \includes\Admin\controllers\robots-table\main.php
+ */
+
 defined('ABSPATH') || exit;
 
 
@@ -9,7 +17,8 @@ if ($isTable) : ?>
         <?php esc_html_e('AI Robots', 'wpp-generator-v2'); ?>
     </h1>
 
-    <a href="<?php echo admin_url('admin.php?page=main-menu'); ?>" class="page-title-action">
+    <a href="<?php echo admin_url("admin.php?page={$tableInstance->getAddItemSlug()}"); ?>" class="page-title-action">
+
         <?php esc_html_e('Add New', 'wpp-generator-v2'); ?>
     </a>
 

@@ -1,9 +1,11 @@
 <?php
 
 /**
- * Controller.
- * This file is used for Custom table.
- * Here there will be display a custom table.
+ * CONTROLLER.
+ * 
+ * Table with robots page.
+ * 
+ * VIEW: \includes\Admin\views\robots-table\main.view.php
  */
 
 defined('ABSPATH') || exit;

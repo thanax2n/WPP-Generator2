@@ -72,6 +72,7 @@ if (!function_exists('mxsfwnView')) {
 
     function mxsfwnView($view, $attributes = [])
     {
+        
         extract($attributes);
 
         $path = MXSFWN_PLUGIN_ABS_PATH . "includes/Admin/views/{$view}.view.php";
@@ -94,8 +95,26 @@ if (!function_exists('mxsfwnGoBack')) {
 
     function mxsfwnGoBack($defaultUrl)
     {
+
         $backLink = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : $defaultUrl;
 
         printf('<script>;window.location.href="%s";</script>', $backLink);
+    }
+}
+
+if (!function_exists('mxsfwnRedirectTo')) {
+    /**
+     * This function can be used for redirect purpose.
+     * 
+     * @param string $defaultUrl   This is a default url if HTTP_REFERER
+     *                             didn't specified.
+     *
+     * @return void     redirect to previous page or to default one.
+     */
+
+    function mxsfwnRedirectTo($url)
+    {
+
+        printf('<script>;window.location.href="%s";</script>', $url);
     }
 }
