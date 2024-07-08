@@ -1,6 +1,14 @@
 <?php
 
-namespace MXSFWNWPPGNext\Admin\Utilities;
+/**
+ * The RobotsTable class.
+ *
+ * This class extends WP_List_Table::class
+ * Here is an example of how to create
+ * a custom table using WordPress engine.
+ */
+
+namespace MXSFWNWPPGNext\Admin\Utilities\Tables;
 
 use WP_List_Table;
 use wpdb;
@@ -8,34 +16,88 @@ use wpdb;
 class RobotsTable extends WP_List_Table
 {
 
+    /**
+	 * The unique string.
+	 *
+	 * @var string
+	 */
     protected $uniqueString   = MXSFWN_PLUGIN_UNIQUE_STRING;
 
+    /**
+	 * The name of DB table.
+	 *
+	 * @var string
+	 */
     protected $table;
 
+    /**
+	 * Page slug is used to display the table.
+     * 
+     * If you wish to change this slug, please
+     * do the same for the router:
+     * \includes\Admin\routes.php
+	 *
+	 * @var string
+	 */
     protected $mainMenuSlug    = 'ai-robots';
 
-    protected $singleMenuSlug  = 'single-ai-robot';
+    /**
+	 * Page slug is used to display a single item.
+     * 
+     * If you wish to change this slug, please
+     * do the same for the router:
+     * \includes\Admin\routes.php
+	 *
+	 * @var string
+	 */
+    protected $singleMenuSlug  = 'ai-robot-edit';
 
-    protected $actionsMenuSlug = 'ai-robot-actions';
+    /**
+	 * Slug is used to catch actions:
+     * trash, restore, delete.
+     * 
+     * If you wish to change this slug, please
+     * do the same for the router:
+     * \includes\Admin\routes.php
+	 *
+	 * @var string
+	 */
+    protected $actionsMenuSlug = 'action-ai-robot-trash-restore-delete';
 
-    protected $editSlug        = 'edit-ai-robot';
-
-    protected $bulkSlug        = 'bulk-ai-robot';
-
-    protected $addItemSlug     = 'add-ai-robot';
-
-    protected $storeItemSlug   = 'store-ai-robot';
-
+    /**
+	 * Number of items per page in the table.
+	 *
+	 * @var int
+	 */
     protected $perPage         = 20;
 
+    /**
+	 * Search SQL.
+	 *
+	 * @var string
+	 */
     protected $searchSQL       = '';
 
-    const ACTIONS = [
-        'trash',
-        'restore',
-        'delete'
-    ];
-
+    /**
+	 * Constructor.
+     * 
+	 * @param array|string $args {
+	 *     Array or string of arguments.
+	 *
+	 *     @type string $plural   Plural value used for labels and the objects being listed.
+	 *                            This affects things such as CSS class-names and nonces used
+	 *                            in the list table, e.g. 'posts'. Default empty.
+	 *     @type string $singular Singular label for an object being listed, e.g. 'post'.
+	 *                            Default empty
+	 *     @type bool   $ajax     Whether the list table supports Ajax. This includes loading
+	 *                            and sorting data, for example. If true, the class will call
+	 *                            the _js_vars() method in the footer to provide variables
+	 *                            to any scripts handling Ajax events. Default false.
+	 *     @type string $screen   String containing the hook name used to determine the current
+	 *                            screen. If left null, the current screen will be automatically set.
+	 *                            Default null.
+	 * }
+	 */
     public function __construct($args = [])
     {
 
@@ -49,12 +111,24 @@ class RobotsTable extends WP_List_Table
         $this->table = "{$this->wpdb()->prefix}ai_robots";
     }
 
-    private function wpdb(): wpdb
+    /**
+	 * global $wpdb is used for DB interaction.
+	 *
+	 * @var class wpdb
+	 */
+    protected function wpdb(): wpdb
     {
 
         return $GLOBALS['wpdb'];
     }
 
+    /**
+     * Prepare data before display.
+     * This function checks $_GET and prepare
+     * data according to user's wishes.
+     * 
+     * @return void      Maintenance table.
+     */
     public function prepare_items(): void
     {
 
@@ -112,6 +186,12 @@ class RobotsTable extends WP_List_Table
         );
     }
 
+    /**
+     * This function collect array 
+     * of columns used in the table.
+     * 
+     * @return array      List of columns.
+     */
     public function get_columns(): array
     {
 
@@ -125,6 +205,12 @@ class RobotsTable extends WP_List_Table
         ];
     }
 
+    /**
+     * Here you can hide some columns
+     * from the table.
+     * 
+     * @return array      List of hidden columns.
+     */
     public function get_hidden_columns(): array
     {
 
@@ -134,6 +220,11 @@ class RobotsTable extends WP_List_Table
         ];
     }
 
+    /**
+     * Here you can register sortable columns.
+     * 
+     * @return array      List of sortable columns.
+     */
     public function get_sortable_columns(): array
     {
 
@@ -145,6 +236,13 @@ class RobotsTable extends WP_List_Table
         ];
     }
 
+    /**
+     * Function "column_{$columnName}"
+     * displays a data for particular column.
+     * In this case: cb
+     * 
+     * @return void      Return data according current column.
+     */
     public function column_cb($item): void
     {
 
@@ -155,12 +253,26 @@ class RobotsTable extends WP_List_Table
         );
     }
 
+    /**
+     * Function "column_{$columnName}"
+     * displays a data for particular column.
+     * In this case: id
+     * 
+     * @return void      Return data according current column.
+     */
     public function column_id($item): void
     {
 
         echo $item['id'];
     }
 
+    /**
+     * Function "column_{$columnName}"
+     * displays a data for particular column.
+     * In this case: title
+     * 
+     * @return void      Return data according current column.
+     */
     public function column_title($item): void
     {
 
@@ -249,6 +361,13 @@ class RobotsTable extends WP_List_Table
         echo $output;
     }
 
+    /**
+     * Function "column_{$columnName}"
+     * displays a data for particular column.
+     * In this case: description
+     * 
+     * @return void      Return data according current column.
+     */
     public function column_description($item): void
     {
 
@@ -257,12 +376,25 @@ class RobotsTable extends WP_List_Table
         echo strlen($item['description']) <= $length ? $item['description'] : substr($item['description'], 0, $length) . '...';
     }
 
+    /**
+     * Function "column_{$columnName}"
+     * displays a data for particular column.
+     * In this case: created_at
+     * 
+     * @return void      Return data according current column.
+     */
     public function column_created_at($item): void
     {
 
         echo $item['created_at'];
     }
 
+    /**
+     * Here you can register bulk actions.
+     * Eg. trash, restore, delete.
+     * 
+     * @return array      List of bulk actions.
+     */
     protected function get_bulk_actions(): array
     {
 
@@ -282,6 +414,13 @@ class RobotsTable extends WP_List_Table
         return $action;
     }
 
+    /**
+     * This function generates HTML markup
+     * of the search box. You can find
+     * table items using the box.
+     * 
+     * @return void      Return search box above the table.
+     */
     public function search_box($text, $inputId): void
     {
 
@@ -299,6 +438,31 @@ class RobotsTable extends WP_List_Table
 <?php
     }
 
+    /**
+     * If the search fails,
+     * here you can register text 
+     * for different views.
+     * 
+     * @return void      Not found message.
+     */
+    public function no_items(): void
+    {
+
+        if (isset($_GET['item-status']) && trim($_GET['item-status']) === 'trash') {
+
+            esc_html_e('No items found in trash.', 'wpp-generator-v2');
+        } else {
+
+            esc_html_e('No items found.', 'wpp-generator-v2');
+        }
+    }
+
+    /**
+     * Here you can add links for different
+     * types of data display. Eg. publish or trash.
+     * 
+     * @return array      List of links.
+     */
     protected function get_views(): array
     {
 
@@ -346,281 +510,5 @@ class RobotsTable extends WP_List_Table
         }
 
         return $this->get_views_links($statusLinks);
-    }
-
-    public function no_items(): void
-    {
-
-        if (isset($_GET['item-status']) && trim($_GET['item-status']) === 'trash') {
-
-            _e('No items found in trash.');
-        } else {
-
-            _e('No items found.');
-        }
-    }
-
-    /**
-     * Actions:
-     *  Trash
-     *  Restore
-     *  Delete
-     */
-    public function prepareActionAndCommit()
-    {
-
-        $currentAction = false;
-
-        // Check action
-        foreach (self::ACTIONS as $action) {
-
-            if (isset($_GET[$action])) {
-
-                $currentAction = $action;
-                break;
-            }
-        }
-
-        if (!$currentAction) return false;
-
-        $robotId = (int) trim(sanitize_text_field($_GET[$currentAction]));
-
-        // Check nonce
-        if (!isset($_GET["{$this->uniqueString}_nonce"]) || !wp_verify_nonce($_GET["{$this->uniqueString}_nonce"], $currentAction)) return false;
-
-        // if method exists
-        $callback = "{$currentAction}Robot";
-        if (!method_exists($this, $callback)) return false;
-
-        // commit
-        return call_user_func([$this, $callback], (int) $robotId);
-    }
-
-    protected function robotExists(int $robotId): bool
-    {
-
-        $count = $this->wpdb()->get_var("SELECT COUNT(id) FROM {$this->table} WHERE id = '$robotId'");
-
-        if ($count === 0) return false;
-
-        return true;
-    }
-
-    protected function deleteRobot(int $robotId): bool
-    {
-
-        return $this->robotExists($robotId) ?
-            $this->wpdb()->delete(
-                $this->table,
-                [
-                    'id' => $robotId
-                ],
-                [
-                    '%d',
-                ]
-            ) :
-            false;
-    }
-
-    protected function restoreRobot(int $robotId): bool
-    {
-
-        return $this->robotExists($robotId) ?
-            $this->wpdb()->update(
-
-                $this->table,
-                [
-                    'status' => 'publish',
-                ],
-                [
-                    'id'     => $robotId,
-                ],
-                [
-                    '%s',
-                ]
-            ) :
-            false;
-    }
-
-    protected function trashRobot(int $robotId): bool
-    {
-
-        return $this->robotExists($robotId) ?
-            $this->wpdb()->update(
-
-                $this->table,
-                [
-                    'status' => 'trash',
-                ],
-                [
-                    'id'     => $robotId,
-                ],
-                [
-                    '%s',
-                ]
-            ) :
-            false;
-    }
-
-    /**
-     * Edit item
-     */
-    public function editRobot()
-    {
-
-        // Check nonce
-        if (!isset($_POST["{$this->uniqueString}-wp-nonce"]) || !wp_verify_nonce($_POST["{$this->uniqueString}-wp-nonce"], "{$this->uniqueString}-edit")) return false;
-
-        // Check robot id
-        if (!isset($_POST['edit-item']) || !is_numeric($_POST['edit-item'])) return false;
-
-        // Check if robot exists
-        if (!$this->robotExists(intval($_POST['edit-item']))) return false;
-
-        // Update robot
-        $title = sanitize_text_field($_POST['title']);
-        $description = sanitize_textarea_field($_POST['description']);
-
-        return $this->wpdb()->update(
-
-            $this->table,
-            [
-                'title'       => $title,
-                'description' => $description,
-            ],
-            [
-                'id'          => intval($_POST['edit-item']),
-            ],
-            [
-                '%s',
-                '%s',
-            ]
-        );
-    }
-    
-    /**
-     * Store item
-     */
-    public function storeRobot()
-    {
-
-        // Check nonce
-        if (!isset($_POST["{$this->uniqueString}-wp-nonce"]) || !wp_verify_nonce($_POST["{$this->uniqueString}-wp-nonce"], "{$this->uniqueString}-store")) return false;
-
-        // Sanitize title
-        $title = sanitize_text_field($_POST['title']);
-
-        // Sanitize description
-        $description = sanitize_textarea_field($_POST['description']);
-
-        // Store robot
-        $insert = $this->wpdb()->insert(
-
-            $this->table,
-            [
-                'title'       => $title,
-                'description' => $description,
-            ],
-            [
-                '%s',
-                '%s',
-            ]
-        );
-
-        if(!is_numeric($insert)) return false;
-
-        return $this->wpdb()->insert_id;
-    }
-
-    /**
-     * Bulk actions
-     */
-    public function bulkActions()
-    {
-
-        // Check nonce
-        if (!isset($_POST["{$this->uniqueString}-wp-nonce"]) || !wp_verify_nonce($_POST["{$this->uniqueString}-wp-nonce"], "{$this->uniqueString}-bulk")) return false;
-
-        // If an action is registered
-        $bulkAction = $_POST['action'];
-
-        if (!in_array($bulkAction, self::ACTIONS)) return false;
-
-        // If ids isset
-        $robotsIdsIndex = "{$this->uniqueString}-robot-ids";
-
-        if (!isset($_POST[$robotsIdsIndex])) return false;
-
-        // If ids in array
-        if (!is_array($_POST[$robotsIdsIndex])) return false;
-
-        // if method exists
-        $callback = "{$bulkAction}Robot";
-
-        if (!method_exists($this, $callback)) return false;
-
-        // Check each robot and commit action
-        foreach ($_POST[$robotsIdsIndex] as $robotId) {
-
-            // commit
-            call_user_func([$this, $callback], (int) $robotId);
-        }
-    }
-
-    /**
-     * Getters
-     */
-    public function getTableName(): string
-    {
-
-        return $this->table;
-    }
-
-    public function getWPDB(): wpdb
-    {
-
-        return $this->wpdb();
-    }
-
-    public function mainMenuSlug(): string
-    {
-
-        return $this->mainMenuSlug;
-    }
-
-    public function getUniqueString(): string
-    {
-
-        return $this->uniqueString;
-    }
-
-    public function getEditSlug(): string
-    {
-
-        return $this->editSlug;
-    }
-
-    public function getBulkSlug(): string
-    {
-
-        return $this->bulkSlug;
-    }
-
-    public function getAddItemSlug(): string
-    {
-
-        return $this->addItemSlug;
-    }
-
-    public function getStoreItemSlug(): string
-    {
-
-        return $this->storeItemSlug;
-    }
-
-    public function getSingleMenuSlug(): string
-    {
-
-        return $this->singleMenuSlug;
     }
 }

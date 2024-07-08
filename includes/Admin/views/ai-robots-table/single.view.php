@@ -3,9 +3,9 @@
 /**
  * VIEW.
  * 
- * Single robot's page.
+ * Edit robot's page.
  * 
- * CONTROLLER: \includes\Admin\controllers\robots-table\single.php
+ * CONTROLLER: \includes\Admin\controllers\ai-robots-table\single.php
  */
 
 defined('ABSPATH') || exit;
@@ -19,6 +19,9 @@ defined('ABSPATH') || exit;
 
         <?php esc_html_e( 'Go Back', 'wpp-generator-v2' ); ?>
     </a>
+
+    <br>
+    <br>
 
     <div class="<?= $robotsTable->getUniqueString() ?>_block_wrap">
 

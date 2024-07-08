@@ -5,7 +5,7 @@
  * 
  * Add a robot page.
  * 
- * CONTROLLER: \includes\Admin\controllers\robots-table\add-robot.php
+ * CONTROLLER: \includes\Admin\controllers\ai-robots-table\add-robot.php
  */
 
 defined('ABSPATH') || exit;

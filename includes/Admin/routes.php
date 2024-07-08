@@ -83,7 +83,7 @@ $router->get($optionSlug)
  * 
  * Robots table. Main page.
 */
-$router->get('robots-table/main')->properties([
+$router->get('ai-robots-table/main')->properties([
     'menuSlug' => 'ai-robots',
     'pageTitle'  => 'AI robots',
     'menuTitle'  => 'AI robots',
@@ -94,14 +94,14 @@ $router->get('robots-table/main')->properties([
  * 
  * Single robot page.
  * 
- * /wp-admin/admin.php?page=single-ai-robot
+ * /wp-admin/admin.php?page=ai-robot-edit
  * */
-$router->get('robots-table/single')
+$router->get('ai-robots-table/single')
     ->menuAction('addSubmenuPage')
     ->properties([
         'pageTitle'  => 'Single robot',
         'menuTitle'  => 'Single robot',
-        'menuSlug'   => 'single-ai-robot'
+        'menuSlug'   => 'ai-robot-edit'
     ]);
 
 /**
@@ -111,7 +111,7 @@ $router->get('robots-table/single')
  * 
  * /wp-admin/admin.php?page=add-ai-robot
  * */
-$router->get('robots-table/add-robot')
+$router->get('ai-robots-table/add-robot')
 ->menuAction('addSubmenuPage')
 ->properties([
     'pageTitle'  => 'Add robot',
@@ -124,14 +124,14 @@ $router->get('robots-table/add-robot')
  * 
  * Edit action for robots.
  * 
- * /wp-admin/admin.php?page=edit-ai-robot
+ * /wp-admin/admin.php?page=action-ai-robot-update
  * */
-$router->get('robots-table/edit-robot')
+$router->get('ai-robots-table/action-ai-robot-update')
     ->menuAction('addSubmenuPage')
     ->properties([
         'pageTitle'  => 'Edit robot',
         'menuTitle'  => 'Edit robot',
-        'menuSlug'   => 'edit-ai-robot'
+        'menuSlug'   => 'action-ai-robot-update'
     ]);
 
 /**
@@ -139,14 +139,14 @@ $router->get('robots-table/edit-robot')
  * 
  * Store action for robots.
  * 
- * /wp-admin/admin.php?page=store-ai-robot
+ * /wp-admin/admin.php?page=action-ai-robot-store
  * */
-$router->get('robots-table/store-robot')
+$router->get('ai-robots-table/action-ai-robot-store')
     ->menuAction('addSubmenuPage')
     ->properties([
         'pageTitle'  => 'Store robot',
         'menuTitle'  => 'Store robot',
-        'menuSlug'   => 'store-ai-robot'
+        'menuSlug'   => 'action-ai-robot-store'
     ]);
 
 /**
@@ -157,14 +157,14 @@ $router->get('robots-table/store-robot')
  *   Restore
  *   Delete
  * 
- * /wp-admin/admin.php?page=ai-robot-actions
+ * /wp-admin/admin.php?page=action-ai-robot-trash-restore-delete
  * */
-$router->get('robots-table/actions')
+$router->get('ai-robots-table/action-ai-robot-trash-restore-delete')
     ->menuAction('addSubmenuPage')
     ->properties([
         'pageTitle'  => 'Single robot',
         'menuTitle'  => 'Single robot',
-        'menuSlug'   => 'ai-robot-actions'
+        'menuSlug'   => 'action-ai-robot-trash-restore-delete'
     ]);
 
 /**
@@ -172,14 +172,14 @@ $router->get('robots-table/actions')
  * 
  * Bulk actions for robots.
  * 
- * /wp-admin/admin.php?page=bulk-ai-robot
+ * /wp-admin/admin.php?page=action-ai-robot-bulk
  * */
-$router->get('robots-table/bulk-robot')
+$router->get('ai-robots-table/action-ai-robot-bulk')
     ->menuAction('addSubmenuPage')
     ->properties([
         'pageTitle'  => 'Bulk actions for robots',
         'menuTitle'  => 'Bulk actions for robots',
-        'menuSlug'   => 'bulk-ai-robot'
+        'menuSlug'   => 'action-ai-robot-bulk'
     ]);
 
 // Render all the pages.

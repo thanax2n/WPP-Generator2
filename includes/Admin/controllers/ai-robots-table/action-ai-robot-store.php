@@ -3,14 +3,16 @@
 /**
  * CONTROLLER.
  * 
- * STORE ACTION.
+ * This file is used for Custom table store action.
+ * When a user attempts to save new item
+ * here fires a store action.
  */
 
 defined('ABSPATH') || exit;
 
-use MXSFWNWPPGNext\Admin\Utilities\RobotsTable;
+use MXSFWNWPPGNext\Admin\Utilities\Tables\RobotsDataManager;
 
-$instance = new RobotsTable();
+$instance = new RobotsDataManager();
 
 $robotId = $instance->storeRobot();
 

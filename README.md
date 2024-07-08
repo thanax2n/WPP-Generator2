@@ -40,6 +40,15 @@ my-plugin/
 |   |
 |   ├── Admin/
 |   |   ├── controllers/
+|   |   |   ├── ai-robots-table/
+|   |   |   |   ├── action-ai-robot-bulk.php
+|   |   |   |   ├── action-ai-robot-store.php
+|   |   |   |   ├── action-ai-robot-trash-restore-delete.php
+|   |   |   |   ├── action-ai-robot-update.php
+|   |   |   |   ├── add-robot.php
+|   |   |   |   ├── main.php
+|   |   |   |   └── single.php
+|   |   |   |
 |   |   |   ├── hidden-menu.php
 |   |   |   ├── main.php
 |   |   |   ├── settings-menu.php
@@ -57,12 +66,22 @@ my-plugin/
 |   |   |   |  ├── MetaBoxTypeNotice.php
 |   |   |   |  └── PathNotice.php
 |   |   |   |
+|   |   |   ├── Tables/
+|   |   |   |   ├── RobotsDataManager.php
+|   |   |   |   └── RobotsTable.php
+|   |   |   |
 |   |   |   ├── AdminEnqueueScripts.php
 |   |   |   ├── MetaBoxGenerator.php
 |   |   |   ├── PostTypeGenerator.php
 |   |   |   └── TaxonomyGenerator.php
 |   |   |
 |   |   ├── views/
+|   |   |   ├── ai-robots-table/
+|   |   |   |   ├── 404.view.php
+|   |   |   |   ├── add-robot.view.php
+|   |   |   |   ├── main.view.php
+|   |   |   |   └── single.view.php
+|   |   |   |
 |   |   |   ├── meta-boxes/
 |   |   |   |   ├── 404.view.php
 |   |   |   |   ├── checkbox.view.php

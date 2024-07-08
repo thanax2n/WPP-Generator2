@@ -3,13 +3,12 @@
 /**
  * VIEW.
  * 
- * Table with robots page.
+ * Table with robots.
  * 
- * CONTROLLER: \includes\Admin\controllers\robots-table\main.php
+ * CONTROLLER: \includes\Admin\controllers\ai-robots-table\main.php
  */
 
 defined('ABSPATH') || exit;
-
 
 if ($isTable) : ?>
 

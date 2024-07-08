@@ -3,7 +3,7 @@
 /**
  * VIEW.
  * 
- * Robot not found
+ * Robot not found.
  */
 
 defined('ABSPATH') || exit;
