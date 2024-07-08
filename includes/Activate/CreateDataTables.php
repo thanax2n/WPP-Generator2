@@ -1,10 +1,23 @@
 <?php
 
+/**
+ * The CreateDataTables class.
+ *
+ * Here you can create as many 
+ * as you wish DB tables.
+ */
+
 namespace MXSFWNWPPGNext\Activate;
 
 class CreateDataTables extends CreateDataTable
 {
 
+    /**
+     * Create a DB table with 
+     * particular columns.
+     * 
+     * @return object      Current class.
+     */
     public static function robots(): object
     {
 
@@ -20,6 +33,15 @@ class CreateDataTables extends CreateDataTable
         return $instance;
     }
 
+    /**
+     * Function description.
+     * 
+     * @param array|string|int variableName   Variable description.
+     *
+     * @since 2.2.0
+     * 
+     * @return void      Return description.
+     */
     public function seedRobots(): void
     {
 

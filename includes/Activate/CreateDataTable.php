@@ -1,24 +1,52 @@
 <?php
 
+/**
+ * The CreateDataTable class.
+ *
+ * This class can be used to create
+ * a DB table.
+ */
+
 namespace MXSFWNWPPGNext\Activate;
 
 class CreateDataTable
 {
 
-    // Table name
+    /**
+     * Table name.
+     *
+     * @var string
+     */
     protected $table         = 'mxsfwn_table';
 
-    // Columns
+    /**
+     * List of columns.
+     *
+     * @var array
+     */
     protected $columns       = [];
 
-    // SQL query
-    protected $sqlContainer = NULL;
+    /**
+     * SQL query.
+     *
+     * @var string
+     */
+    protected $sqlContainer;
 
-    // Global $wpdb
-    protected $wpdb          = NULL;
+    /**
+     * global $wpdb.
+     * Is used for DB interactions.
+     *
+     * @var instance wpdb::class
+     */
+    protected $wpdb;
 
-    // Datetime
-    protected $datetime      = NULL;
+    /**
+     * Datetime Scheme.
+     *
+     * @var string
+     */
+    protected $datetime;
 
     public function __construct(string $tableName)
     {
@@ -32,7 +60,17 @@ class CreateDataTable
         $this->table    = "{$this->wpdb->prefix}{$tableName}";
     }
 
-    // varchar column.
+    /**
+     * Create a database column.
+     * Creates SQL string for DB column type: varchar
+     * 
+     * @param string $columnName   Column name.
+     * @param int    $length       Column length.
+     * @param bool   $notNull      If value can be not NULL.
+     * @param string $default      Set default value.
+     * 
+     * @return object      Return this object to chain in the future.
+     */
     public function varchar(string $columnName = 'name', int $length = 10, bool $notNull = false, string $default = NULL): object
     {
 
@@ -47,7 +85,15 @@ class CreateDataTable
         return $this;
     }
 
-    // longtext column
+    /**
+     * Create a database column.
+     * Creates SQL string for DB column type: longtext
+     * 
+     * @param string $columnName   Column name.
+     * @param bool   $notNull      If value can be not NULL.
+     * 
+     * @return object      Return this object to chain in the future.
+     */
     public function longText(string $columnName = 'text', bool $notNull = false): object
     {
 
@@ -65,7 +111,14 @@ class CreateDataTable
         return $this;
     }
 
-    // int column
+    /**
+     * Create a database column.
+     * Creates SQL string for DB column type: int
+     * 
+     * @param string $columnName   Column name.
+     * 
+     * @return object      Return this object to chain in the future.
+     */
     public function int(string $columnName = 'integer'): object
     {
 
@@ -76,7 +129,15 @@ class CreateDataTable
         return $this;
     }
 
-    // datetime column
+    /**
+     * Create a database column.
+     * Creates SQL string for DB column type: datetime
+     * 
+     * @param string $columnName   Column name.
+     * @param string $default      Set default value.
+     * 
+     * @return object      Return this object to chain in the future.
+     */
     public function datetime(string $columnName = 'created', string $default = NULL): object
     {
 
@@ -89,6 +150,13 @@ class CreateDataTable
         return $this;
     }
 
+    /**
+     * This function is used after the 
+     * columns was set.
+     * Creates new table.
+     * 
+     * @return bool      true/false.
+     */
     public function createTable(): bool
     {
 
@@ -107,17 +175,24 @@ class CreateDataTable
         return false;
     }
 
-    // Create Columns
+    /**
+     * Prepare SQL string for columns
+     * set previously.
+     * 
+     * @param string $id   Name of auto increment column.
+     *
+     * @since 2.2.0
+     * 
+     * @return void      Return description.
+     */
     protected function prepareSQL(string $id = 'id'): void
     {
 
-        global $wpdb;
-
         $collate = '';
 
-        if ($wpdb->has_cap('collation')) {
+        if ($this->wpdb->has_cap('collation')) {
 
-            $collate = $wpdb->get_charset_collate();
+            $collate = $this->wpdb->get_charset_collate();
         }
 
         // Get all columns

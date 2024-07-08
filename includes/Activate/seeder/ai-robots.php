@@ -3,10 +3,12 @@
 defined('ABSPATH') || exit;
 
 /**
+ * List of demo data for custom table.
+ * 
  * Source https://mobile-magazine.com/articles/top-10-most-popular-personal-robots
  * */
 
-return [    
+return [
     [
         'title'       => 'Aibo',
         'description' => 'Aibo is the ultimate virtual pet, and a fantastic demonstration of just how far this field has come. 

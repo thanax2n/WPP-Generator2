@@ -18,6 +18,17 @@
 defined('ABSPATH') || exit;
 
 /**
+ * Define MXSFWN_PLUGIN_VERSION
+ * 
+ * The version of all CSS and JavaScript files
+ * in the plugin. Change for caching purpose.
+ */
+if (!defined('MXSFWN_PLUGIN_VERSION')) {
+
+    define('MXSFWN_PLUGIN_VERSION', time()); // Must be replaced before production on for example '1.0'
+}
+
+/**
  * Define MXSFWN_PLUGIN_UNIQUE_STRING
  * 
  * Unique string - mxsfwn.
@@ -69,21 +80,8 @@ if (!defined('MXSFWN_PLUGIN_ABS_PATH')) {
 }
 
 /**
- * Define MXSFWN_PLUGIN_VERSION
- * 
- * The version of all CSS and JavaScript files in this plugin.
+ * Run plugin if PHP >= 7.4.30
  */
-if (!defined('MXSFWN_PLUGIN_VERSION')) {
-
-    define('MXSFWN_PLUGIN_VERSION', time()); // Must be replaced before production on for example '1.0'
-}
-
-/**
- * PHP >= 7.4.30
- * MySQL >= 5.7.28
- * Mariadb?
- */
-
 if (PHP_VERSION_ID >= 70430) {
 
     /**

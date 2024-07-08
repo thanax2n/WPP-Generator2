@@ -341,7 +341,7 @@ class RobotsDataManager extends RobotsTable
      * 
      * Get a protected method.
      * 
-     * @return class wpdb      $this->wpdb().
+     * @return instance wpdb::class.
      */
     public function getWPDB(): wpdb
     {

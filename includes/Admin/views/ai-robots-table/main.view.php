@@ -16,7 +16,7 @@ if ($isTable) : ?>
         <?php esc_html_e('AI Robots', 'wpp-generator-v2'); ?>
     </h1>
 
-    <a href="<?php echo admin_url("admin.php?page={$tableInstance->getAddItemSlug()}"); ?>" class="page-title-action">
+    <a href="<?php echo admin_url("admin.php?page={$tableInstance->getAddItemSlug()}"); ?>" class="page-title-action button">
 
         <?php esc_html_e('Add New', 'wpp-generator-v2'); ?>
     </a>
