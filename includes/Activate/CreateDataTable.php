@@ -181,8 +181,6 @@ class CreateDataTable
      * 
      * @param string $id   Name of auto increment column.
      *
-     * @since 2.2.0
-     * 
      * @return void      Return description.
      */
     protected function prepareSQL(string $id = 'id'): void

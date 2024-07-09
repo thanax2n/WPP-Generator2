@@ -34,13 +34,9 @@ class CreateDataTables extends CreateDataTable
     }
 
     /**
-     * Function description.
+     * Insert demo data to created table.
      * 
-     * @param array|string|int variableName   Variable description.
-     *
-     * @since 2.2.0
-     * 
-     * @return void      Return description.
+     * @return void      Insert data.
      */
     public function seedRobots(): void
     {
