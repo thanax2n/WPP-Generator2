@@ -71,7 +71,7 @@ export default function edit({ attributes, setAttributes }) {
 	return [
 		<InspectorControls key="mx-settings">
 
-			<PanelBody title={__('Side Image', 'heebos')} initialOpen={true}>
+			<PanelBody title={__('Side Image', 'wpp-generator-v2')} initialOpen={true}>
 
 				<PanelRow>
 					<MediaUploadCheck>
@@ -84,7 +84,7 @@ export default function edit({ attributes, setAttributes }) {
 										<img src={attributes.sideImageUrl} />
 										<Button
 											icon="trash"
-											text={__('Remove', 'heebos')}
+											text={__('Remove', 'wpp-generator-v2')}
 											isDestructive
 											onClick={() => {
 												setAttributes({
@@ -130,7 +130,7 @@ export default function edit({ attributes, setAttributes }) {
 
 			</PanelBody>
 
-			<PanelBody title={__('Background Image', 'heebos')} initialOpen={false}>
+			<PanelBody title={__('Background Image', 'wpp-generator-v2')} initialOpen={false}>
 
 				<PanelRow>
 					<MediaUploadCheck>
@@ -143,7 +143,7 @@ export default function edit({ attributes, setAttributes }) {
 										<img src={attributes.mediaBGUrl} />
 										<Button
 											icon="trash"
-											text={__('Remove', 'heebos')}
+											text={__('Remove', 'wpp-generator-v2')}
 											isDestructive
 											onClick={() => {
 												setAttributes({
