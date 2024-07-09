@@ -118,3 +118,33 @@ if (!function_exists('mxsfwnRedirectTo')) {
         printf('<script>;window.location.href="%s";</script>', $url);
     }
 }
+
+if (!function_exists('mxsfwnRequireGutenbergComponent')) {
+    /**
+     * This function allow you to connect a component to a 
+     * Gutenberg block.
+     * Use this function to requite 
+     * \includes\Features\Gutenberg\components\{$file}.php
+     * 
+     * @param string $file       File name in the 
+     * \includes\Features\Gutenberg\components\ folder.
+     *                           Use without ".php".
+     * 
+     * @param array $attributes  Here you can pass any number of variables
+     *                           to use them in the component.
+     *
+     * @return void              require a PHP file
+     */
+
+    function mxsfwnRequireGutenbergComponent($file, $attributes = [])
+    {
+        
+        extract($attributes);
+
+        $path = MXSFWN_PLUGIN_ABS_PATH . "includes/Features/Gutenberg/components/{$file}.php";
+
+        if (!file_exists($path)) return false;
+
+        return require $path;
+    }
+}

@@ -42,7 +42,7 @@ if (!defined('MXSFWN_PLUGIN_UNIQUE_STRING')) {
 /**
  * Define MXSFWN_PLUGIN_PATH
  * 
- * D:\xampp\htdocs\my-domain.com\wp-content\plugins\stuff-for-wpp2\stuff-for-wpp2.php
+ * D:\xampp\htdocs\my-domain.com\wp-content\plugins\wpp-generator-v2\wpp-generator-v2.php
  */
 if (!defined('MXSFWN_PLUGIN_PATH')) {
 
@@ -52,7 +52,7 @@ if (!defined('MXSFWN_PLUGIN_PATH')) {
 /**
  * Define MXSFWN_PLUGIN_URL
  * 
- * Return http://my-domain.com/wp-content/plugins/stuff-for-wpp2/
+ * Return http://my-domain.com/wp-content/plugins/wpp-generator-v2/
  */
 if (!defined('MXSFWN_PLUGIN_URL')) {
 
@@ -62,7 +62,7 @@ if (!defined('MXSFWN_PLUGIN_URL')) {
 /**
  * Define MXSFWN_PLUGIN_BASE_NAME
  * 
- * Return stuff-for-wpp2/stuff-for-wpp2.php
+ * Return wpp-generator-v2/wpp-generator-v2.php
  */
 if (!defined('MXSFWN_PLUGIN_BASE_NAME')) {
 
@@ -72,7 +72,7 @@ if (!defined('MXSFWN_PLUGIN_BASE_NAME')) {
 /**
  * Define MXSFWN_PLUGIN_ABS_PATH
  * 
- * D:\xampp\htdocs\my-domain.com\wp-content\plugins\stuff-for-wpp2/
+ * D:\xampp\htdocs\my-domain.com\wp-content\plugins\wpp-generator-v2/
  */
 if (!defined('MXSFWN_PLUGIN_ABS_PATH')) {
 

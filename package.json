@@ -10,8 +10,8 @@
 		"lint:js": "wp-scripts lint-js",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
-		"build": "wp-scripts build --webpack-src-dir=includes/gutenberg/src/ --output-path=includes/gutenberg/build/",
-		"start": "wp-scripts start --webpack-src-dir=includes/gutenberg/src/ --output-path=includes/gutenberg/build/",
+		"build": "wp-scripts build --webpack-src-dir=src/gutenberg/ --output-path=built/gutenberg/",
+		"start": "wp-scripts start --webpack-src-dir=src/gutenberg/ --output-path=built/gutenberg/",
 		"vite-build": "vite build --watch"
 	},
 	"devDependencies": {

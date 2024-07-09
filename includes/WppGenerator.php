@@ -4,6 +4,7 @@ namespace MXSFWNWPPGNext;
 
 use MXSFWNWPPGNext\Admin\AdminSoul;
 use MXSFWNWPPGNext\Frontend\FrontendSoul;
+use MXSFWNWPPGNext\Features\FeaturesSoul;
 
 final class WppGenerator
 {
@@ -14,5 +15,7 @@ final class WppGenerator
         new AdminSoul;
 
         new FrontendSoul;
+
+        new FeaturesSoul;
     }
 }
