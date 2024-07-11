@@ -34,10 +34,7 @@ class AdminSoul
     {
 
         // Enqueue Scripts
-        AdminEnqueueScripts::addScripts();
-        
-        // Enqueue Styles
-        AdminEnqueueScripts::addStyles();
+        (new AdminEnqueueScripts)->enqueue();
     }
 
     public function registerPostTypes()

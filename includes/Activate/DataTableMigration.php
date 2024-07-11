@@ -1,36 +1,43 @@
 <?php
 
 /**
- * The CreateDataTables class.
+ * The DataTableMigration class.
  *
  * Here you can create as many 
- * as you wish DB tables.
+ * as you wish DB tables and seed them.
  */
 
 namespace MXSFWNWPPGNext\Activate;
 
-class CreateDataTables extends CreateDataTable
+class DataTableMigration
 {
+
+    /**
+     * Table instance.
+     *
+     * @var instance
+     */
+    private CreateDataTableManager $dataTable;
 
     /**
      * Create a DB table with 
      * particular columns.
      * 
-     * @return object      Current class.
+     * @return instance      instance of current class.
      */
-    public static function robots(): object
+    public function create(): object
     {
 
-        $instance = new static('ai_robots');
+        $this->dataTable = new CreateDataTableManager('ai_robots');
 
-        $instance
+        $this->dataTable
             ->varchar('title', 200, true, 'text')
             ->longText('description')
             ->varchar('status', 20, true, 'publish')
             ->datetime('created_at')
             ->createTable();
 
-        return $instance;
+        return $this;
     }
 
     /**
@@ -38,8 +45,14 @@ class CreateDataTables extends CreateDataTable
      * 
      * @return void      Insert data.
      */
-    public function seedRobots(): void
+    public function seed(): void
     {
+
+        // Check if the table exists
+        if (!$this->dataTable->tableExists()) return;
+
+        // Check if table is empty
+        if (!$this->dataTable->tableIsEmpty()) return;
 
         $data = require_once(MXSFWN_PLUGIN_ABS_PATH . 'includes/Activate/seeder/ai-robots.php');
 
@@ -47,8 +60,8 @@ class CreateDataTables extends CreateDataTable
 
         foreach ($data as $value) {
 
-            $this->wpdb->insert(
-                $this->table,
+            $this->dataTable->getWpdb()->insert(
+                $this->dataTable->getTable(),
                 [
                     'title'       => esc_html($value['title']),
                     'description' => esc_html($value['description']),

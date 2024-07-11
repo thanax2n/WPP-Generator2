@@ -3,7 +3,6 @@
 namespace MXSFWNWPPGNext\Admin\Entities;
 
 use MXSFWNWPPGNext\Admin\Utilities\Notices\MetaBoxTypeNotice;
-use MXSFWNWPPGNext\Admin\Utilities\AdminEnqueueScripts;
 
 class MetaBox
 {
@@ -143,12 +142,7 @@ class MetaBox
 
         if ($this->args['metaBoxType'] !== 'image') return;
 
-        // Image Upload Scripts
-        $adminScriptHandle = "meta-box-image-upload";
-        (new AdminEnqueueScripts)
-            ->addScript($adminScriptHandle, 'meta-box-image-upload.js')
-            ->dependency('jquery')
-            ->enqueue();
+        // ...
     }
 
     public function addMetaBox()

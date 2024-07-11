@@ -9,6 +9,8 @@
 
 namespace MXSFWNWPPGNext\Activate;
 
+use wpdb;
+
 class CreateDataTable
 {
 
@@ -17,7 +19,7 @@ class CreateDataTable
      *
      * @var string
      */
-    protected $table         = 'mxsfwn_table';
+    protected $table;
 
     /**
      * List of columns.
@@ -36,8 +38,6 @@ class CreateDataTable
     /**
      * global $wpdb.
      * Is used for DB interactions.
-     *
-     * @var instance wpdb::class
      */
     protected $wpdb;
 

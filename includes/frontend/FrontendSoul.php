@@ -19,9 +19,6 @@ class FrontendSoul
     {
 
         // Enqueue Scripts
-        WPEnqueueScripts::addScripts();
-
-        // Enqueue Styles
-        WPEnqueueScripts::addStyles();
+        (new WPEnqueueScripts)->enqueue();
     }
 }
