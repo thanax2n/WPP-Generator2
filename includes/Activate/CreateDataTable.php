@@ -9,6 +9,8 @@
 
 namespace MXSFWNWPPGNext\Activate;
 
+use wpdb;
+
 class CreateDataTable
 {
 
@@ -36,8 +38,6 @@ class CreateDataTable
     /**
      * global $wpdb.
      * Is used for DB interactions.
-     *
-     * @var instance wpdb::class
      */
     protected $wpdb;
 
@@ -212,5 +212,17 @@ class CreateDataTable
                     PRIMARY KEY (`$id`)
                 ) $collate;";
         }
+    }
+
+    public function getWpdb(): wpdb
+    {
+
+        return $this->wpdb;
+    }
+
+    public function getTable(): string
+    {
+        
+        return $this->table;
     }
 }

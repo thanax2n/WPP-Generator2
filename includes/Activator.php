@@ -2,7 +2,7 @@
 
 namespace MXSFWNWPPGNext;
 
-use MXSFWNWPPGNext\Activate\CreateDataTables;
+use MXSFWNWPPGNext\Activate\DataTableMigration;
 
 class Activator
 {
@@ -17,6 +17,6 @@ class Activator
     {
 
         // Create robots table.
-        CreateDataTables::robots()->seedRobots();
+        (new DataTableMigration)->create()->seed();
     }
 }

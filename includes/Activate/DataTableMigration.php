@@ -9,28 +9,30 @@
 
 namespace MXSFWNWPPGNext\Activate;
 
-class CreateDataTables extends CreateDataTable
+class DataTableMigration
 {
+    
+    private CreateDataTable $dataTable;
 
     /**
      * Create a DB table with 
      * particular columns.
      * 
-     * @return object      Current class.
+     * @return object      instance CreateDataTable class.
      */
-    public static function robots(): object
+    public function create(): CreateDataTable
     {
 
-        $instance = new static('ai_robots');
+        $this->dataTable = new CreateDataTable('ai_robots');
 
-        $instance
+        $this->dataTable
             ->varchar('title', 200, true, 'text')
             ->longText('description')
             ->varchar('status', 20, true, 'publish')
             ->datetime('created_at')
             ->createTable();
 
-        return $instance;
+        return $this->dataTable;
     }
 
     /**
@@ -38,7 +40,7 @@ class CreateDataTables extends CreateDataTable
      * 
      * @return void      Insert data.
      */
-    public function seedRobots(): void
+    public function seed(): void
     {
 
         $data = require_once(MXSFWN_PLUGIN_ABS_PATH . 'includes/Activate/seeder/ai-robots.php');
@@ -47,8 +49,8 @@ class CreateDataTables extends CreateDataTable
 
         foreach ($data as $value) {
 
-            $this->wpdb->insert(
-                $this->table,
+            $this->dataTable->getWpdb()->insert(
+                $this->dataTable->getTable(),
                 [
                     'title'       => esc_html($value['title']),
                     'description' => esc_html($value['description']),
