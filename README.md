@@ -120,7 +120,6 @@ my-plugin/
 |   |   └── FrontendSoul.php
 |   |
 |   ├── Shared/
-|   |   ├── EnqueueScripts.php
 |   |   └── functions.php
 │   |
 │   ├── Activator.php

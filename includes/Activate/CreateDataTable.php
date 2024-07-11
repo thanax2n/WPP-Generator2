@@ -19,7 +19,7 @@ class CreateDataTable
      *
      * @var string
      */
-    protected $table         = 'mxsfwn_table';
+    protected $table;
 
     /**
      * List of columns.
@@ -212,17 +212,5 @@ class CreateDataTable
                     PRIMARY KEY (`$id`)
                 ) $collate;";
         }
-    }
-
-    public function getWpdb(): wpdb
-    {
-
-        return $this->wpdb;
-    }
-
-    public function getTable(): string
-    {
-        
-        return $this->table;
     }
 }

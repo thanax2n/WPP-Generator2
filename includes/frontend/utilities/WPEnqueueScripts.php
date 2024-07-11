@@ -2,93 +2,68 @@
 
 namespace MXSFWNWPPGNext\Frontend\Utilities;
 
-use MXSFWNWPPGNext\Shared\EnqueueScripts;
-
 class WPEnqueueScripts
 {
 
     protected $uniqueString = MXSFWN_PLUGIN_UNIQUE_STRING;
 
-    protected $assetsPath = MXSFWN_PLUGIN_URL . 'assets/frontend/';
+    protected $assetsPath   = MXSFWN_PLUGIN_URL . 'assets/frontend/';
 
-    public function addStyle(string $handle, string $file): object
+    protected $version      = MXSFWN_PLUGIN_VERSION;
+
+    public function enqueue()
     {
 
-        $styleSrc = $this->assetsPath . "css/{$file}";
-
-        $instance = new EnqueueScripts("{$this->uniqueString}-$handle", $styleSrc);
-
-        $instance->area('frontend');
-
-        $instance->callback('style');
-
-        return $instance;
+        add_action("wp_enqueue_scripts", [$this, 'scripts']);
     }
 
-    public function addScript(string $handle, string $file): object
+    public function scripts()
     {
 
-        $scriptSrc = $this->assetsPath . "js/{$file}";
+        // Add Vue.js 2
+        $vueJsHandle = "{$this->uniqueString}-vue";
+        wp_enqueue_script(
+            $vueJsHandle,
+            MXSFWN_PLUGIN_URL . 'assets/packages/vue/development.js',
+            // MXSFWN_PLUGIN_URL . 'assets/packages/vue/production.js',
+            [],
+            $this->version,
+            true
+        );
 
-        $instance = new EnqueueScripts("{$this->uniqueString}-$handle", $scriptSrc);
+        // Add main frontend scripts
+        $frontendHandler = "{$this->uniqueString}-frontend-scripts";
+        wp_enqueue_script(
+            $frontendHandler,
+            "{$this->assetsPath}js/scripts.js",
+            [$vueJsHandle, 'jquery'],
+            $this->version,
+            true
+        );
 
-        $instance->area('frontend');
-
-        return $instance;
-    }
-
-    public function assetsPath(string $path): object
-    {
-
-        $this->assetsPath = $path;
-
-        return $this;
-    }
-
-    public static function addScripts(): void
-    {
-
-        $uniqueString = (new static())->uniqueString;
-
-        // Vue.js 2
-        $vueJsHandle = "vue";
-        (new static())
-            ->assetsPath(MXSFWN_PLUGIN_URL . 'assets/packages/vue/')
-            ->addScript($vueJsHandle, 'development.js')
-            // ->addScript($vueJsHandle, 'production.js')
-            ->enqueue();
-
-        // Frontend Scripts
-        $frontendScriptHandle = "frontend-scripts";
-        (new static())
-            ->addScript($frontendScriptHandle, 'scripts.js')
-            ->dependency("{$uniqueString}-$vueJsHandle")
-            ->dependency('jquery')
-            ->localization([
+        wp_localize_script(
+            $frontendHandler,
+            "{$this->uniqueString}FrontendLocalizer",
+            [
                 'ajaxURL'   => admin_url('admin-ajax.php'),
-            ])
-            ->enqueue();
-    }
+            ]
+        );
 
-    public static function addStyles(): void
-    {
+        // Add Font Awesome
+        $fontAwesomeHandle = "{$this->uniqueString}-font-awesome";
+        wp_enqueue_style(
+            $fontAwesomeHandle,
+            MXSFWN_PLUGIN_URL . 'assets/packages/font-awesome-4.6.3/css/font-awesome.min.css',
+            [],
+            $this->version
+        );
 
-        $uniqueString = (new static())->uniqueString;
-
-        // Font Awesome
-        $fontAwesomeHandle = "font-awesome";
-        (new static())
-            ->assetsPath(MXSFWN_PLUGIN_URL . 'assets/packages/font-awesome-4.6.3/')
-            ->addStyle($fontAwesomeHandle, 'font-awesome.min.css')
-            ->args('all')
-            ->enqueue();
-
-        // Frontend Styles
-        $frontendStyleHandle = "frontend-styles";
-        (new static())
-            ->addStyle($frontendStyleHandle, 'styles.css')
-            ->dependency("{$uniqueString}-$fontAwesomeHandle")
-            ->args('all')
-            ->enqueue();
+        // Add main frontend styles
+        wp_enqueue_style(
+            "{$this->uniqueString}-frontend-styles",
+            "{$this->assetsPath}css/styles.css",
+            [$fontAwesomeHandle],
+            $this->version
+        );
     }
 }

@@ -2,59 +2,47 @@
 
 namespace MXSFWNWPPGNext\Admin\Utilities;
 
-use MXSFWNWPPGNext\Shared\EnqueueScripts;
-
 class AdminEnqueueScripts
 {
 
-    protected $uniqueString = MXSFWN_PLUGIN_UNIQUE_STRING;
+    public $uniqueString = MXSFWN_PLUGIN_UNIQUE_STRING;
 
-    protected $assetsPath = MXSFWN_PLUGIN_URL . 'assets/admin/';
+    public $assetsPath   = MXSFWN_PLUGIN_URL . 'assets/admin/';
 
-    public function addStyle(string $handle, string $file): EnqueueScripts
+    public $version      = MXSFWN_PLUGIN_VERSION;
+
+    public function enqueue()
     {
 
-        $styleSrc = $this->assetsPath . "css/{$file}";
-
-        $instance = new EnqueueScripts("{$this->uniqueString}-$handle", $styleSrc);
-
-        $instance->callback('style');
-
-        $instance->args('all');
-
-        return $instance;
+        add_action("admin_enqueue_scripts", [$this, 'scripts']);
     }
 
-    public function addScript(string $handle, string $file): EnqueueScripts
+    public function scripts()
     {
 
-        $scriptSrc = $this->assetsPath . "js/{$file}";
+        wp_enqueue_script(
+            'meta-box-image-upload',
+            MXSFWN_PLUGIN_URL . 'assets/admin/js/meta-box-image-upload.js',
+            ['jquery'],
+            MXSFWN_PLUGIN_VERSION,
+            true
+        );
 
-        $instance = new EnqueueScripts("{$this->uniqueString}-$handle", $scriptSrc);
+        // add main admin script
+        wp_enqueue_script(
+            "{$this->uniqueString}-admin-scripts",
+            "{$this->assetsPath}js/scripts.js",
+            ['jquery'],
+            $this->version,
+            true
+        );
 
-        return $instance;
-    }
-
-    public static function addScripts(): void
-    {
-
-        $adminScriptHandle = 'admin-scripts';
-        (new static())
-            ->addScript($adminScriptHandle, 'scripts.js')
-            ->dependency('jquery')
-            ->localization([
-                'ajaxURL'   => admin_url('admin-ajax.php'),
-            ])
-            ->enqueue();
-    }
-
-    public static function addStyles(): void
-    {
-
-        $adminStyleHandle = 'admin-styles';
-        (new static())
-            ->addStyle($adminStyleHandle, 'styles.css')
-            ->args('all')
-            ->enqueue();
+        // add main admin style
+        wp_enqueue_style(
+            "{$this->uniqueString}-admin-styles",
+            "{$this->assetsPath}css/styles.css",
+            [],
+            $this->version
+        );
     }
 }

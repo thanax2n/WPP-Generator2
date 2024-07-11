@@ -1,29 +1,34 @@
 <?php
 
 /**
- * The CreateDataTables class.
+ * The DataTableMigration class.
  *
  * Here you can create as many 
- * as you wish DB tables.
+ * as you wish DB tables and seed them.
  */
 
 namespace MXSFWNWPPGNext\Activate;
 
 class DataTableMigration
 {
-    
-    private CreateDataTable $dataTable;
+
+    /**
+     * Table instance.
+     *
+     * @var instance
+     */
+    private CreateDataTableManager $dataTable;
 
     /**
      * Create a DB table with 
      * particular columns.
      * 
-     * @return object      instance CreateDataTable class.
+     * @return instance      instance of current class.
      */
-    public function create(): CreateDataTable
+    public function create(): object
     {
 
-        $this->dataTable = new CreateDataTable('ai_robots');
+        $this->dataTable = new CreateDataTableManager('ai_robots');
 
         $this->dataTable
             ->varchar('title', 200, true, 'text')
@@ -32,7 +37,7 @@ class DataTableMigration
             ->datetime('created_at')
             ->createTable();
 
-        return $this->dataTable;
+        return $this;
     }
 
     /**
@@ -42,6 +47,12 @@ class DataTableMigration
      */
     public function seed(): void
     {
+
+        // Check if the table exists
+        if (!$this->dataTable->tableExists()) return;
+
+        // Check if table is empty
+        if (!$this->dataTable->tableIsEmpty()) return;
 
         $data = require_once(MXSFWN_PLUGIN_ABS_PATH . 'includes/Activate/seeder/ai-robots.php');
 
