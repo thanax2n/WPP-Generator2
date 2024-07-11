@@ -5,7 +5,13 @@ namespace MXSFWNWPPGNext\Frontend\Utilities;
 class ShortCodeGenerator
 {
 
-    public static function addSimpleShortCode()
+    public function __construct()
+    {
+        
+        $this->addSimpleShortCode();
+    }
+
+    public function addSimpleShortCode()
     {
 
         add_shortcode('simle_short_code', function() {
@@ -13,6 +19,8 @@ class ShortCodeGenerator
             ob_start();
     
             printf('<p>%s</p>', esc_html__('This is a simple shor code output', 'wpp-generator-v2'));
+
+            echo '<div id="mxsfwnSimpleApp"></div>';
     
             return ob_get_clean();
         });

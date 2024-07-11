@@ -4,6 +4,8 @@ namespace MXSFWNWPPGNext\Frontend;
 
 use MXSFWNWPPGNext\Frontend\Utilities\WPEnqueueScripts;
 
+use MXSFWNWPPGNext\Frontend\Utilities\ShortCodeGenerator;
+
 class FrontendSoul
 {
 
@@ -13,12 +15,20 @@ class FrontendSoul
     {
 
         $this->enqueueScripts();
+
+        $this->shortCodes();
+
     }
 
-    public function enqueueScripts()
+    public function enqueueScripts(): void
     {
 
-        // Enqueue Scripts
         (new WPEnqueueScripts)->enqueue();
+    }
+
+    public function shortCodes(): void
+    {
+
+        new ShortCodeGenerator;
     }
 }
