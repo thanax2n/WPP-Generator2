@@ -21,6 +21,7 @@ class ShortCodeGenerator
             printf('<p>%s</p>', esc_html__('This is a simple shor code output', 'wpp-generator-v2'));
 
             echo '<div id="mxsfwnSimpleApp"></div>';
+            echo '<div id="mxsfwnSimpleApp2"></div>';
             
     
             return ob_get_clean();

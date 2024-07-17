@@ -23,11 +23,27 @@ class WPEnqueueScripts
     public function scripts()
     {
 
-        // Add main frontend scripts
-        $frontendHandler = "{$this->uniqueString}-feature1-scripts";
+        // Feature 1
         wp_enqueue_script(
-            $frontendHandler,
+            "{$this->uniqueString}-feature1-scripts",
             "{$this->assetsPath2}feature1/index.js",
+            [],
+            $this->version,
+            true
+        );
+
+        // Feature 1 style
+        wp_enqueue_style(
+            "{$this->uniqueString}-feature1-style",
+            "{$this->assetsPath2}feature1/index.css",
+            [],
+            $this->version
+        );
+
+        // Feature 2
+        wp_enqueue_script(
+            "{$this->uniqueString}-feature2-scripts",
+            "{$this->assetsPath2}feature2/index.js",
             [],
             $this->version,
             true
