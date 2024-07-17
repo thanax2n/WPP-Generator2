@@ -12,8 +12,15 @@ $styleHidden = 'style="display: none;"';
 
 ?>
 
+
+
+<div class="mx-image-uploader"
+    data-post-meta-key='<?php esc_attr_e($postMetaKey); ?>'
+    data-post-id='<?php echo get_the_ID(); ?>'
+></div>
+
 <!-- Image upload. -->
-<div class="mx-image-uploader">
+<div class="mx-image-uploader1" style="display:none;">
 
     <button class="mxsfwn_upload_image" <?php echo $imageUrl ? $styleHidden : ''; ?>>
         <?php esc_html_e('Choose image', 'wpp-generator-v2'); ?>

@@ -2,17 +2,18 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/frontend/feature1/index.js":
-/*!****************************************!*\
-  !*** ./src/frontend/feature1/index.js ***!
-  \****************************************/
+/***/ "./src/admin/meta-box-image-upload/components/ImageUploader.js":
+/*!*********************************************************************!*\
+  !*** ./src/admin/meta-box-image-upload/components/ImageUploader.js ***!
+  \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
-/* harmony import */ var _assets_scss_style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/scss/style.scss */ "./src/frontend/feature1/assets/scss/style.scss");
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -20,39 +21,112 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
-
-
-var App = function App() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+var ImageUploader = function ImageUploader(_ref) {
+  var postMetaKey = _ref.postMetaKey,
+    postId = _ref.postId;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
     _useState2 = _slicedToArray(_useState, 2),
-    count = _useState2[0],
-    setCount = _useState2[1];
-  var incrementCount = function incrementCount() {
-    setCount(function (prevCount) {
-      return prevCount + 1;
+    imageUrl = _useState2[0],
+    setImageUrl = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState4 = _slicedToArray(_useState3, 2),
+    imageId = _useState4[0],
+    setImageId = _useState4[1];
+  var frame = null;
+  var openFileInput = function openFileInput(e) {
+    e.preventDefault();
+    if (frame) {
+      frame.open();
+      return;
+    }
+    frame = wp.media.frames.metaBoxUploadImage = wp.media({
+      title: 'Choose image',
+      library: {
+        type: 'image'
+      },
+      button: {
+        text: 'Upload'
+      },
+      multyple: false
     });
+    frame.on('select', function () {
+      var attachment = frame.state().get('selection').first();
+      var imageId = attachment.id;
+      var imageUrl = attachment.attributes.url;
+      console.log('imageId', imageId);
+    });
+    console.log('postId', postId);
+    frame.open();
+  };
+  var handleFileChange = function handleFileChange(e) {
+    // setImageUrl(e.target.result);
+    // setImageId(Date.now().toString());
+  };
+  var removeImage = function removeImage(e) {
+    e.preventDefault();
+    setImageUrl('');
+    setImageId('');
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "mx-app-wrapper"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Hello, Webpack and React! :)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "This is a simple React application with a counter."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Count: ", count), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: incrementCount
-  }, "Increment number"));
+    className: "mx-image-uploader-react"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: openFileInput,
+    style: {
+      display: imageUrl ? 'none' : 'block'
+    }
+  }, "Choose Image"), imageUrl && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    src: imageUrl,
+    alt: "Uploaded",
+    style: {
+      display: 'block',
+      maxWidth: '100%'
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: removeImage,
+    style: {
+      display: 'block'
+    }
+  }, "Remove Image"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    type: "hidden",
+    value: imageId,
+    name: "image-id-".concat(elementId)
+  })));
 };
-var container = document.getElementById('mxsfwnSimpleApp');
-var root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(container);
-root.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(App, null));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ImageUploader);
 
 /***/ }),
 
-/***/ "./src/frontend/feature1/assets/scss/style.scss":
-/*!******************************************************!*\
-  !*** ./src/frontend/feature1/assets/scss/style.scss ***!
-  \******************************************************/
+/***/ "./src/admin/meta-box-image-upload/index.js":
+/*!**************************************************!*\
+  !*** ./src/admin/meta-box-image-upload/index.js ***!
+  \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
+/* harmony import */ var _components_ImageUploader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/ImageUploader */ "./src/admin/meta-box-image-upload/components/ImageUploader.js");
 
+
+
+
+// Function to render React components
+var renderImageUploaders = function renderImageUploaders() {
+  var uploaderElements = document.querySelectorAll('.mx-image-uploader');
+  uploaderElements.forEach(function (element, index) {
+    var root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(element);
+    var postMetaKey = element.getAttribute('data-post-meta-key');
+    var postId = element.getAttribute('data-post-id');
+    root.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_ImageUploader__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      postMetaKey: postMetaKey,
+      postId: postId
+    }));
+  });
+};
+
+// Call the render function when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', renderImageUploaders);
 
 /***/ })
 
@@ -178,7 +252,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"frontend/feature1": 0
+/******/ 			"admin/meta-box-image-upload": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -228,7 +302,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["dependencies/vendors"], () => (__webpack_require__("./src/frontend/feature1/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["dependencies/vendors"], () => (__webpack_require__("./src/admin/meta-box-image-upload/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

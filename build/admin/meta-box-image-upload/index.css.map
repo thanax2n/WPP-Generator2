@@ -1,0 +1,1 @@
+{"version":3,"file":"admin/meta-box-image-upload/index.css","mappings":";;;AACA;EACI;AAAJ,C","sources":["webpack://mxsfwn-npm-handler/./src/admin/meta-box-image-upload/assets/scss/style.scss"],"sourcesContent":["// some style\r\n.mxsfwn_upload_image {\r\n    background-color: red;\r\n}"],"names":[],"sourceRoot":""}

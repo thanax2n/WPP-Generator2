@@ -70,20 +70,36 @@ module.exports = (env, argv) => {
                 '@frontend': path.resolve(__dirname, 'src/frontend')
             }
         },
-
-        devtool: isProduction ? false : 'source-map',
-        watchOptions: {
-            ignored: /node_modules/,
-            aggregateTimeout: 300,
-            poll: 1000,
-        },
-
         optimization: {
             minimize: isProduction,
             minimizer: [
                 new TerserPlugin(),
                 new CssMinimizerPlugin(),
             ],
+            splitChunks: {
+                cacheGroups: {
+                    defaultVendors: {
+                        test: /[\\/]node_modules[\\/]/,
+                        name: 'dependencies/vendors',
+                        chunks: 'all',
+                        enforce: true,
+                    },
+                    common: {
+                        name: 'dependencies/common',
+                        minChunks: 2,
+                        chunks: 'all',
+                        priority: -20,
+                        reuseExistingChunk: true,
+                        enforce: true,
+                    },
+                },
+            },
+        },
+        devtool: isProduction ? false : 'source-map',
+        watchOptions: {
+            ignored: /node_modules/,
+            aggregateTimeout: 300,
+            poll: 1000,
         },
     }
 };

@@ -7,23 +7,21 @@ class ShortCodeGenerator
 
     public function __construct()
     {
-        
+
         $this->addSimpleShortCode();
     }
 
     public function addSimpleShortCode()
     {
 
-        add_shortcode('simle_short_code', function() {
+        add_shortcode('simle_short_code', function () {
 
             ob_start();
-    
-            printf('<p>%s</p>', esc_html__('This is a simple shor code output', 'wpp-generator-v2'));
 
-            echo '<div id="mxsfwnSimpleApp"></div>';
-            echo '<div id="mxsfwnSimpleApp2"></div>';
-            
-    
+            printf('<p>%s</p>', esc_html__('This is a simple short code output', 'wpp-generator-v2'));
+
+            mxsfwnRequireFrontendComponent('shortcode-body');
+
             return ob_get_clean();
         });
     }

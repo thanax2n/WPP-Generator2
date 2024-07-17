@@ -11,10 +11,10 @@ const App = () => {
 
   return (
     <div className="mx-app-wrapper">
-      <h1>Hello, Webpack and React! :))</h1>
+      <h1>Hello, Webpack and React! :)</h1>
       <p>This is a simple React application with a counter.</p>
       <p>Count: {count}</p>
-      <button onClick={incrementCount}>Increment</button>
+      <button onClick={incrementCount}>Increment number</button>
     </div>
   );
 };

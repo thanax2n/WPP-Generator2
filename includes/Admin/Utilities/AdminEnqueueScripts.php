@@ -20,10 +20,28 @@ class AdminEnqueueScripts
     public function scripts()
     {
 
+        // wp_enqueue_script(
+        //     'meta-box-image-upload',
+        //     MXSFWN_PLUGIN_URL . 'assets/admin/js/meta-box-image-upload.js',
+        //     ['jquery'],
+        //     MXSFWN_PLUGIN_VERSION,
+        //     true
+        // );
+
+        // dependencies
+        $dependenciesHandler = "{$this->uniqueString}-dependencies";
+        wp_enqueue_script(
+            $dependenciesHandler,
+            MXSFWN_PLUGIN_URL . 'build/dependencies/vendors/index.js',
+            [],
+            $this->version,
+            true
+        );
+
         wp_enqueue_script(
             'meta-box-image-upload',
-            MXSFWN_PLUGIN_URL . 'assets/admin/js/meta-box-image-upload.js',
-            ['jquery'],
+            MXSFWN_PLUGIN_URL . 'build/admin/meta-box-image-upload/index.js',
+            [$dependenciesHandler, 'jquery'],
             MXSFWN_PLUGIN_VERSION,
             true
         );

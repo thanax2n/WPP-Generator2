@@ -72,7 +72,7 @@ if (!function_exists('mxsfwnView')) {
 
     function mxsfwnView($view, $attributes = [])
     {
-        
+
         extract($attributes);
 
         $path = MXSFWN_PLUGIN_ABS_PATH . "includes/Admin/views/{$view}.view.php";
@@ -138,10 +138,40 @@ if (!function_exists('mxsfwnRequireGutenbergComponent')) {
 
     function mxsfwnRequireGutenbergComponent($file, $attributes = [])
     {
-        
+
         extract($attributes);
 
         $path = MXSFWN_PLUGIN_ABS_PATH . "includes/Features/Gutenberg/components/{$file}.php";
+
+        if (!file_exists($path)) return false;
+
+        return require $path;
+    }
+}
+
+if (!function_exists('mxsfwnRequireFrontendComponent')) {
+    /**
+     * This function allow you to connect a component to a 
+     * Frontend php code.
+     * Use this function to requite 
+     * \includes\Frontend\components\{$file}.php
+     * 
+     * @param string $file       File name in the 
+     * \includes\Frontend\components\ folder.
+     *                           Use without ".php".
+     * 
+     * @param array $attributes  Here you can pass any number of variables
+     *                           to use them in the component.
+     *
+     * @return void              require a PHP file
+     */
+
+    function mxsfwnRequireFrontendComponent($file, $attributes = [])
+    {
+
+        extract($attributes);
+
+        $path = MXSFWN_PLUGIN_ABS_PATH . "includes/Frontend/components/{$file}.php";
 
         if (!file_exists($path)) return false;
 

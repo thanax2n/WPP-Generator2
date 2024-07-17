@@ -1,5 +1,13 @@
 <?php
 
-defined( 'ABSPATH' ) || exit;
+/**
+ * Short Code [simle_short_code]
+ * 
+ * Here is a HTML markup of a shortcode.
+ * 
+ * Short Code: \includes\Frontend\Utilities\ShortCodeGenerator.php
+ */
 
-echo 'test';
+defined('ABSPATH') || exit;
+
+echo '<div id="mxsfwnSimpleApp"></div>';

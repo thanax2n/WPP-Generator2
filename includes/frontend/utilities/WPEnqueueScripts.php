@@ -9,7 +9,7 @@ class WPEnqueueScripts
 
     protected $assetsPath   = MXSFWN_PLUGIN_URL . 'assets/frontend/';
 
-    protected $assetsPath2   = MXSFWN_PLUGIN_URL . 'build/frontend/';
+    protected $assetsPath2   = MXSFWN_PLUGIN_URL . 'build/';
 
 
     protected $version      = MXSFWN_PLUGIN_VERSION;
@@ -23,61 +23,33 @@ class WPEnqueueScripts
     public function scripts()
     {
 
+        // dependencies
+        wp_enqueue_script(
+            "{$this->uniqueString}-dependencies",
+            "{$this->assetsPath2}dependencies/vendors/index.js",
+            [],
+            $this->version,
+            true
+        );
+
         // Feature 1
+        $feature1Handler = "{$this->uniqueString}-feature1-scripts";
         wp_enqueue_script(
-            "{$this->uniqueString}-feature1-scripts",
-            "{$this->assetsPath2}feature1/index.js",
-            [],
+            $feature1Handler,
+            "{$this->assetsPath2}frontend/feature1/index.js",
+            ["{$this->uniqueString}-dependencies"],
             $this->version,
             true
         );
 
-        // Feature 1 style
-        wp_enqueue_style(
-            "{$this->uniqueString}-feature1-style",
-            "{$this->assetsPath2}feature1/index.css",
-            [],
-            $this->version
+        // Localizer
+        wp_localize_script(
+            $feature1Handler,
+            "{$this->uniqueString}Feature1Localizer",
+            [
+                'ajaxURL'   => admin_url('admin-ajax.php'),
+            ]
         );
-
-        // Feature 2
-        wp_enqueue_script(
-            "{$this->uniqueString}-feature2-scripts",
-            "{$this->assetsPath2}feature2/index.js",
-            [],
-            $this->version,
-            true
-        );
-
-
-        // // Add Vue.js 2
-        // $vueJsHandle = "{$this->uniqueString}-vue";
-        // wp_enqueue_script(
-        //     $vueJsHandle,
-        //     MXSFWN_PLUGIN_URL . 'assets/packages/vue/development.js',
-        //     // MXSFWN_PLUGIN_URL . 'assets/packages/vue/production.js',
-        //     [],
-        //     $this->version,
-        //     true
-        // );
-
-        // // Add main frontend scripts
-        // $frontendHandler = "{$this->uniqueString}-frontend-scripts";
-        // wp_enqueue_script(
-        //     $frontendHandler,
-        //     "{$this->assetsPath}js/scripts.js",
-        //     [$vueJsHandle, 'jquery'],
-        //     $this->version,
-        //     true
-        // );
-
-        // wp_localize_script(
-        //     $frontendHandler,
-        //     "{$this->uniqueString}FrontendLocalizer",
-        //     [
-        //         'ajaxURL'   => admin_url('admin-ajax.php'),
-        //     ]
-        // );
 
         // Add Font Awesome
         $fontAwesomeHandle = "{$this->uniqueString}-font-awesome";
@@ -88,10 +60,10 @@ class WPEnqueueScripts
             $this->version
         );
 
-        // Add main frontend styles
+        // Feature 1 style
         wp_enqueue_style(
-            "{$this->uniqueString}-frontend-styles",
-            "{$this->assetsPath}css/styles.css",
+            "{$this->uniqueString}-feature1-style",
+            "{$this->assetsPath2}frontend/feature1/index.css",
             [$fontAwesomeHandle],
             $this->version
         );
