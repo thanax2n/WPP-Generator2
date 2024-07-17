@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import ReactDOM from 'react-dom'
+import React, { useState } from 'react';
+import { createRoot } from 'react-dom/client';
 import './assets/scss/style.scss'
 
 const App = () => {
@@ -10,8 +10,8 @@ const App = () => {
   };
 
   return (
-    <div class="mx-app-wrapper">
-      <h1>Hello, Webpack and React!</h1>
+    <div className="mx-app-wrapper">
+      <h1>Hello, Webpack and React! :))</h1>
       <p>This is a simple React application with a counter.</p>
       <p>Count: {count}</p>
       <button onClick={incrementCount}>Increment</button>
@@ -19,4 +19,6 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('mxsfwnSimpleApp'));
+const container = document.getElementById('mxsfwnSimpleApp');
+const root = createRoot(container);
+root.render(<App />);

@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 // Function to get features for a given environment
 const getFeatures = (env) => {
@@ -23,54 +25,65 @@ frontendFeatures.forEach(feature => {
     entry[`frontend/${feature}`] = `./src/frontend/${feature}/index.js`;
 });
 
-module.exports = {
-    mode: 'production', // development / production
-    entry,
-    output: {
-        path: path.resolve(__dirname, 'build'),
-        filename: '[name]/index.js'
-    },
-    plugins: [
-        new MiniCssExtractPlugin({
-            filename: '[name]/index.css'
-        })
-    ],
-    module: {
-        rules: [
-            {
-                test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react']
-                    }
-                }
-            },
-            {
-                test: /\.scss$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    'sass-loader'
-                ]
-            }
-        ]
-    },
-    resolve: {
-        extensions: ['.js', '.jsx', '.json'],
-        alias: {
-            '@admin': path.resolve(__dirname, 'src/admin'),
-            '@frontend': path.resolve(__dirname, 'src/frontend')
-        }
-    },
-    devtool: 'eval-cheap-module-source-map',
-    devServer: {
-        static: {
-            directory: path.join(__dirname, 'build'),
+module.exports = (env, argv) => {
+
+    const isProduction = argv.mode === 'production';
+
+    return {
+
+        entry,
+        output: {
+            path: path.resolve(__dirname, 'build'),
+            filename: '[name]/index.js'
         },
-        hot: true,
-        compress: true,
-        port: 9000, // You can change this to any port you prefer
+        plugins: [
+            new MiniCssExtractPlugin({
+                filename: '[name]/index.css'
+            })
+        ],
+        module: {
+            rules: [
+                {
+                    test: /\.(js|jsx)$/,
+                    exclude: /node_modules/,
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env', '@babel/preset-react']
+                        }
+                    }
+                },
+                {
+                    test: /\.scss$/,
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        'css-loader',
+                        'sass-loader'
+                    ]
+                }
+            ]
+        },
+        resolve: {
+            extensions: ['.js', '.jsx', '.json'],
+            alias: {
+                '@admin': path.resolve(__dirname, 'src/admin'),
+                '@frontend': path.resolve(__dirname, 'src/frontend')
+            }
+        },
+
+        devtool: isProduction ? false : 'source-map',
+        watchOptions: {
+            ignored: /node_modules/,
+            aggregateTimeout: 300,
+            poll: 1000,
+        },
+
+        optimization: {
+            minimize: isProduction,
+            minimizer: [
+                new TerserPlugin(),
+                new CssMinimizerPlugin(),
+            ],
+        },
     }
 };
