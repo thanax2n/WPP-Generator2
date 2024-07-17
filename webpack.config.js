@@ -1,23 +1,30 @@
 const fs = require('fs');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { VueLoaderPlugin } = require('vue-loader')
 
-// Dynamic feature detection
-const srcPath = path.resolve(__dirname, 'src');
-const features = fs.readdirSync(srcPath).filter(file =>
-    fs.statSync(path.join(srcPath, file)).isDirectory()
-);
+// Function to get features for a given environment
+const getFeatures = (env) => {
+    const envPath = path.resolve(__dirname, 'src', env);
+    return fs.readdirSync(envPath).filter(file =>
+        fs.statSync(path.join(envPath, file)).isDirectory()
+    );
+};
+
+// Get features for admin and frontend
+const adminFeatures = getFeatures('admin');
+const frontendFeatures = getFeatures('frontend');
 
 // Dynamically create entry points
 const entry = {};
-features.forEach(feature => {
-    entry[feature] = `./src/${feature}/index.js`;
+adminFeatures.forEach(feature => {
+    entry[`admin/${feature}`] = `./src/admin/${feature}/index.js`;
+});
+frontendFeatures.forEach(feature => {
+    entry[`frontend/${feature}`] = `./src/frontend/${feature}/index.js`;
 });
 
-// Webpack configuration
 module.exports = {
-    mode: 'development',
+    mode: 'production', // development / production
     entry,
     output: {
         path: path.resolve(__dirname, 'build'),
@@ -26,11 +33,20 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: '[name]/index.css'
-        }),
-        new VueLoaderPlugin()
+        })
     ],
     module: {
         rules: [
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env', '@babel/preset-react']
+                    }
+                }
+            },
             {
                 test: /\.scss$/,
                 use: [
@@ -38,37 +54,23 @@ module.exports = {
                     'css-loader',
                     'sass-loader'
                 ]
-            },
-            {
-                test: /\.css$/,
-                use: [
-                    'vue-style-loader',
-                    'css-loader'
-                ]
-            },
-            {
-                test: /\.vue$/,
-                loader: 'vue-loader'
-            },
-            {
-                test: /\.js$/,
-                loader: 'babel-loader'
             }
         ]
     },
     resolve: {
-        extensions: ['.js', '.vue', '.json'],
+        extensions: ['.js', '.jsx', '.json'],
         alias: {
-            ...features.reduce((acc, feature) => {
-                acc[`@${feature}`] = path.resolve(__dirname, `src/${feature}`);
-                return acc;
-            }, {}),
-            'vue': '@vue/runtime-dom'
+            '@admin': path.resolve(__dirname, 'src/admin'),
+            '@frontend': path.resolve(__dirname, 'src/frontend')
         }
     },
     devtool: 'eval-cheap-module-source-map',
     devServer: {
-        static: './dist',
-        hot: true
+        static: {
+            directory: path.join(__dirname, 'build'),
+        },
+        hot: true,
+        compress: true,
+        port: 9000, // You can change this to any port you prefer
     }
 };
