@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { makeRequest } from '../features/MakeRequest';
+import React, { useState } from 'react'
+import { makeRequest } from '../features/MakeRequest'
 
 const ImageUploader = ({ postMetaKey, postId }) => {
 
-    const [imageUrl, setImageUrl] = useState('');
-    const [imageId, setImageId] = useState('');
-    const [error, setError] = useState('');
+    const [imageUrl, setImageUrl] = useState('')
+    const [imageId, setImageId] = useState('')
+    const [error, setError] = useState('')
 
-    let frame = null;
+    let frame = null
 
     const openFileInput = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        setError('');
+        setError('')
 
         if (frame) {
             frame.open()
@@ -32,7 +32,7 @@ const ImageUploader = ({ postMetaKey, postId }) => {
             },
 
             multyple: false
-        });
+        })
 
         frame.on('select', function () {
 
@@ -50,34 +50,34 @@ const ImageUploader = ({ postMetaKey, postId }) => {
 
                     if (res.status === 200) {
 
-                        setImageId(imageId);
+                        setImageId(imageId)
 
-                        const imageUrl = res.data.imageUrl;
+                        const imageUrl = res.data.imageUrl
 
-                        setImageUrl(imageUrl);
+                        setImageUrl(imageUrl)
                     } else {
 
-                        setError('Failed to upload image. Please try again.');
+                        setError('Failed to upload image. Please try again.')
                     }
                 })
                 .catch(
                     error => {
 
-                        const message = error?.response?.data?.message ? error.response.data.message : error.message;
+                        const message = error?.response?.data?.message ? error.response.data.message : error.message
 
-                        setError('Error: ' + message);
+                        setError('Error: ' + message)
                     }
-                );
-        });
+                )
+        })
 
         frame.open()
-    };
+    }
 
     const removeImage = (e) => {
-        e.preventDefault();
-        setImageUrl('');
-        setImageId('');
-    };
+        e.preventDefault()
+        setImageUrl('')
+        setImageId('')
+    }
 
     return (
         <div className="mx-image-uploader-react">
@@ -115,7 +115,7 @@ const ImageUploader = ({ postMetaKey, postId }) => {
                 </>
             )}
         </div>
-    );
-};
+    )
+}
 
-export default ImageUploader;
+export default ImageUploader

@@ -10,7 +10,6 @@
 namespace MXSFWNWPPGNext\Features;
 
 use MXSFWNWPPGNext\Features\Gutenberg\CustomBlocks;
-use MXSFWNWPPGNext\Features\API\RoutesRegister;
 
 class FeaturesSoul
 {
@@ -45,6 +44,6 @@ class FeaturesSoul
     public function registerApiRoutes(): void
     {
 
-        new RoutesRegister;
+        require_once MXSFWN_PLUGIN_ABS_PATH . 'includes/Features/API/init.php';
     }
 }

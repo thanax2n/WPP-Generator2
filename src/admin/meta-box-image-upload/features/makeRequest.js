@@ -12,5 +12,5 @@ export const makeRequest = async (postId, attributes = {}) => {
             'Content-Type': 'application/json',
             'X-WP-Nonce': mxsfwnAdminLocalize.nonce
         }
-    });
-};
+    })
+}
