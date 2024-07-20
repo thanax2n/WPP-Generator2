@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
+import { makeRequest } from '../features/MakeRequest';
 
 const ImageUploader = ({ postMetaKey, postId }) => {
 
     const [imageUrl, setImageUrl] = useState('');
     const [imageId, setImageId] = useState('');
+    const [error, setError] = useState('');
 
     let frame = null;
 
     const openFileInput = (e) => {
         e.preventDefault();
+
+        setError('');
 
         if (frame) {
             frame.open()
@@ -32,24 +36,41 @@ const ImageUploader = ({ postMetaKey, postId }) => {
 
         frame.on('select', function () {
 
-            var attachment = frame.state().get('selection').first()
+            const attachment = frame.state().get('selection').first()
 
-            var imageId = attachment.id
+            const imageId = attachment.id
 
-            var imageUrl = attachment.attributes.url;
+            const attributes = {
+                imageId,
+                postMetaKey
+            }
 
-            console.log('imageId', imageId);
+            makeRequest(postId, attributes)
+                .then(res => {
 
+                    if (res.status === 200) {
+
+                        setImageId(imageId);
+
+                        const imageUrl = res.data.imageUrl;
+
+                        setImageUrl(imageUrl);
+                    } else {
+
+                        setError('Failed to upload image. Please try again.');
+                    }
+                })
+                .catch(
+                    error => {
+
+                        const message = error?.response?.data?.message ? error.response.data.message : error.message;
+
+                        setError('Error: ' + message);
+                    }
+                );
         });
 
-        console.log('postId', postId);
-
         frame.open()
-    };
-
-    const handleFileChange = (e) => {
-        // setImageUrl(e.target.result);
-        // setImageId(Date.now().toString());
     };
 
     const removeImage = (e) => {
@@ -61,8 +82,14 @@ const ImageUploader = ({ postMetaKey, postId }) => {
     return (
         <div className="mx-image-uploader-react">
 
-            <button 
-                onClick={openFileInput} 
+            {error && (
+                <div className="error-message" style={{ color: 'red', marginBottom: '10px' }}>
+                    {error}
+                </div>
+            )}
+
+            <button
+                onClick={openFileInput}
                 style={{ display: imageUrl ? 'none' : 'block' }}
             >
                 Choose Image
@@ -83,7 +110,7 @@ const ImageUploader = ({ postMetaKey, postId }) => {
                     <input
                         type="hidden"
                         value={imageId}
-                        name={`image-id-${elementId}`}
+                        name={`image-id-${imageId}`}
                     />
                 </>
             )}

@@ -10,6 +10,7 @@
 namespace MXSFWNWPPGNext\Features;
 
 use MXSFWNWPPGNext\Features\Gutenberg\CustomBlocks;
+use MXSFWNWPPGNext\Features\API\RoutesRegister;
 
 class FeaturesSoul
 {
@@ -21,6 +22,8 @@ class FeaturesSoul
     {
 
         $this->registerGutenbergBlocks();
+
+        $this->registerApiRoutes();
     }
 
     /**
@@ -32,5 +35,16 @@ class FeaturesSoul
     {
 
         CustomBlocks::registerBlocks();
+    }
+
+    /**
+     * REST API. Routes register.
+     * 
+     * @return void      Register routes.
+     */
+    public function registerApiRoutes(): void
+    {
+
+        new RoutesRegister;
     }
 }

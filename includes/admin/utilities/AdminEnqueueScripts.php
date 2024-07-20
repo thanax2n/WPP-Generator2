@@ -38,12 +38,22 @@ class AdminEnqueueScripts
             true
         );
 
+        $metaBoxImageUploadHandler = "{$this->uniqueString}-meta-box-image-upload";
         wp_enqueue_script(
-            'meta-box-image-upload',
+            $metaBoxImageUploadHandler,
             MXSFWN_PLUGIN_URL . 'build/admin/meta-box-image-upload/index.js',
             [$dependenciesHandler, 'jquery'],
             MXSFWN_PLUGIN_VERSION,
             true
+        );
+
+        // Localizer
+        wp_localize_script(
+            $metaBoxImageUploadHandler,
+            "{$this->uniqueString}AdminLocalize",
+            [
+                'nonce'   => wp_create_nonce('wp_rest'),
+            ]
         );
 
         // add main admin script
