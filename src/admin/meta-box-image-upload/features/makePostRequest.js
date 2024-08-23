@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-export const makeRequest = async (postId, attributes = {}) => {
+export const makePostRequest = async (postId, attributes = {}) => {
 
     /**
-     * Server callback is here \includes\Features\API\meta-boxes\image-upload.php
+     * Server callback is here \includes\Features\API\Routes\UpdatePostMetaImageRoute.php
      * */
     return await axios.post(`/wp-json/wpp-generator/v1/post-id/${postId}`, {
         attributes,

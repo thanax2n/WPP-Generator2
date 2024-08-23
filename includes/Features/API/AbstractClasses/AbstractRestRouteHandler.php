@@ -18,11 +18,11 @@ abstract class AbstractRestRouteHandler implements RestRouteHandlerInterface
         register_rest_route(
             $this->namespace,
             $this->route,
-            array(
+            [
                 'methods'             => $this->methods,
                 'callback'            => [$this, 'handleRequest'],
                 'permission_callback' => [$this, 'checkPermissions'],
-            )
+            ]
         );
     }
 

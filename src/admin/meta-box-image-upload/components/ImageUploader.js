@@ -1,15 +1,41 @@
-import React, { useState } from 'react'
-import { makeRequest } from '../features/MakeRequest'
+import React, { useState, useEffect } from 'react'
+import { makePostRequest } from '../features/makePostRequest'
+import { makeGetRequest } from '../features/makeGetRequest'
 
-const ImageUploader = ({ postMetaKey, postId }) => {
+const ImageUploader = ({ postMetaKey, postId, postMetaValue }) => {
 
     const [imageUrl, setImageUrl] = useState('')
     const [imageId, setImageId] = useState('')
     const [error, setError] = useState('')
 
+    // Get save post meta
+    const getSavedImage = () => {
+
+        if(!postMetaValue) return
+
+        makeGetRequest(postId, postMetaKey)
+            .then( res => {
+
+                console.log(res)
+            } )
+            .catch( error => {
+
+                console.log(error)
+            } )
+
+        console.log(postMetaKey, postId, postMetaValue);
+    }
+
+    // Check if the image saved
+    useEffect(() => {
+
+        getSavedImage()
+    }, [])    
+    
+    // Choose Image
     let frame = null
 
-    const openFileInput = (e) => {
+    const openFrame = (e) => {
         e.preventDefault()
 
         setError('')
@@ -45,7 +71,7 @@ const ImageUploader = ({ postMetaKey, postId }) => {
                 postMetaKey
             }
 
-            makeRequest(postId, attributes)
+            makePostRequest(postId, attributes)
                 .then(res => {
 
                     if (res.status === 200) {
@@ -89,7 +115,7 @@ const ImageUploader = ({ postMetaKey, postId }) => {
             )}
 
             <button
-                onClick={openFileInput}
+                onClick={openFrame}
                 style={{ display: imageUrl ? 'none' : 'block' }}
             >
                 Choose Image

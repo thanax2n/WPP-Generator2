@@ -11,8 +11,15 @@ const renderImageUploaders = () => {
     
     const root = createRoot(element)
     const postMetaKey = element.getAttribute('data-post-meta-key')
+    const postMetaValue = element.getAttribute('data-post-meta-value')
     const postId = element.getAttribute('data-post-id')
-    root.render(<ImageUploader postMetaKey={postMetaKey} postId={postId} />)
+    root.render(
+      <ImageUploader
+        postMetaKey={postMetaKey}
+        postMetaValue={postMetaValue}
+        postId={postId}
+      />
+    )
   })
 }
 
