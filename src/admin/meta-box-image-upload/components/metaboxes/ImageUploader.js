@@ -1,6 +1,38 @@
 import React, { useState, useEffect } from 'react'
-import { makePostRequest } from '../features/makePostRequest'
-import { makeGetRequest } from '../features/makeGetRequest'
+import axios from 'axios'
+
+const makePostRequest = async (postId, attributes = {}) => {
+
+    /**
+     * Server callback is here \includes\Features\API\Routes\UpdatePostMetaImageRoute.php
+     * */
+    return await axios.post(`/wp-json/wpp-generator/v1/post-id/${postId}`, {
+        attributes,
+    }, {
+        headers: {
+            'Content-Type': 'application/json',
+            'X-WP-Nonce': mxsfwnAdminLocalize.nonce
+        }
+    })
+}
+
+const makeGetRequest = async (postId, postMetaKey) => {
+
+    const encodedMetaKey = encodeURIComponent(postMetaKey);
+
+    /**
+     * Server callback is here \includes\Features\API\Routes\UpdatePostMetaImageRoute.php
+     * */
+    return await axios.get(`/wp-json/wpp-generator/v1/post-id/${postId}/`, {
+        params: {
+            post_id: postId,
+            postMetaKey: encodedMetaKey
+        },
+        headers: {
+            'X-WP-Nonce': mxsfwnAdminLocalize.nonce
+        }
+    })
+}
 
 const ImageUploader = ({ postMetaKey, postId, postMetaValue }) => {
 
@@ -16,14 +48,22 @@ const ImageUploader = ({ postMetaKey, postId, postMetaValue }) => {
         makeGetRequest(postId, postMetaKey)
             .then( res => {
 
-                console.log(res)
+                if (res.status === 200) {
+
+                    const imageData = res.data;
+
+                    if(imageData?.imageId && imageData?.imageUrl) {
+
+                        setImageId(parseInt(imageData.imageId))
+
+                        setImageUrl(imageData.imageUrl)
+                    }
+                }
             } )
             .catch( error => {
 
-                console.log(error)
+                // console.log(error, error)
             } )
-
-        console.log(postMetaKey, postId, postMetaValue);
     }
 
     // Check if the image saved
@@ -101,6 +141,8 @@ const ImageUploader = ({ postMetaKey, postId, postMetaValue }) => {
 
     const removeImage = (e) => {
         e.preventDefault()
+        
+        // todo: remove from db
         setImageUrl('')
         setImageId('')
     }

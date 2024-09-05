@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import ImageUploader from './components/ImageUploader'
+import ImageUploader from './components/metaboxes/ImageUploader'
 
 // Function to render React components
 const renderImageUploaders = () => {

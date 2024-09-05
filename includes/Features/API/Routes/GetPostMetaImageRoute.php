@@ -9,7 +9,7 @@ use WP_Post;
 class GetPostMetaImageRoute extends AbstractRestRouteHandler
 {
 
-    protected $route = '/post-id/(?P<postId>[\d]+)/post-meta/(?P<postMetaKey>[\w]+)';
+    protected $route = '/post-id/(?P<postId>[\d]+)/';
     protected $nonceAction = 'wp_rest';
     protected $methods = 'GET';
 
@@ -41,16 +41,22 @@ class GetPostMetaImageRoute extends AbstractRestRouteHandler
         }
 
         $postMetaKey = $request->get_param('postMetaKey');
-
+        
         $imageId = get_post_meta($postId, $postMetaKey, true);
 
         $imageUrl = wp_get_attachment_url(intval($imageId));
 
+        if($imageUrl) {
+
+            return new WP_REST_Response([
+                'postId'   => $postId,
+                'imageUrl' => $imageUrl,
+                'imageId'  => $imageId
+            ], 200);
+        }
+
         return new WP_REST_Response([
-            'status'   => 'success',
-            'message'  => "Current post id: $postId",
-            'postId'   => $postId,
-            'imageUrl' => $imageUrl
+            'message' => 'Post meta is empty.'
         ], 200);
     }
 }
