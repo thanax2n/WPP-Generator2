@@ -4,6 +4,7 @@ defined('ABSPATH') || exit;
 
 use MXSFWNWPPGNext\Features\API\Routes\UpdatePostMetaImageRoute;
 use MXSFWNWPPGNext\Features\API\Routes\GetPostMetaImageRoute;
+use MXSFWNWPPGNext\Features\API\Routes\DeletePostMetaImageRoute;
 
 if (!function_exists('mxsfwninitializeRestRoutes')) {
     /**
@@ -15,6 +16,7 @@ if (!function_exists('mxsfwninitializeRestRoutes')) {
         $routes = [
             new UpdatePostMetaImageRoute,
             new GetPostMetaImageRoute,
+            new DeletePostMetaImageRoute,
         ];
 
         foreach ($routes as $route) {

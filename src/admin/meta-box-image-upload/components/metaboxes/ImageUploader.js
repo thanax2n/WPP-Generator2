@@ -1,7 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-const makePostRequest = async (postId, attributes = {}) => {
+const deleteMetaBoxImage = async (postId, attributes) => {
+
+    /**
+     * Server callback is here \includes\Features\API\Routes\DeletePostMetaImageRoute.php
+     * */
+    return await axios.post(`/wp-json/wpp-generator/v1/post-id/${postId}/delete/`, {
+        attributes
+    }, {
+        headers: {
+            'Content-Type': 'application/json',
+            'X-WP-Nonce': mxsfwnAdminLocalize.nonce
+        }
+    })
+}
+
+const updatePostMetaImage = async (postId, attributes = {}) => {
 
     /**
      * Server callback is here \includes\Features\API\Routes\UpdatePostMetaImageRoute.php
@@ -16,12 +31,12 @@ const makePostRequest = async (postId, attributes = {}) => {
     })
 }
 
-const makeGetRequest = async (postId, postMetaKey) => {
+const getPostMetaImage = async (postId, postMetaKey) => {
 
     const encodedMetaKey = encodeURIComponent(postMetaKey);
 
     /**
-     * Server callback is here \includes\Features\API\Routes\UpdatePostMetaImageRoute.php
+     * Server callback is here \includes\Features\API\Routes\GetPostMetaImageRoute.php
      * */
     return await axios.get(`/wp-json/wpp-generator/v1/post-id/${postId}/`, {
         params: {
@@ -43,35 +58,35 @@ const ImageUploader = ({ postMetaKey, postId, postMetaValue }) => {
     // Get save post meta
     const getSavedImage = () => {
 
-        if(!postMetaValue) return
+        if (!postMetaValue) return
 
-        makeGetRequest(postId, postMetaKey)
-            .then( res => {
+        getPostMetaImage(postId, postMetaKey)
+            .then(res => {
 
                 if (res.status === 200) {
 
                     const imageData = res.data;
 
-                    if(imageData?.imageId && imageData?.imageUrl) {
+                    if (imageData?.imageId && imageData?.imageUrl) {
 
                         setImageId(parseInt(imageData.imageId))
 
                         setImageUrl(imageData.imageUrl)
                     }
                 }
-            } )
-            .catch( error => {
+            })
+            .catch(error => {
 
                 // console.log(error, error)
-            } )
+            })
     }
 
     // Check if the image saved
     useEffect(() => {
 
         getSavedImage()
-    }, [])    
-    
+    }, [])
+
     // Choose Image
     let frame = null
 
@@ -111,7 +126,7 @@ const ImageUploader = ({ postMetaKey, postId, postMetaValue }) => {
                 postMetaKey
             }
 
-            makePostRequest(postId, attributes)
+            updatePostMetaImage(postId, attributes)
                 .then(res => {
 
                     if (res.status === 200) {
@@ -141,10 +156,32 @@ const ImageUploader = ({ postMetaKey, postId, postMetaValue }) => {
 
     const removeImage = (e) => {
         e.preventDefault()
-        
-        // todo: remove from db
-        setImageUrl('')
-        setImageId('')
+
+        const attributes = {
+            postMetaKey
+        }
+
+        deleteMetaBoxImage(postId, attributes)
+            .then(res => {
+
+                if (res.status === 200) {
+
+                    setImageUrl('')
+                    setImageId('')
+
+                } else {
+
+                    setError('Failed to delete image. Please try again.')
+                }
+            })
+            .catch(
+                error => {
+
+                    const message = error?.response?.data?.message ? error.response.data.message : error.message
+
+                    setError('Error: ' + message)
+                }
+            )
     }
 
     return (

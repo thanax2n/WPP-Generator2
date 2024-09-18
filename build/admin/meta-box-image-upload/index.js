@@ -27,16 +27,13 @@ function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 
 
-var makePostRequest = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(postId) {
-    var attributes,
-      _args = arguments;
+var deleteMetaBoxImage = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(postId, attributes) {
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          attributes = _args.length > 1 && _args[1] !== undefined ? _args[1] : {};
-          _context.next = 3;
-          return axios__WEBPACK_IMPORTED_MODULE_1__["default"].post("/wp-json/wpp-generator/v1/post-id/".concat(postId), {
+          _context.next = 2;
+          return axios__WEBPACK_IMPORTED_MODULE_1__["default"].post("/wp-json/wpp-generator/v1/post-id/".concat(postId, "/delete/"), {
             attributes: attributes
           }, {
             headers: {
@@ -44,35 +41,32 @@ var makePostRequest = /*#__PURE__*/function () {
               'X-WP-Nonce': mxsfwnAdminLocalize.nonce
             }
           });
-        case 3:
+        case 2:
           return _context.abrupt("return", _context.sent);
-        case 4:
+        case 3:
         case "end":
           return _context.stop();
       }
     }, _callee);
   }));
-  return function makePostRequest(_x) {
+  return function deleteMetaBoxImage(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }();
-var makeGetRequest = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(postId, postMetaKey) {
-    var encodedMetaKey;
+var updatePostMetaImage = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(postId) {
+    var attributes,
+      _args2 = arguments;
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
-          encodedMetaKey = encodeURIComponent(postMetaKey);
-          /**
-           * Server callback is here \includes\Features\API\Routes\UpdatePostMetaImageRoute.php
-           * */
+          attributes = _args2.length > 1 && _args2[1] !== undefined ? _args2[1] : {};
           _context2.next = 3;
-          return axios__WEBPACK_IMPORTED_MODULE_1__["default"].get("/wp-json/wpp-generator/v1/post-id/".concat(postId, "/"), {
-            params: {
-              post_id: postId,
-              postMetaKey: encodedMetaKey
-            },
+          return axios__WEBPACK_IMPORTED_MODULE_1__["default"].post("/wp-json/wpp-generator/v1/post-id/".concat(postId), {
+            attributes: attributes
+          }, {
             headers: {
+              'Content-Type': 'application/json',
               'X-WP-Nonce': mxsfwnAdminLocalize.nonce
             }
           });
@@ -84,14 +78,46 @@ var makeGetRequest = /*#__PURE__*/function () {
       }
     }, _callee2);
   }));
-  return function makeGetRequest(_x2, _x3) {
+  return function updatePostMetaImage(_x3) {
     return _ref2.apply(this, arguments);
   };
 }();
-var ImageUploader = function ImageUploader(_ref3) {
-  var postMetaKey = _ref3.postMetaKey,
-    postId = _ref3.postId,
-    postMetaValue = _ref3.postMetaValue;
+var getPostMetaImage = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(postId, postMetaKey) {
+    var encodedMetaKey;
+    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+      while (1) switch (_context3.prev = _context3.next) {
+        case 0:
+          encodedMetaKey = encodeURIComponent(postMetaKey);
+          /**
+           * Server callback is here \includes\Features\API\Routes\GetPostMetaImageRoute.php
+           * */
+          _context3.next = 3;
+          return axios__WEBPACK_IMPORTED_MODULE_1__["default"].get("/wp-json/wpp-generator/v1/post-id/".concat(postId, "/"), {
+            params: {
+              post_id: postId,
+              postMetaKey: encodedMetaKey
+            },
+            headers: {
+              'X-WP-Nonce': mxsfwnAdminLocalize.nonce
+            }
+          });
+        case 3:
+          return _context3.abrupt("return", _context3.sent);
+        case 4:
+        case "end":
+          return _context3.stop();
+      }
+    }, _callee3);
+  }));
+  return function getPostMetaImage(_x4, _x5) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+var ImageUploader = function ImageUploader(_ref4) {
+  var postMetaKey = _ref4.postMetaKey,
+    postId = _ref4.postId,
+    postMetaValue = _ref4.postMetaValue;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
     _useState2 = _slicedToArray(_useState, 2),
     imageUrl = _useState2[0],
@@ -108,7 +134,7 @@ var ImageUploader = function ImageUploader(_ref3) {
   // Get save post meta
   var getSavedImage = function getSavedImage() {
     if (!postMetaValue) return;
-    makeGetRequest(postId, postMetaKey).then(function (res) {
+    getPostMetaImage(postId, postMetaKey).then(function (res) {
       if (res.status === 200) {
         var imageData = res.data;
         if (imageData !== null && imageData !== void 0 && imageData.imageId && imageData !== null && imageData !== void 0 && imageData.imageUrl) {
@@ -153,7 +179,7 @@ var ImageUploader = function ImageUploader(_ref3) {
         imageId: imageId,
         postMetaKey: postMetaKey
       };
-      makePostRequest(postId, attributes).then(function (res) {
+      updatePostMetaImage(postId, attributes).then(function (res) {
         if (res.status === 200) {
           setImageId(imageId);
           var _imageUrl = res.data.imageUrl;
@@ -171,10 +197,21 @@ var ImageUploader = function ImageUploader(_ref3) {
   };
   var removeImage = function removeImage(e) {
     e.preventDefault();
-
-    // todo: remove from db
-    setImageUrl('');
-    setImageId('');
+    var attributes = {
+      postMetaKey: postMetaKey
+    };
+    deleteMetaBoxImage(postId, attributes).then(function (res) {
+      if (res.status === 200) {
+        setImageUrl('');
+        setImageId('');
+      } else {
+        setError('Failed to delete image. Please try again.');
+      }
+    })["catch"](function (error) {
+      var _error$response2;
+      var message = error !== null && error !== void 0 && (_error$response2 = error.response) !== null && _error$response2 !== void 0 && (_error$response2 = _error$response2.data) !== null && _error$response2 !== void 0 && _error$response2.message ? error.response.data.message : error.message;
+      setError('Error: ' + message);
+    });
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "mx-image-uploader-react"
