@@ -1,11 +1,1 @@
-/*!***************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/frontend/feature1/assets/scss/style.scss ***!
-  \***************************************************************************************************************************************/
-.mx-app-wrapper {
-  padding: 20px;
-}
-.mx-app-wrapper h1 {
-  color: green;
-}
-
-/*# sourceMappingURL=index.css.map*/
+.mx-app-wrapper{padding:20px}.mx-app-wrapper h1{color:#7a8000}

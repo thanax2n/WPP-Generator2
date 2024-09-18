@@ -5,15 +5,21 @@
 	"author": "Maksym Marko",
 	"license": "GPL-2.0-or-later",
 	"scripts": {
+		"watch": "webpack --watch --mode=development --config webpack.custom.config.js",
+		"build": "webpack --mode=production --config webpack.custom.config.js"
+	},
+	"scriptsForGutenbergCompelling": {
 		"format": "wp-scripts format",
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
-		"g-build": "wp-scripts build --webpack-src-dir=src/gutenberg/ --output-path=built/gutenberg/",
-		"g-start": "wp-scripts start --webpack-src-dir=src/gutenberg/ --output-path=built/gutenberg/",
-		"watch": "webpack --watch --mode=development",
-		"build": "webpack --mode=production"
+		"start": "wp-scripts start --webpack-src-dir=src/gutenberg/ --output-path=build/gutenberg/",
+		"build": "wp-scripts build --webpack-src-dir=src/gutenberg/ --output-path=build/gutenberg/"
+	},
+	"scriptsForJavaScriptCompelling": {
+		"watch": "webpack --watch --mode=development --config webpack.custom.config.js",
+		"build": "webpack --mode=production --config webpack.custom.config.js"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.24.9",

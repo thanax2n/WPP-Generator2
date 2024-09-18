@@ -7,7 +7,7 @@
  * of Gutenberg blocks.
  * The main code of the blocks is here src\gutenberg.
  * Each block is in separate folder and the built 
- * version you can find here: built\gutenberg.
+ * version you can find here: build\gutenberg.
  */
 
 namespace MXSFWNWPPGNext\Features\Gutenberg;
@@ -128,11 +128,11 @@ class CustomBlocks
     public function  blocksExtendingScript(): void
     {
 
-        $assetFile = include("{$this->absPath}built/gutenberg/extending/index.asset.php");
+        $assetFile = include("{$this->absPath}build/gutenberg/extending/index.asset.php");
 
         wp_enqueue_script(
             "{$this->uniqueString}-extending-gutenberg",
-            "{$this->pluginURL}built/gutenberg/extending/index.js",
+            "{$this->pluginURL}build/gutenberg/extending/index.js",
             $assetFile['dependencies'],
             $assetFile['version']
         );
@@ -181,7 +181,7 @@ class CustomBlocks
     public function responsiveSpacer()
     {
 
-        register_block_type("{$this->absPath}built/gutenberg/responsive-spacer");
+        register_block_type("{$this->absPath}build/gutenberg/responsive-spacer");
     }
 
     /**
@@ -194,7 +194,7 @@ class CustomBlocks
     public function contentSlider()
     {
 
-        register_block_type("{$this->absPath}built/gutenberg/content-slider");
+        register_block_type("{$this->absPath}build/gutenberg/content-slider");
     }
 
     /**
@@ -207,7 +207,7 @@ class CustomBlocks
     public function contentSliderScripts()
     {
 
-        $assetFile = include("{$this->absPath}built/gutenberg/content-slider/index.asset.php");
+        $assetFile = include("{$this->absPath}build/gutenberg/content-slider/index.asset.php");
 
         // Owl css
         wp_enqueue_style(
@@ -246,7 +246,7 @@ class CustomBlocks
     public function fullWidthSectionImage()
     {
 
-        register_block_type("{$this->absPath}built/gutenberg/full-width-section-image");
+        register_block_type("{$this->absPath}build/gutenberg/full-width-section-image");
     }
 
     /**
@@ -259,7 +259,7 @@ class CustomBlocks
     public function fullWidthSection()
     {
 
-        register_block_type("{$this->absPath}built/gutenberg/full-width-section");
+        register_block_type("{$this->absPath}build/gutenberg/full-width-section");
     }
 
     /**
@@ -272,13 +272,13 @@ class CustomBlocks
     public function counterSection()
     {
 
-        register_block_type("{$this->absPath}built/gutenberg/counter-section");
+        register_block_type("{$this->absPath}build/gutenberg/counter-section");
 
         /**
          * Children blocks
          */
         // Block one
-        register_block_type("{$this->absPath}built/gutenberg/counter-section/child-blocks/block-one");
+        register_block_type("{$this->absPath}build/gutenberg/counter-section/child-blocks/block-one");
 
         /**
          * Additional scripts and styles
@@ -287,7 +287,7 @@ class CustomBlocks
         // Add animation
         wp_enqueue_style("{$this->uniqueString}-animate", "{$this->pluginURL}assets/gutenberg/counter-section/css/animate.min.css");
 
-        $assetFile = include("{$this->absPath}built/gutenberg/counter-section/index.asset.php");
+        $assetFile = include("{$this->absPath}build/gutenberg/counter-section/index.asset.php");
 
         // WOW
         wp_enqueue_script("{$this->uniqueString}-counter-section-wow", "{$this->pluginURL}assets/gutenberg/counter-section/js/wow.min.js", ['jquery', ...$assetFile['dependencies']], $this->pluginVersion, true);
@@ -312,13 +312,13 @@ class CustomBlocks
     public function nestedBlocks()
     {
 
-        register_block_type("{$this->absPath}built/gutenberg/nested-blocks");
+        register_block_type("{$this->absPath}build/gutenberg/nested-blocks");
 
         /**
          * Children blocks
          */
         // Block one
-        register_block_type("{$this->absPath}built/gutenberg/nested-blocks/child-blocks/block-one");
+        register_block_type("{$this->absPath}build/gutenberg/nested-blocks/child-blocks/block-one");
     }
 
     /**
@@ -331,7 +331,7 @@ class CustomBlocks
     public function imageSection()
     {
 
-        register_block_type("{$this->absPath}built/gutenberg/image-section");
+        register_block_type("{$this->absPath}build/gutenberg/image-section");
     }
 
     /**
@@ -344,7 +344,7 @@ class CustomBlocks
     public function simpleImage()
     {
 
-        register_block_type("{$this->absPath}built/gutenberg/simple-image");
+        register_block_type("{$this->absPath}build/gutenberg/simple-image");
     }
 
     /**
@@ -357,7 +357,7 @@ class CustomBlocks
     public function simpleText()
     {
 
-        register_block_type("{$this->absPath}built/gutenberg/simple-text");
+        register_block_type("{$this->absPath}build/gutenberg/simple-text");
     }
 
     /**
@@ -370,17 +370,17 @@ class CustomBlocks
     public function serverSideRendering()
     {
 
-        $assetFile = include("{$this->absPath}built/gutenberg/server-side-rendering/index.asset.php");
+        $assetFile = include("{$this->absPath}build/gutenberg/server-side-rendering/index.asset.php");
 
         wp_register_script(
             "{$this->uniqueString}-server-side-rendering",
-            "{$this->pluginURL}built/gutenberg/server-side-rendering/index.js",
+            "{$this->pluginURL}build/gutenberg/server-side-rendering/index.js",
             $assetFile['dependencies'],
             $assetFile['version']
         );
 
         register_block_type(
-            "{$this->absPath}built/gutenberg/server-side-rendering",
+            "{$this->absPath}build/gutenberg/server-side-rendering",
             [
                 'api_version'       => 2,
                 'category'          => 'widgets',

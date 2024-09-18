@@ -5,11 +5,11 @@ namespace MXSFWNWPPGNext\Admin\Utilities;
 class AdminEnqueueScripts
 {
 
-    public $uniqueString = MXSFWN_PLUGIN_UNIQUE_STRING;
+    protected $uniqueString = MXSFWN_PLUGIN_UNIQUE_STRING;
 
-    public $assetsPath   = MXSFWN_PLUGIN_URL . 'assets/admin/';
+    protected $version      = MXSFWN_PLUGIN_VERSION;
 
-    public $version      = MXSFWN_PLUGIN_VERSION;
+    protected $pluginUrl    = MXSFWN_PLUGIN_URL;
 
     public function enqueue()
     {
@@ -20,19 +20,11 @@ class AdminEnqueueScripts
     public function scripts()
     {
 
-        // wp_enqueue_script(
-        //     'meta-box-image-upload',
-        //     MXSFWN_PLUGIN_URL . 'assets/admin/js/meta-box-image-upload.js',
-        //     ['jquery'],
-        //     MXSFWN_PLUGIN_VERSION,
-        //     true
-        // );
-
         // dependencies
         $dependenciesHandler = "{$this->uniqueString}-dependencies";
         wp_enqueue_script(
             $dependenciesHandler,
-            MXSFWN_PLUGIN_URL . 'build/dependencies/vendors/index.js',
+            $this->pluginUrl . 'build/dependencies/vendors/index.js',
             [],
             $this->version,
             true
@@ -41,9 +33,9 @@ class AdminEnqueueScripts
         $metaBoxImageUploadHandler = "{$this->uniqueString}-meta-box-image-upload";
         wp_enqueue_script(
             $metaBoxImageUploadHandler,
-            MXSFWN_PLUGIN_URL . 'build/admin/meta-box-image-upload/index.js',
+            $this->pluginUrl . 'build/admin/meta-box-image-upload/index.js',
             [$dependenciesHandler, 'jquery'],
-            MXSFWN_PLUGIN_VERSION,
+            $this->version,
             true
         );
 
@@ -56,21 +48,12 @@ class AdminEnqueueScripts
             ]
         );
 
-        // add main admin script
-        wp_enqueue_script(
-            "{$this->uniqueString}-admin-scripts",
-            "{$this->assetsPath}js/scripts.js",
-            ['jquery'],
-            $this->version,
-            true
-        );
-
-        // add main admin style
+        // Metabox style
         wp_enqueue_style(
-            "{$this->uniqueString}-admin-styles",
-            "{$this->assetsPath}css/styles.css",
+            "{$this->uniqueString}-meta-box-style",
+            $this->pluginUrl . 'build/admin/meta-box-image-upload/index.css',
             [],
-            $this->version
+            $this->version,
         );
     }
 }

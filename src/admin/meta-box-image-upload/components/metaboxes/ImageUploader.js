@@ -209,6 +209,7 @@ const ImageUploader = ({ postMetaKey, postId, postMetaValue }) => {
                     <button
                         onClick={removeImage}
                         style={{ display: 'block' }}
+                        className="mx-meta-box-image-remove"
                     >
                         Remove Image
                     </button>

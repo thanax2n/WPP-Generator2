@@ -7,12 +7,9 @@ class WPEnqueueScripts
 
     protected $uniqueString = MXSFWN_PLUGIN_UNIQUE_STRING;
 
-    protected $assetsPath   = MXSFWN_PLUGIN_URL . 'assets/frontend/';
-
-    protected $assetsPath2   = MXSFWN_PLUGIN_URL . 'build/';
-
-
     protected $version      = MXSFWN_PLUGIN_VERSION;
+
+    protected $pluginUrl    = MXSFWN_PLUGIN_URL;
 
     public function enqueue()
     {
@@ -26,7 +23,7 @@ class WPEnqueueScripts
         // dependencies
         wp_enqueue_script(
             "{$this->uniqueString}-dependencies",
-            "{$this->assetsPath2}dependencies/vendors/index.js",
+            $this->pluginUrl . 'build/dependencies/vendors/index.js',
             [],
             $this->version,
             true
@@ -36,7 +33,7 @@ class WPEnqueueScripts
         $feature1Handler = "{$this->uniqueString}-feature1-scripts";
         wp_enqueue_script(
             $feature1Handler,
-            "{$this->assetsPath2}frontend/feature1/index.js",
+            $this->pluginUrl . 'build/frontend/feature1/index.js',
             ["{$this->uniqueString}-dependencies"],
             $this->version,
             true
@@ -55,7 +52,7 @@ class WPEnqueueScripts
         $fontAwesomeHandle = "{$this->uniqueString}-font-awesome";
         wp_enqueue_style(
             $fontAwesomeHandle,
-            MXSFWN_PLUGIN_URL . 'assets/packages/font-awesome-4.6.3/css/font-awesome.min.css',
+            $this->pluginUrl . 'assets/packages/font-awesome-4.6.3/css/font-awesome.min.css',
             [],
             $this->version
         );
@@ -63,7 +60,7 @@ class WPEnqueueScripts
         // Feature 1 style
         wp_enqueue_style(
             "{$this->uniqueString}-feature1-style",
-            "{$this->assetsPath2}frontend/feature1/index.css",
+            $this->pluginUrl . 'build/frontend/feature1/index.css',
             [$fontAwesomeHandle],
             $this->version
         );
