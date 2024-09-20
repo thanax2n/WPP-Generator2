@@ -6,18 +6,6 @@ my-plugin/
 |   ├── images/
 |   |   └── example.png
 |   |
-|   ├── admin/
-|   |   ├──  css/
-|   |   |   └── styles.css
-|   |   └── js/
-|   |       └── scripts.js
-|   |
-|   ├── frontend/
-|   |   ├──  css/
-|   |   |   └── styles.css
-|   |   └── js/
-|   |       └── scripts.js
-|   |
 |   └── packages/
 |       ├── font-awesome-4.6.3/
 |       |   ├── css/
@@ -30,13 +18,24 @@ my-plugin/
 |               ├── development.js
 |               └── production.js
 │
+├── build/
+|   ├── admin/
+|   |   └── ...
+|   ├── dependencies/
+|   |   └── ...
+|   ├── frontend/
+|   |   └── ...
+|   └── gutenberg/
+|       └── ...
+|
 ├── includes/
 |   ├── Activate/
 |   |   ├── seeder/
 |   |   |   └── ai-robots.php
 |   |   |   
 |   |   ├── CreateDataTable.php
-|   |   └── CreateDataTables.php
+|   |   ├── CreateDataTableManager.php
+|   |   └── DataTableMigration.php
 |   |
 |   ├── Admin/
 |   |   ├── controllers/
@@ -145,7 +144,9 @@ my-plugin/
 ├── src/
 |   ├── admin/
 |   |   └── ...
-|   └── frontend/
+|   ├── frontend/
+|   |   └── ...
+|   └── gutenberg/
 |       └── ...
 |
 ├── composer.json
