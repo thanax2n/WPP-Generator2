@@ -7,6 +7,9 @@ use MXSFWNWPPGNext\Admin\Utilities\Notices\MetaBoxTypeNotice;
 class MetaBox
 {
 
+    /**
+     * List of allowed meta boxes.
+     */
     const TYPES = [
         'text',
         'email',
@@ -17,11 +20,17 @@ class MetaBox
         'image',
         'radio',
         'select',
-        'checkbox'
+        'checkbox',
     ];
 
+    /**
+     * Compare and complement default arguments with user arguments.
+     */
     private $args = [];
 
+    /**
+     * Default arguments.
+     */
     protected $defaults = [
         'id'           => 'mx-meta-box',
         'postTypes'    => 'page',
@@ -32,7 +41,7 @@ class MetaBox
         'priority'     => 'default',
         'callbackArgs' => NULL,
         'readonly'     => false,
-        'defaultValue' => ''
+        'defaultValue' => '',
     ];
 
     /** 
@@ -91,61 +100,98 @@ class MetaBox
         $this->imageUploadManager();
     }
 
+    /**
+     * Check if the input type exists.
+     * 
+     * @return bool
+     */
     protected function validateMetaBoxType(): bool
     {
 
         return in_array($this->args['metaBoxType'], self::TYPES);
     }
 
-    protected function setMetaBoxId()
+    /**
+     * Generate meta box id.
+     * 
+     * @return void
+     */
+    protected function setMetaBoxId(): void
     {
 
         if (is_array($this->args['postTypes'])) {
 
-            $this->args['metaBoxId'] = $this->args['id'] . '_' . implode('_',  $this->args['postTypes']);
+            $postTypes = array_map('sanitize_key', $this->args['postTypes']);
+            $sanitizedId = sanitize_key($this->args['id']);
+
+            if (!empty($postTypes) && !empty($sanitizedId)) {
+
+                $this->args['metaBoxId'] = $sanitizedId . '_' . implode('_', $postTypes);
+            } else {
+
+                $this->args['metaBoxId'] = 'default_meta_box';
+            }
 
             return;
         }
 
-        $this->args['metaBoxId'] = $this->args['id'] . '_' . $this->args['postTypes'];
+        $this->args['metaBoxId'] = sanitize_key($this->args['id']) . '_' . sanitize_key($this->args['postTypes']);
     }
 
-    protected function setPostMetaKey()
+    /**
+     * Generate meta box key.
+     * 
+     * @return void
+     */
+    protected function setPostMetaKey(): void
     {
 
-        if (empty($this->args['metaBoxId'])) return;
-
-        $this->args['postMetaKey'] = '_' . $this->args['metaBoxId'];
+        $this->args['postMetaKey'] = '_' . sanitize_key($this->args['metaBoxId']);
     }
 
-    protected function nonceManager()
+    /**
+     * Manage nonce name and action.
+     * 
+     * @return void
+     */
+    protected function nonceManager(): void
     {
 
-        if (empty($this->args['metaBoxId'])) return;
+        $this->args['nonceAction']  = sanitize_key($this->args['metaBoxId']) . '_nonce_action';
 
-        $this->args['nonceAction']  = $this->args['metaBoxId'] . '_nonce_action';
-        $this->args['nonceName']    = $this->args['metaBoxId'] . '_nonce_name';
+        $this->args['nonceName']    = sanitize_key($this->args['metaBoxId']) . '_nonce_name';
     }
 
-    protected function actionsManager()
+    /**
+     * Manage meta box actions.
+     * 
+     * @return void
+     */
+    protected function actionsManager(): void
     {
-
-        if (empty($this->args['metaBoxId'])) return;
 
         add_action('add_meta_boxes', [$this, 'addMetaBox']);
 
         add_action('save_post', [$this, 'saveMetaBox']);
     }
 
-    protected function imageUploadManager()
+    /**
+     * Image upload meta box.
+     * 
+     * @return void
+     */
+    protected function imageUploadManager(): void
     {
 
         if ($this->args['metaBoxType'] !== 'image') return;
-
-        // ...
     }
 
-    public function addMetaBox()
+    /**
+     * Add meta box.
+     * 
+     * @return void
+     */
+    public function addMetaBox(): void
     {
 
         add_meta_box(
@@ -160,7 +206,14 @@ class MetaBox
         );
     }
 
-    public function saveMetaBox($postId)
+    /**
+     * Save meta box.
+     * 
+     * @param int $postId   Post ID.
+     * 
+     * @return void
+     */
+    public function saveMetaBox($postId): void
     {
 
         if (!isset($_POST)) return;
@@ -185,55 +238,100 @@ class MetaBox
         update_post_meta($postId, $this->args['postMetaKey'], $value);
     }
 
-    public function saveMetaBoxText()
+    /**
+     * Return Text meta box value for saving.
+     * 
+     * @return string
+     */
+    public function saveMetaBoxText(): string
     {
 
         return sanitize_text_field(wp_unslash($_POST[$this->args['postMetaKey']]));
     }
 
-    public function saveMetaBoxEmail()
+    /**
+     * Return Email meta box value for saving.
+     * 
+     * @return string
+     */
+    public function saveMetaBoxEmail(): string
     {
 
         return sanitize_email(wp_unslash($_POST[$this->args['postMetaKey']]));
     }
 
-    public function saveMetaBoxUrl()
+    /**
+     * Return URL meta box value for saving.
+     * 
+     * @return string
+     */
+    public function saveMetaBoxUrl(): string
     {
 
         return esc_url_raw($_POST[$this->args['postMetaKey']]);
     }
 
-    public function saveMetaBoxInt()
+    /**
+     * Return INT meta box value for saving.
+     * 
+     * @return int
+     */
+    public function saveMetaBoxInt(): int
     {
 
         return intval($_POST[$this->args['postMetaKey']]);
     }
 
-    public function saveMetaBoxFloat()
+    /**
+     * Return Float meta box value for saving.
+     * 
+     * @return float
+     */
+    public function saveMetaBoxFloat(): float
     {
 
         return floatval($_POST[$this->args['postMetaKey']]);
     }
 
-    public function saveMetaBoxTextarea()
+    /**
+     * Return Textarea meta box value for saving.
+     * 
+     * @return string
+     */
+    public function saveMetaBoxTextarea(): string
     {
 
         return sanitize_textarea_field($_POST[$this->args['postMetaKey']]);
     }
 
-    public function saveMetaBoxRadio()
+    /**
+     * Return Radio meta box value for saving.
+     * 
+     * @return string
+     */
+    public function saveMetaBoxRadio(): string
     {
 
         return sanitize_text_field(wp_unslash($_POST[$this->args['postMetaKey']]));
     }
 
-    public function saveMetaBoxSelect()
+    /**
+     * Return Select meta box value for saving.
+     * 
+     * @return string
+     */
+    public function saveMetaBoxSelect(): string
     {
 
         return sanitize_text_field(wp_unslash($_POST[$this->args['postMetaKey']]));
     }
 
-    public function saveMetaBoxCheckbox()
+    /**
+     * Return Checkbox meta box value for saving.
+     * 
+     * @return string
+     */
+    public function saveMetaBoxCheckbox(): string
     {
 
         $options = [];
@@ -253,13 +351,25 @@ class MetaBox
         return implode(',', $options);
     }
 
-    public function saveMetaBoxImage()
+    /**
+     * Return Image meta box value for saving.
+     * 
+     * @return int
+     */
+    public function saveMetaBoxImage(): int
     {
 
         return intval($_POST[$this->args['postMetaKey']]);
     }
 
-    public function render($post, $meta)
+    /**
+     * Render Metabox body.
+     * 
+     * @param object  $post   Post object.
+     * 
+     * @return void
+     */
+    public function render($post, $meta): void
     {
 
         $metaBoxValue = get_post_meta(

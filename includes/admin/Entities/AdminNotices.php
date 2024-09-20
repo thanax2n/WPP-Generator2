@@ -9,7 +9,7 @@ class AdminNotices
         'error',
         'warning',
         'success',
-        'info'
+        'info',
     ];
 
     protected $type = 'info';

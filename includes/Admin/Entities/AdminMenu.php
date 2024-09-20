@@ -18,7 +18,7 @@ class AdminMenu
         'addMenuPage',
         'addSubmenuPage',
         'addOptionsPage',
-        'addOptionLink'
+        'addOptionLink',
     ];
 
     /**
@@ -81,7 +81,7 @@ class AdminMenu
      * 
      * @return void   Fire "admin_menu" action.
      */
-    public function add()
+    public function add(): void
     {
 
         add_action('admin_menu', [$this, $this->menuAction]);
