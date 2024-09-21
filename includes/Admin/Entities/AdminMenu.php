@@ -102,8 +102,8 @@ class AdminMenu
     {
 
         add_menu_page(
-            sprintf(esc_html__('%s', 'wpp-generator-v2'), $this->properties['pageTitle']),
-            sprintf(esc_html__('%s', 'wpp-generator-v2'), $this->properties['menuTitle']),
+            sprintf(esc_html__('%s', 'wpp-generator-next'), $this->properties['pageTitle']),
+            sprintf(esc_html__('%s', 'wpp-generator-next'), $this->properties['menuTitle']),
             $this->properties['capability'],
             $this->properties['menuSlug'],
             [$this, 'render'],
@@ -122,8 +122,8 @@ class AdminMenu
 
         add_submenu_page(
             $this->properties['parentSlug'],
-            sprintf(esc_html__('%s', 'wpp-generator-v2'), $this->properties['pageTitle']),
-            sprintf(esc_html__('%s', 'wpp-generator-v2'), $this->properties['menuTitle']),
+            sprintf(esc_html__('%s', 'wpp-generator-next'), $this->properties['pageTitle']),
+            sprintf(esc_html__('%s', 'wpp-generator-next'), $this->properties['menuTitle']),
             $this->properties['capability'],
             $this->properties['menuSlug'],
             [$this, 'render'],
@@ -140,8 +140,8 @@ class AdminMenu
     {
 
         add_options_page(
-            sprintf(esc_html__('%s', 'wpp-generator-v2'), $this->properties['pageTitle']),
-            sprintf(esc_html__('%s', 'wpp-generator-v2'), $this->properties['menuTitle']),
+            sprintf(esc_html__('%s', 'wpp-generator-next'), $this->properties['pageTitle']),
+            sprintf(esc_html__('%s', 'wpp-generator-next'), $this->properties['menuTitle']),
             $this->properties['capability'],
             $this->properties['menuSlug'],
             [$this, 'render'],
@@ -171,7 +171,7 @@ class AdminMenu
     public function addLink($links): array
     {
 
-        $settingsLink = '<a href="' . get_admin_url() . 'options-general.php?page=' . $this->properties['menuSlug'] . '">' . sprintf(esc_html__('%s', 'wpp-generator-v2'), $this->properties['menuTitle']) . '</a>';
+        $settingsLink = '<a href="' . get_admin_url() . 'options-general.php?page=' . $this->properties['menuSlug'] . '">' . sprintf(esc_html__('%s', 'wpp-generator-next'), $this->properties['menuTitle']) . '</a>';
 
         array_push($links, $settingsLink);
 

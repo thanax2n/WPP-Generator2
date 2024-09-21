@@ -271,7 +271,7 @@ class RobotsDataManager extends RobotsTable
             [
                 'title'       => $title,
                 'description' => $description,
-                'created_at'  => date('Y-m-d H:i:s'),
+                'created_at'  => gmdate('Y-m-d H:i:s'),
             ],
             [
                 '%s',

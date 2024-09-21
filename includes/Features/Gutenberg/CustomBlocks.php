@@ -26,7 +26,7 @@ class CustomBlocks
      * Absolute path.
      * 
      * Something like this:
-     * D:\xampp\htdocs\my-domain.com\wp-content\plugins\wpp-generator-v2/
+     * D:\xampp\htdocs\my-domain.com\wp-content\plugins\wpp-generator-next/
      *
      * @var string
      */
@@ -36,7 +36,7 @@ class CustomBlocks
      * Plugin url.
      * 
      * Something like this:
-     * http://my-domain.com/wp-content/plugins/wpp-generator-v2/
+     * http://my-domain.com/wp-content/plugins/wpp-generator-next/
      *
      * @var string
      */

@@ -9,7 +9,7 @@
  * Requires PHP:      7.4.3
  * Author:            Maksym Marko
  * Author URI:        https://github.com/Maksym-Marko
- * Text Domain:       wpp-generator-v2
+ * Text Domain:       wpp-generator-next
  * License:           GPL v2 or later
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Requires Plugins:
@@ -42,7 +42,7 @@ if (!defined('MXSFWN_PLUGIN_UNIQUE_STRING')) {
 /**
  * Define MXSFWN_PLUGIN_PATH
  * 
- * D:\xampp\htdocs\my-domain.com\wp-content\plugins\wpp-generator-v2\wpp-generator-v2.php
+ * D:\xampp\htdocs\my-domain.com\wp-content\plugins\wpp-generator-next\wpp-generator-next.php
  */
 if (!defined('MXSFWN_PLUGIN_PATH')) {
 
@@ -52,7 +52,7 @@ if (!defined('MXSFWN_PLUGIN_PATH')) {
 /**
  * Define MXSFWN_PLUGIN_URL
  * 
- * Return http://my-domain.com/wp-content/plugins/wpp-generator-v2/
+ * Return http://my-domain.com/wp-content/plugins/wpp-generator-next/
  */
 if (!defined('MXSFWN_PLUGIN_URL')) {
 
@@ -62,7 +62,7 @@ if (!defined('MXSFWN_PLUGIN_URL')) {
 /**
  * Define MXSFWN_PLUGIN_BASE_NAME
  * 
- * Return wpp-generator-v2/wpp-generator-v2.php
+ * Return wpp-generator-next/wpp-generator-next.php
  */
 if (!defined('MXSFWN_PLUGIN_BASE_NAME')) {
 
@@ -72,7 +72,7 @@ if (!defined('MXSFWN_PLUGIN_BASE_NAME')) {
 /**
  * Define MXSFWN_PLUGIN_ABS_PATH
  * 
- * D:\xampp\htdocs\my-domain.com\wp-content\plugins\wpp-generator-v2/
+ * D:\xampp\htdocs\my-domain.com\wp-content\plugins\wpp-generator-next/
  */
 if (!defined('MXSFWN_PLUGIN_ABS_PATH')) {
 

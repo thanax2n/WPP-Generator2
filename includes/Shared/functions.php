@@ -5,7 +5,7 @@ defined('ABSPATH') || exit;
 if (!function_exists('mxsfwnDebug')) {
     /**
      * Debug anything. The result will be collected 
-     * in \wp-content\plugins\wpp-generator-v2/mx-debug/mx-debug.txt file
+     * in \wp-content\plugins\wpp-generator-next/mx-debug/mx-debug.txt file
      * 
      * @param string $content   List of parameters (coma separated).
      *
@@ -20,7 +20,7 @@ if (!function_exists('mxsfwnDebug')) {
 
         $file = $dir . '/mx-debug.txt';
 
-        $dateLine = '>>>' . date('Y/m/d H:i:s', time()) . ':' . "\n";
+        $dateLine = '>>>' . gmdate('Y/m/d H:i:s', time()) . ':' . "\n";
 
         $current = "{$dateLine}{$content}\n_____________________________________\n";
 

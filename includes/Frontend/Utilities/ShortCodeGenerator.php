@@ -30,7 +30,7 @@ class ShortCodeGenerator
 
             ob_start();
 
-            printf('<p>%s</p>', esc_html__('This is a simple short code output', 'wpp-generator-v2'));
+            printf('<p>%s</p>', esc_html__('This is a simple short code output', 'wpp-generator-next'));
 
             mxsfwnRequireFrontendComponent('shortcode-body');
 

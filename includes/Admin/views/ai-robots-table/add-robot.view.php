@@ -13,10 +13,10 @@ defined('ABSPATH') || exit;
 ?>
 <div class="mx-single-table-item-wrap">
 
-    <h1><?php esc_html_e( 'Create a Robot', 'wpp-generator-v2' ); ?></h1>
+    <h1><?php esc_html_e( 'Create a Robot', 'wpp-generator-next' ); ?></h1>
 
     <a href="<?php echo esc_url_raw(admin_url("admin.php?page={$robotsTable->mainMenuSlug()}")); ?>">
-        <?php esc_html_e( 'Go Back', 'wpp-generator-v2' ); ?>
+        <?php esc_html_e( 'Go Back', 'wpp-generator-next' ); ?>
     </a>
 
     <br>
@@ -33,7 +33,7 @@ defined('ABSPATH') || exit;
 
             <div>
                 <label for="<?= $robotsTable->getUniqueString() ?>-title">                    
-                    <?php esc_html_e( 'Title', 'wpp-generator-v2' ); ?>
+                    <?php esc_html_e( 'Title', 'wpp-generator-next' ); ?>
                 </label>
 
                 <br>
@@ -50,7 +50,7 @@ defined('ABSPATH') || exit;
 
             <div>
                 <label for="<?= $robotsTable->getUniqueString() ?>-description">
-                    <?php esc_html_e( 'Description', 'wpp-generator-v2' ); ?>
+                    <?php esc_html_e( 'Description', 'wpp-generator-next' ); ?>
                 </label>
 
                 <br>
@@ -76,7 +76,7 @@ defined('ABSPATH') || exit;
                     class="button-primary"
                     type="submit"
                     name="<?= $robotsTable->getUniqueString() ?>-submit"
-                    value="<?php esc_html_e( 'Save', 'wpp-generator-v2' ); ?>"
+                    value="<?php esc_html_e( 'Save', 'wpp-generator-next' ); ?>"
                 />
             </p>
         </form>

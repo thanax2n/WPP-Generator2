@@ -48,17 +48,17 @@ class PostTypeGenerator extends PostType
         $postType = 'framework';
 
         $labels = [
-            'name'               => __('Frameworks', 'wpp-generator-v2'),
-            'singular_name'      => __('Framework', 'wpp-generator-v2'),
-            'add_new'            => __('Add a new one', 'wpp-generator-v2'),
-            'add_new_item'       => __('Add a new Framework', 'wpp-generator-v2'),
-            'edit_item'          => __('Edit the Framework', 'wpp-generator-v2'),
-            'new_item'           => __('New Framework', 'wpp-generator-v2'),
-            'view_item'          => __('See the Framework', 'wpp-generator-v2'),
-            'search_items'       => __('Find a Framework', 'wpp-generator-v2'),
-            'not_found'          => __('Frameworks not found', 'wpp-generator-v2'),
-            'not_found_in_trash' => __('No Frameworks found in the trash', 'wpp-generator-v2'),
-            'menu_name'          => __('Frameworks', 'wpp-generator-v2'),
+            'name'               => __('Frameworks', 'wpp-generator-next'),
+            'singular_name'      => __('Framework', 'wpp-generator-next'),
+            'add_new'            => __('Add a new one', 'wpp-generator-next'),
+            'add_new_item'       => __('Add a new Framework', 'wpp-generator-next'),
+            'edit_item'          => __('Edit the Framework', 'wpp-generator-next'),
+            'new_item'           => __('New Framework', 'wpp-generator-next'),
+            'view_item'          => __('See the Framework', 'wpp-generator-next'),
+            'search_items'       => __('Find a Framework', 'wpp-generator-next'),
+            'not_found'          => __('Frameworks not found', 'wpp-generator-next'),
+            'not_found_in_trash' => __('No Frameworks found in the trash', 'wpp-generator-next'),
+            'menu_name'          => __('Frameworks', 'wpp-generator-next'),
         ];
 
         $properties = [

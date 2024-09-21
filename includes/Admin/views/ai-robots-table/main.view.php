@@ -13,12 +13,12 @@ defined('ABSPATH') || exit;
 if ($isTable) : ?>
 
     <h1 class="wp-heading-inline">
-        <?php esc_html_e('AI Robots', 'wpp-generator-v2'); ?>
+        <?php esc_html_e('AI Robots', 'wpp-generator-next'); ?>
     </h1>
 
     <a href="<?php echo admin_url("admin.php?page={$tableInstance->getAddItemSlug()}"); ?>" class="page-title-action button">
 
-        <?php esc_html_e('Add New', 'wpp-generator-v2'); ?>
+        <?php esc_html_e('Add New', 'wpp-generator-next'); ?>
     </a>
 
     <hr class="wp-header-end">
@@ -37,7 +37,7 @@ if ($isTable) : ?>
             printf('<input type="hidden" name="%s" value="%s">', $key, $value);
         }
 
-        $tableInstance->search_box(esc_html__('Search Robots', 'wpp-generator-v2'), '' . $uniqueString . '_robots_table_search_input');
+        $tableInstance->search_box(esc_html__('Search Robots', 'wpp-generator-next'), '' . $uniqueString . '_robots_table_search_input');
     echo '</form>';
 
     printf(

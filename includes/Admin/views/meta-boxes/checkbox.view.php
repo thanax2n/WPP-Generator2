@@ -9,7 +9,7 @@ defined('ABSPATH') || exit;
 
 <?php if (!is_array($options) || count($options) === 0) : ?>
 
-    <?php printf(esc_html__('%s', 'wpp-generator-v2'), '<h3 class="mxsfwn-color-error">' . __('You have to add some options to the "Options" array!', 'wpp-generator-v2') . '</h3>'); ?>
+    <?php printf(esc_html__('%s', 'wpp-generator-next'), '<h3 class="mxsfwn-color-error">' . __('You have to add some options to the "Options" array!', 'wpp-generator-next') . '</h3>'); ?>
 <?php else : ?>
 
     <?php $i = 0; ?>

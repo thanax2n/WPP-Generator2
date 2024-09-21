@@ -66,7 +66,7 @@ class AIRobotsDataTableMigration
                     'title'       => esc_html($value['title']),
                     'description' => esc_html($value['description']),
                     'status'      => esc_html($value['status']),
-                    'created_at'  => date('Y-m-d H:i:s'),
+                    'created_at'  => gmdate('Y-m-d H:i:s'),
                 ],
                 [
                     '%s',

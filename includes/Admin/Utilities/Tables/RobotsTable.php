@@ -197,11 +197,11 @@ class RobotsTable extends WP_List_Table
 
         return [
             'cb'          => '<input type="checkbox" />',
-            'id'          => __('ID', 'wpp-generator-v2'),
-            'title'       => __('Title', 'wpp-generator-v2'),
-            'description' => __('Description', 'wpp-generator-v2'),
-            'status'      => __('Status', 'wpp-generator-v2'),
-            'created_at'  => __('Created', 'wpp-generator-v2'),
+            'id'          => __('ID', 'wpp-generator-next'),
+            'title'       => __('Title', 'wpp-generator-next'),
+            'description' => __('Description', 'wpp-generator-next'),
+            'status'      => __('Status', 'wpp-generator-next'),
+            'created_at'  => __('Created', 'wpp-generator-next'),
         ];
     }
 
@@ -308,16 +308,16 @@ class RobotsTable extends WP_List_Table
 
                 $actions['restore'] = sprintf(
                     '<a aria-label="%s" href="%s">%s</a>',
-                    esc_attr__('Restore', 'wpp-generator-v2'),
+                    esc_attr__('Restore', 'wpp-generator-next'),
                     $actionUrl('restore'),
-                    esc_html__('Restore', 'wpp-generator-v2')
+                    esc_html__('Restore', 'wpp-generator-next')
                 );
 
                 $actions['delete'] = sprintf(
                     '<a class="submitDelete" aria-label="%s" href="%s">%s</a>',
-                    esc_attr__('Delete Permanently', 'wpp-generator-v2'),
+                    esc_attr__('Delete Permanently', 'wpp-generator-next'),
                     $actionUrl('delete'),
-                    esc_html__('Delete Permanently', 'wpp-generator-v2')
+                    esc_html__('Delete Permanently', 'wpp-generator-next')
                 );
             } else {
 
@@ -325,14 +325,14 @@ class RobotsTable extends WP_List_Table
                     '<a href="%s&edit-item=%d">%s</a>',
                     esc_url($singleRobotUrl),
                     $item['id'],
-                    __('Edit', 'wpp-generator-v2')
+                    __('Edit', 'wpp-generator-next')
                 );
 
                 $actions['trash'] = sprintf(
                     '<a class="submitDelete" aria-label="%s" href="%s">%s</a>',
-                    esc_attr__('Trash', 'wpp-generator-v2'),
+                    esc_attr__('Trash', 'wpp-generator-next'),
                     $actionUrl('trash'),
-                    esc_html__('Trash', 'wpp-generator-v2')
+                    esc_html__('Trash', 'wpp-generator-next')
                 );
             }
 
@@ -404,11 +404,11 @@ class RobotsTable extends WP_List_Table
 
         if (isset($_GET['item-status']) && trim($_GET['item-status']) === 'trash') {
 
-            $action['restore'] = __('Restore Items', 'wpp-generator-v2');
-            $action['delete']  = __('Delete Permanently', 'wpp-generator-v2');
+            $action['restore'] = __('Restore Items', 'wpp-generator-next');
+            $action['delete']  = __('Delete Permanently', 'wpp-generator-next');
         } else {
 
-            $action['trash']   = __('Move to trash', 'wpp-generator-v2');
+            $action['trash']   = __('Move to trash', 'wpp-generator-next');
         }
 
         return $action;
@@ -450,10 +450,10 @@ class RobotsTable extends WP_List_Table
 
         if (isset($_GET['item-status']) && trim($_GET['item-status']) === 'trash') {
 
-            esc_html_e('No items found in trash.', 'wpp-generator-v2');
+            esc_html_e('No items found in trash.', 'wpp-generator-next');
         } else {
 
-            esc_html_e('No items found.', 'wpp-generator-v2');
+            esc_html_e('No items found.', 'wpp-generator-next');
         }
     }
 

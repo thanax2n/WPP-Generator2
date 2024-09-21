@@ -10,7 +10,7 @@ export default function edit({ attributes, setAttributes }) {
 	return [
 		<InspectorControls key="mx-settings">
 
-			<PanelBody title={__('Autoplay speed', 'wpp-generator-v2')} initialOpen={false}>
+			<PanelBody title={__('Autoplay speed', 'wpp-generator-next')} initialOpen={false}>
 
 				<PanelRow>
 
