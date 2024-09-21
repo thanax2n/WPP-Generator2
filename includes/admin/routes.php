@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Here you can register new menu items.
+ */
+
 defined('ABSPATH') || exit;
 
 use MXSFWNWPPGNext\Admin\Router;

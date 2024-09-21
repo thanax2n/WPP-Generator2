@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * The AdminSoul class.
+ *
+ * Here you can add or remove admin features.
+ */
+
 namespace MXSFWNWPPGNext\Admin;
 
 use MXSFWNWPPGNext\Admin\Utilities\AdminEnqueueScripts;
@@ -24,31 +30,55 @@ class AdminSoul
         $this->addMetaBoxes();
     }
 
-    public function routing()
+    /**
+     * Routes are used to add pages to admin panel.
+     * 
+     * @return void
+     */
+    public function routing(): void
     {
 
         require_once MXSFWN_PLUGIN_ABS_PATH . 'includes/Admin/routes.php';
     }
 
-    public function enqueueScripts()
+    /**
+     * Enqueue styles and scripts.
+     * 
+     * @return void
+     */
+    public function enqueueScripts(): void
     {
 
-        // Enqueue Scripts
         (new AdminEnqueueScripts)->enqueue();
     }
 
-    public function registerPostTypes()
+    /**
+     * Register CPT.
+     * 
+     * @return void
+     */
+    public function registerPostTypes(): void
     {
 
         PostTypeGenerator::registerFrameworkPostType();
     }
 
-    public function registerTaxonomies()
+    /**
+     * Register Taxonomies.
+     * 
+     * @return void
+     */
+    public function registerTaxonomies(): void
     {
 
         TaxonomyGenerator::registerLanguageTaxonomy();
     }
 
+    /**
+     * Register MetaBoxes.
+     * 
+     * @return void
+     */
     public function addMetaBoxes()
     {
 

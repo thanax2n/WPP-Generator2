@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * The PostTypeGenerator class.
+ *
+ * Here you can register as many CPTs as you wish.
+ */
+
 namespace MXSFWNWPPGNext\Admin\Utilities;
 
 use MXSFWNWPPGNext\Admin\Entities\PostType;
@@ -7,6 +13,18 @@ use MXSFWNWPPGNext\Admin\Entities\PostType;
 class PostTypeGenerator extends PostType
 {
 
+    /**
+     * Get PostType instance and use it for 
+     * CPT creation.
+     * 
+     * @param string $postType   The post type slug.
+     * @param array  $labels     List of labels. 
+     *                           The full list is
+     *                           the parent class.
+     * @param array  $properties List of properties. 
+     * 
+     * @return void
+     */
     public static function create(string $postType, array $labels, array $properties): void
     {
 
@@ -19,6 +37,11 @@ class PostTypeGenerator extends PostType
         $instance->register();
     }
 
+    /**
+     * An example of hot to create a CPT
+     * 
+     * @return void
+     */
     public static function registerFrameworkPostType(): void
     {
 

@@ -1,10 +1,10 @@
 <?php
 
-defined('ABSPATH') || exit;
-
 /**
  * Input type number/int.
 */
+
+defined('ABSPATH') || exit;
 ?>
 
 <input 

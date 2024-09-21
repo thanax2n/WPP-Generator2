@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * The MetaBoxGenerator class.
+ *
+ * Here you can find several examples 
+ * of the meta boxes.
+ */
+
 namespace MXSFWNWPPGNext\Admin\Utilities;
 
 use MXSFWNWPPGNext\Admin\Entities\MetaBox;
@@ -7,8 +14,19 @@ use MXSFWNWPPGNext\Admin\Entities\MetaBox;
 class MetaBoxGenerator extends MetaBox
 {
 
+    /**
+     * Unique string to avoid conflicts.
+     */
     protected static $uniqueString = MXSFWN_PLUGIN_UNIQUE_STRING;
 
+    /**
+     * Create an instance of MetaBox class and use it 
+     * for meta boxes creation.
+     * 
+     * @param array $args   Arguments for the meta box.
+     * 
+     * @return object
+     */
     public static function add(array $args): object
     {
         $instance = new static($args);
@@ -16,6 +34,11 @@ class MetaBoxGenerator extends MetaBox
         return $instance;
     }
 
+    /**
+     * Create meta boxes for page post type
+     * 
+     * @return void
+     */
     public static function addPageMetaBoxes(): void
     {
 

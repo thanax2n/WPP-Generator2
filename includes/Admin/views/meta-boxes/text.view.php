@@ -1,10 +1,10 @@
 <?php
 
-defined('ABSPATH') || exit;
-
 /**
  * Input type text.
 */
+
+defined('ABSPATH') || exit;
 ?>
 
 <input 

@@ -1,10 +1,10 @@
 <?php
 
-defined('ABSPATH') || exit;
-
 /**
  * Image.
  */
+
+defined('ABSPATH') || exit;
 
 ?>
 

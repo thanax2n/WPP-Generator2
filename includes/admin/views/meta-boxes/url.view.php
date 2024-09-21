@@ -1,10 +1,10 @@
 <?php
 
-defined('ABSPATH') || exit;
-
 /**
  * Input type url.
 */
+
+defined('ABSPATH') || exit;
 ?>
 
 <input 

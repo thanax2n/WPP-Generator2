@@ -5,14 +5,28 @@ namespace MXSFWNWPPGNext\Admin\Entities;
 class Taxonomy
 {
 
+    /**
+     * Post type must be registered earlier.
+     */
     protected $postTypes;
 
+    /**
+     * Taxonomy key. Must not exceed 32 characters 
+     * and may only contain lowercase alphanumeric characters,
+     * dashes, and underscores
+     */
     protected $taxonomy;
 
+    /**
+     * Default labels. Will be override with user's labels.
+     */
     protected $labels = [
         'name' => 'Book Type',
     ];
 
+    /**
+     * Default properties. Will be override with user's properties.
+     */
     protected $properties = [
         'hierarchical'      => true,
         'show_ui'           => true,
@@ -30,6 +44,13 @@ class Taxonomy
         $this->postTypes = $postTypes;
     }
 
+    /**
+     * Parse args, rewrite or complete the default ones.
+     * 
+     * @param array $labels   Taxonomy args.
+     * 
+     * @return object
+     */
     public function labels(array $labels): object
     {
 
@@ -38,6 +59,13 @@ class Taxonomy
         return $this;
     }
 
+    /**
+     * Parse args, rewrite or complete the default ones.
+     * 
+     * @param array $properties   Taxonomy args.
+     * 
+     * @return object
+     */
     public function properties(array $properties): object
     {
 
@@ -46,6 +74,11 @@ class Taxonomy
         return $this;
     }
 
+    /**
+     * Register Taxonomy.
+     * 
+     * @return void
+     */
     public function register(): void
     {
 

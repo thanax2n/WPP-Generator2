@@ -1,10 +1,18 @@
 <?php
 
+/**
+ * Class AdminNotices.
+ * This class is used to create an admin notices.
+ */
+
 namespace MXSFWNWPPGNext\Admin\Entities;
 
 class AdminNotices
 {
 
+    /**
+     * Types of admin notices.
+     */
     const TYPES = [
         'error',
         'warning',
@@ -12,10 +20,19 @@ class AdminNotices
         'info',
     ];
 
+    /**
+     * Type of the notice.
+     */
     protected $type = 'info';
 
+    /**
+     * If it's possible to dismiss the notice.
+     */
     protected $dismissible = false;
 
+    /**
+     * List of messages.
+     */
     protected $messages = [];
 
     public function __construct($type = NULL)
@@ -26,6 +43,13 @@ class AdminNotices
         $this->type = $type;
     }
 
+    /**
+     * Add a message to the admin notice.
+     * 
+     * @param string $message   Any message.
+     * 
+     * @return object
+     */
     public function addMessage($message): object
     {
 
@@ -37,6 +61,13 @@ class AdminNotices
         return $this;
     }
 
+    /**
+     * Dismiss the admin notice.
+     * 
+     * @param bool $dismissible
+     * 
+     * @return object
+     */
     public function dismissible($dismissible = true): object
     {
 
@@ -45,6 +76,11 @@ class AdminNotices
         return $this;
     }
 
+    /**
+     * Display the notice.
+     * 
+     * @return void
+     */
     public function display(): void
     {
 
@@ -59,6 +95,11 @@ class AdminNotices
         }
     }
 
+    /**
+     * Admin notice body.
+     * 
+     * @return void
+     */
     public function notice($message): void
     {
 

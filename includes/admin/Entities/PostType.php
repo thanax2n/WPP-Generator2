@@ -1,14 +1,32 @@
 <?php
 
+/**
+ * Class PostType.
+ * This class is used to create CPT.
+ * You can find examples here:
+ * \includes\Admin\Utilities\PostTypeGenerator.php
+ */
+
 namespace MXSFWNWPPGNext\Admin\Entities;
 
 class PostType
 {
 
+    /**
+     * Unique string to avoid conflicts.
+     */
     protected $uniqueString = 'mxsfwn';
 
+    /**
+     * Post type. Must not exceed 20 characters and 
+     * may only contain lowercase alphanumeric characters, 
+     * dashes, and underscores.
+     */
     protected $postType;
 
+    /**
+     * Default labels. Will be override with user's labels.
+     */
     protected $labels = [
         'name'               => 'Books',
         'singular_name'      => 'Book',
@@ -24,6 +42,9 @@ class PostType
         'menu_name'          => 'Books'
     ];
 
+    /**
+     * Default properties. Will be override with user's properties.
+     */
     protected $properties = [
         'menu_icon'          => 'dashicons-admin-site',
         'show_in_rest'       => true,
@@ -47,6 +68,13 @@ class PostType
         $this->postType = $postType;
     }
 
+    /**
+     * Parse args, rewrite or complete the default ones.
+     * 
+     * @param array $labels   CPT args.
+     * 
+     * @return object
+     */
     public function labels(array $labels): object
     {
 
@@ -55,16 +83,29 @@ class PostType
         return $this;
     }
 
-    public function properties($properties)
+    /**
+     * Parse args, rewrite or complete the default ones.
+     * 
+     * @param array $properties   CPT args.
+     * 
+     * @return object
+     */
+    public function properties(array $properties): object
     {
 
-        if (!is_array($properties)) return;
+        if (is_array($properties)) {
 
-        $this->properties = wp_parse_args($properties, $this->properties);
+            $this->properties = wp_parse_args($properties, $this->properties);
+        }
 
         return $this;
     }
 
+    /**
+     * Register Custom Post Type
+     * 
+     * @return void
+     */
     public function register(): void
     {
 
@@ -82,7 +123,15 @@ class PostType
         });
     }
 
-    public function activate()
+    /**
+     * Activate the Custom Post Type.
+     * If not to use this function,
+     * there will be page 404 on the 
+     * single CPT post.
+     * 
+     * @return void
+     */
+    public function activate(): void
     {
 
         $cptOption = "{$this->uniqueString}_{$this->postType}";

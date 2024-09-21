@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Class MetaBox.
+ * This class is used to create meta boxes.
+ * You can find examples here:
+ * \includes\Admin\Utilities\MetaBoxGenerator.php
+ */
+
 namespace MXSFWNWPPGNext\Admin\Entities;
 
 use MXSFWNWPPGNext\Admin\Utilities\Notices\MetaBoxTypeNotice;
@@ -96,8 +103,6 @@ class MetaBox
         $this->nonceManager();
 
         $this->actionsManager();
-
-        $this->imageUploadManager();
     }
 
     /**
@@ -173,17 +178,6 @@ class MetaBox
         add_action('add_meta_boxes', [$this, 'addMetaBox']);
 
         add_action('save_post', [$this, 'saveMetaBox']);
-    }
-
-    /**
-     * Image upload meta box.
-     * 
-     * @return void
-     */
-    protected function imageUploadManager(): void
-    {
-
-        if ($this->args['metaBoxType'] !== 'image') return;
     }
 
     /**

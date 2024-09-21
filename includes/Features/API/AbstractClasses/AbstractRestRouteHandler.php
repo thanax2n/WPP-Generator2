@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * The AbstractRestRouteHandler abstract class.
+ *
+ * This abstract class helps to organize
+ * the new endpoints creation.
+ */
+
 namespace MXSFWNWPPGNext\Features\API\AbstractClasses;
 
 use MXSFWNWPPGNext\Features\API\Interfaces\RestRouteHandlerInterface;

@@ -1,10 +1,10 @@
 <?php
 
-defined('ABSPATH') || exit;
-
 /**
  * Select.
  */
+
+defined('ABSPATH') || exit;
 ?>
 
 <?php if (!is_array($options) || count($options) === 0) : ?>
