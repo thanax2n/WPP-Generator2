@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * The ShortCodeGenerator class.
+ *
+ * This class will help you register
+ * new shortcodes for your website.
+ */
+
 namespace MXSFWNWPPGNext\Frontend\Utilities;
 
 class ShortCodeGenerator
@@ -11,7 +18,12 @@ class ShortCodeGenerator
         $this->addSimpleShortCode();
     }
 
-    public function addSimpleShortCode()
+    /**
+     * An example of shortcode.
+     * 
+     * @return void
+     */
+    public function addSimpleShortCode(): void
     {
 
         add_shortcode('simle_short_code', function () {

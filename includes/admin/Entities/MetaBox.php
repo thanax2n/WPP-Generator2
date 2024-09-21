@@ -16,6 +16,8 @@ class MetaBox
 
     /**
      * List of allowed meta boxes.
+     * 
+     * @var array
      */
     const TYPES = [
         'text',
@@ -32,11 +34,15 @@ class MetaBox
 
     /**
      * Compare and complement default arguments with user arguments.
+     * 
+     * @var array
      */
     private $args = [];
 
     /**
      * Default arguments.
+     * 
+     * @var array
      */
     protected $defaults = [
         'id'           => 'mx-meta-box',

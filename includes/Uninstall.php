@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * The Uninstall class.
+ *
+ * This class runes actions while the plugin uninstall.
+ */
+
 namespace MXSFWNWPPGNext;
 
 class Uninstall

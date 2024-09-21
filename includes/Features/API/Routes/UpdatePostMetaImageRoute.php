@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * The UpdatePostMetaImageRoute class.
+ *
+ * This class registers an endpoint 
+ * for image post meta updating.
+ */
+
 namespace MXSFWNWPPGNext\Features\API\Routes;
 
 use MXSFWNWPPGNext\Features\API\AbstractClasses\AbstractRestRouteHandler;
@@ -10,6 +17,7 @@ class UpdatePostMetaImageRoute extends AbstractRestRouteHandler
 {
 
     protected $route = '/post-id/(?P<postId>[\d]+)';
+
     protected $nonceAction = 'wp_rest';
 
     public function handleRequest($request): WP_REST_Response

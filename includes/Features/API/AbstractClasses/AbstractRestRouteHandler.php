@@ -14,12 +14,41 @@ use WP_REST_Response;
 
 abstract class AbstractRestRouteHandler implements RestRouteHandlerInterface
 {
+
+    /**
+     * Namespace.
+     *
+     * @var string
+     */
     protected $namespace = 'wpp-generator/v1';
+
+    /**
+     * Route.
+     *
+     * @var string
+     */
     protected $route;
+
+    /**
+     * Method.
+     *
+     * @var string
+     */
     protected $methods   = 'POST';
+
+    /**
+     * Nonce action.
+     *
+     * @var string
+     */
     protected $nonceAction;
 
-    public function registerRoute()
+    /**
+     * Register new endpoint.
+     * 
+     * @return void
+     */
+    public function registerRoute(): void
     {
 
         register_rest_route(
@@ -33,13 +62,25 @@ abstract class AbstractRestRouteHandler implements RestRouteHandlerInterface
         );
     }
 
-    public function checkPermissions()
+    /**
+     * Check the user's permissions.
+     * 
+     * @return bool
+     */
+    public function checkPermissions(): bool
     {
 
         return current_user_can('manage_options');
     }
 
-    protected function verifyNonce($request)
+    /**
+     * Check nonce.
+     * 
+     * @param $request  Current request.
+     * 
+     * @return mixed
+     */
+    protected function verifyNonce($request): mixed
     {
 
         $nonce = $request->get_header('X-WP-Nonce');
@@ -54,7 +95,14 @@ abstract class AbstractRestRouteHandler implements RestRouteHandlerInterface
         return true;
     }
 
-    protected function verifyUserCapability($capability = 'edit_posts')
+    /**
+     * Check the user capability.
+     * 
+     * @param $capability  Type of capability.
+     * 
+     * @return mixed
+     */
+    protected function verifyUserCapability($capability = 'edit_posts'): mixed
     {
 
         if (!current_user_can($capability)) {
@@ -67,5 +115,12 @@ abstract class AbstractRestRouteHandler implements RestRouteHandlerInterface
         return true;
     }
 
+    /**
+     * Handle request.
+     * 
+     * @param $request  Current request.
+     * 
+     * @return WP_REST_Response
+     */
     abstract public function handleRequest($request): WP_REST_Response;
 }

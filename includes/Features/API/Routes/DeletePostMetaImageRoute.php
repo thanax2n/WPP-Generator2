@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * The DeletePostMetaImageRoute class.
+ *
+ * This class registers an endpoint 
+ * for removing an image post meta.
+ */
+
 namespace MXSFWNWPPGNext\Features\API\Routes;
 
 use MXSFWNWPPGNext\Features\API\AbstractClasses\AbstractRestRouteHandler;
@@ -10,6 +17,7 @@ class DeletePostMetaImageRoute extends AbstractRestRouteHandler
 {
 
     protected $route = '/post-id/(?P<postId>[\d]+)/delete/';
+    
     protected $nonceAction = 'wp_rest';
 
     public function handleRequest($request): WP_REST_Response

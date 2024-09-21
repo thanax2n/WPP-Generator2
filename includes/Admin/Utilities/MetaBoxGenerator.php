@@ -16,6 +16,8 @@ class MetaBoxGenerator extends MetaBox
 
     /**
      * Unique string to avoid conflicts.
+     * 
+     * @var string
      */
     protected static $uniqueString = MXSFWN_PLUGIN_UNIQUE_STRING;
 

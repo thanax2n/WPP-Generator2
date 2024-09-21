@@ -3,6 +3,9 @@
 my-plugin/
 │
 ├── assets/
+|   ├── gutenberg/
+|   |   └── ...
+|   |
 |   ├── images/
 |   |   └── example.png
 |   |
@@ -33,9 +36,9 @@ my-plugin/
 |   |   ├── seeder/
 |   |   |   └── ai-robots.php
 |   |   |   
+|   |   ├── AIRobotsDataTableMigration.php
 |   |   ├── CreateDataTable.php
-|   |   ├── CreateDataTableManager.php
-|   |   └── DataTableMigration.php
+|   |   └── CreateDataTableManager.php
 |   |
 |   ├── Admin/
 |   |   ├── controllers/
@@ -90,6 +93,7 @@ my-plugin/
 |   |   |   |   ├── int.view.php
 |   |   |   |   ├── radio.view.php
 |   |   |   |   ├── select.view.php
+|   |   |   |   ├── text.view.php
 |   |   |   |   ├── textarea.view.php
 |   |   |   |   └── url.view.php
 |   |   |   |
@@ -104,16 +108,33 @@ my-plugin/
 |   |
 |   ├── Features/
 |   |   ├── API/
-|   |   |   └── endpoint1.php
+|   |   |   ├── AbstractClasses/
+|   |   |   |   └── AbstractRestRouteHandler.php
+|   |   |   |   
+|   |   |   ├── Interfaces/
+|   |   |   |   └── RestRouteHandlerInterface.php
+|   |   |   |   
+|   |   |   ├── Routes/
+|   |   |   |   ├── DeletePostMetaImageRoute.php
+|   |   |   |   ├── GetPostMetaImageRoute.php
+|   |   |   |   └── UpdatePostMetaImageRoute.php
+|   |   |   |   
+|   |   |   └── init.php
 |   |   |
-|   |   └── Gutenberg/
-|   |      └── ...
+|   |   ├── Gutenberg/
+|   |   |   ├── components/
+|   |   |   |   └── server-side-rendering.php
+|   |   |   |   
+|   |   |   └── CustomBlocks.php
+|   |   |  
+|   |   └── FeaturesSoul.php
 |   |
 |   ├── Frontend/
 |   |   ├── components/
-|   |   |   └── short-code.php
+|   |   |   └── shortcode-body.php
 |   |   |
 |   |   ├── Utilities/
+|   |   |   ├── ShortCodeGenerator.php
 |   |   |   └── WPEnqueueScripts.php
 |   |   |
 |   |   └── FrontendSoul.php
@@ -129,9 +150,6 @@ my-plugin/
 ├── languages/
 │   ├── uk_UA.mo
 │   └── uk_UA.po
-│
-├── vendor/
-│   └── autoload.php
 |
 ├── screenshots/
 │   ├── banner-772x250.jpg
@@ -148,6 +166,9 @@ my-plugin/
 |   |   └── ...
 |   └── gutenberg/
 |       └── ...
+│
+├── vendor/
+│   └── autoload.php
 |
 ├── composer.json
 ├── example.gitignore
@@ -155,9 +176,9 @@ my-plugin/
 ├── install.php
 ├── license.txt
 ├── package.json
+├── README.md
 ├── readme.txt
 ├── uninstall.php
-├── vite.config.js ?
 ├── my-plugin.php
-└── README.md
+└── webpack.custom.config.js
 ```

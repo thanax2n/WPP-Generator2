@@ -13,6 +13,8 @@ class AdminMenu
 
     /**
      * List of allowed actions.
+     * 
+     * @var array
      */
     const ACTIONS = [
         'addMenuPage',
@@ -23,11 +25,15 @@ class AdminMenu
 
     /**
      * The default action (create a high level menu item).
+     * 
+     * @var string
      */
     protected $menuAction = 'addMenuPage';
 
     /**
      * Path to controller (file).
+     * 
+     * @var string
      */
     protected $path = NULL;
 

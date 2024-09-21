@@ -12,6 +12,8 @@ class AdminNotices
 
     /**
      * Types of admin notices.
+     * 
+     * @var array
      */
     const TYPES = [
         'error',
@@ -22,16 +24,22 @@ class AdminNotices
 
     /**
      * Type of the notice.
+     * 
+     * @var string
      */
     protected $type = 'info';
 
     /**
      * If it's possible to dismiss the notice.
+     * 
+     * @var bool
      */
     protected $dismissible = false;
 
     /**
      * List of messages.
+     * 
+     * @var array
      */
     protected $messages = [];
 

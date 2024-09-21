@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * The GetPostMetaImageRoute class.
+ *
+ * This class registers an endpoint 
+ * for getting an image post meta.
+ */
+
 namespace MXSFWNWPPGNext\Features\API\Routes;
 
 use MXSFWNWPPGNext\Features\API\AbstractClasses\AbstractRestRouteHandler;
@@ -10,7 +17,9 @@ class GetPostMetaImageRoute extends AbstractRestRouteHandler
 {
 
     protected $route = '/post-id/(?P<postId>[\d]+)/';
+
     protected $nonceAction = 'wp_rest';
+
     protected $methods = 'GET';
 
     public function handleRequest($request): WP_REST_Response
@@ -41,12 +50,12 @@ class GetPostMetaImageRoute extends AbstractRestRouteHandler
         }
 
         $postMetaKey = $request->get_param('postMetaKey');
-        
+
         $imageId = get_post_meta($postId, $postMetaKey, true);
 
         $imageUrl = wp_get_attachment_url(intval($imageId));
 
-        if($imageUrl) {
+        if ($imageUrl) {
 
             return new WP_REST_Response([
                 'postId'   => $postId,

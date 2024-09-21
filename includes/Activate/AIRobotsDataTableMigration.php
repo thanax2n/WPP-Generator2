@@ -1,15 +1,15 @@
 <?php
 
 /**
- * The DataTableMigration class.
+ * The AIRobotsDataTableMigration class.
  *
- * Here you can create as many 
- * as you wish DB tables and seed them.
+ * The example of how to create a custom 
+ * table in the website database.
  */
 
 namespace MXSFWNWPPGNext\Activate;
 
-class DataTableMigration
+class AIRobotsDataTableMigration
 {
 
     /**

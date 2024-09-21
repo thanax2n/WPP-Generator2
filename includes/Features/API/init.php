@@ -6,11 +6,11 @@ use MXSFWNWPPGNext\Features\API\Routes\UpdatePostMetaImageRoute;
 use MXSFWNWPPGNext\Features\API\Routes\GetPostMetaImageRoute;
 use MXSFWNWPPGNext\Features\API\Routes\DeletePostMetaImageRoute;
 
-if (!function_exists('mxsfwninitializeRestRoutes')) {
+if (!function_exists('mxsfwnInitializeRestRoutes')) {
     /**
-     * Initialize and register all routes.
+     * Initialize and register all routes (endpoints).
      */
-    function mxsfwninitializeRestRoutes()
+    function mxsfwnInitializeRestRoutes()
     {
 
         $routes = [
@@ -26,4 +26,4 @@ if (!function_exists('mxsfwninitializeRestRoutes')) {
     }
 }
 
-add_action('rest_api_init', 'mxsfwninitializeRestRoutes');
+add_action('rest_api_init', 'mxsfwnInitializeRestRoutes');

@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * The WppGenerator final class.
+ *
+ * Here you can turn off/on big part of features
+ * of the plugin.
+ */
+
 namespace MXSFWNWPPGNext;
 
 use MXSFWNWPPGNext\Admin\AdminSoul;

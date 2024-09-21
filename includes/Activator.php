@@ -1,8 +1,14 @@
 <?php
 
+/**
+ * The Activator class.
+ *
+ * This class runes actions while the plugin activation.
+ */
+
 namespace MXSFWNWPPGNext;
 
-use MXSFWNWPPGNext\Activate\DataTableMigration;
+use MXSFWNWPPGNext\Activate\AIRobotsDataTableMigration;
 
 class Activator
 {
@@ -13,10 +19,15 @@ class Activator
         (new static)->createTables();
     }
 
+    /**
+     * Create Custom Table.
+     * 
+     * @return void
+     */
     public function createTables(): void
     {
 
         // Create robots table.
-        (new DataTableMigration)->create()->seed();
+        (new AIRobotsDataTableMigration)->create()->seed();
     }
 }

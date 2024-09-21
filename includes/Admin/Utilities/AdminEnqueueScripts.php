@@ -14,20 +14,31 @@ class AdminEnqueueScripts
 
     /**
      * Unique string to avoid conflicts.
+     * 
+     * @var string
      */
     protected $uniqueString = MXSFWN_PLUGIN_UNIQUE_STRING;
 
     /**
      * The file version. Helps to cope with caching.
+     * 
+     * @var string
      */
     protected $version      = MXSFWN_PLUGIN_VERSION;
 
     /**
      * URL to the plugin folder.
+     * 
+     * @var string
      */
     protected $pluginUrl    = MXSFWN_PLUGIN_URL;
 
-    public function enqueue()
+    /**
+     * Enqueue all the scripts
+     * 
+     * @return void
+     */
+    public function enqueue(): void
     {
 
         add_action('admin_enqueue_scripts', [$this, 'scripts']);

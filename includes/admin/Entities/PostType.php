@@ -14,6 +14,8 @@ class PostType
 
     /**
      * Unique string to avoid conflicts.
+     * 
+     * @var string
      */
     protected $uniqueString = 'mxsfwn';
 
@@ -21,11 +23,15 @@ class PostType
      * Post type. Must not exceed 20 characters and 
      * may only contain lowercase alphanumeric characters, 
      * dashes, and underscores.
+     * 
+     * @var string
      */
     protected $postType;
 
     /**
      * Default labels. Will be override with user's labels.
+     * 
+     * @var array
      */
     protected $labels = [
         'name'               => 'Books',
@@ -44,6 +50,8 @@ class PostType
 
     /**
      * Default properties. Will be override with user's properties.
+     * 
+     * @var array
      */
     protected $properties = [
         'menu_icon'          => 'dashicons-admin-site',

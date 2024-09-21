@@ -1,23 +1,56 @@
 <?php
 
+/**
+ * The WPEnqueueScripts class.
+ *
+ * This class is used to register 
+ * styles and scripts for the frontend area.
+ */
+
 namespace MXSFWNWPPGNext\Frontend\Utilities;
 
 class WPEnqueueScripts
 {
 
+    /**
+     * Unique string to avoid conflicts.
+     * 
+     * @var string
+     */
     protected $uniqueString = MXSFWN_PLUGIN_UNIQUE_STRING;
 
+    /**
+     * The file version. Helps to cope with caching.
+     * 
+     * @var string
+     */
     protected $version      = MXSFWN_PLUGIN_VERSION;
 
+    /**
+     * URL to the plugin folder.
+     * 
+     * @var string
+     */
     protected $pluginUrl    = MXSFWN_PLUGIN_URL;
 
-    public function enqueue()
+    /**
+     * Enqueue all the scripts
+     * 
+     * @return void
+     */
+    public function enqueue(): void
     {
 
         add_action("wp_enqueue_scripts", [$this, 'scripts']);
     }
 
-    public function scripts()
+    /**
+     * Enqueue styles and scripts for 
+     * the frontend panel.
+     * 
+     * @return void
+     */
+    public function scripts(): void
     {
 
         // dependencies

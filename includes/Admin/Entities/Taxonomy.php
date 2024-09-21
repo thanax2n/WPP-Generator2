@@ -7,6 +7,8 @@ class Taxonomy
 
     /**
      * Post type must be registered earlier.
+     * 
+     * @var array
      */
     protected $postTypes;
 
@@ -14,11 +16,15 @@ class Taxonomy
      * Taxonomy key. Must not exceed 32 characters 
      * and may only contain lowercase alphanumeric characters,
      * dashes, and underscores
+     * 
+     * @var string
      */
     protected $taxonomy;
 
     /**
      * Default labels. Will be override with user's labels.
+     * 
+     * @var array
      */
     protected $labels = [
         'name' => 'Book Type',
@@ -26,6 +32,8 @@ class Taxonomy
 
     /**
      * Default properties. Will be override with user's properties.
+     * 
+     * @var array
      */
     protected $properties = [
         'hierarchical'      => true,

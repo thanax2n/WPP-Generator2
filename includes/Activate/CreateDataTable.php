@@ -9,8 +9,6 @@
 
 namespace MXSFWNWPPGNext\Activate;
 
-use wpdb;
-
 class CreateDataTable
 {
 
