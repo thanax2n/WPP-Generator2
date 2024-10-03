@@ -161,6 +161,18 @@ class MetaBox
     }
 
     /**
+     * Get meta box key.
+     * 
+     * @return string
+     */
+    protected function getPostMetaKey(): string
+    {
+
+        return wp_unslash($this->args['postMetaKey']);
+    }
+    
+
+    /**
      * Manage nonce name and action.
      * 
      * @return void
@@ -218,7 +230,7 @@ class MetaBox
 
         if (!isset($_POST)) return;
 
-        if (!isset($_POST[$this->args['nonceName']]) || !wp_verify_nonce(wp_unslash($_POST[$this->args['nonceName']]), $this->args['nonceAction'])) return;
+        if (!isset($_POST[$this->args['nonceName']]) || !wp_verify_nonce(sanitize_key(wp_unslash($_POST[$this->args['nonceName']])), $this->args['nonceAction'])) return;
 
         if (!current_user_can('edit_post', $postId)) return;
 
@@ -235,7 +247,9 @@ class MetaBox
 
         if ($value === NULL) return;
 
-        update_post_meta($postId, $this->args['postMetaKey'], $value);
+        $postMetaKey = $this->getPostMetaKey();
+
+        update_post_meta($postId, $postMetaKey, $value);
     }
 
     /**
@@ -246,7 +260,11 @@ class MetaBox
     public function saveMetaBoxText(): string
     {
 
-        return sanitize_text_field(wp_unslash($_POST[$this->args['postMetaKey']]));
+        if(!isset($this->args['postMetaKey'])||!isset($_POST[$this->args['postMetaKey']])) return '';
+
+        $postMetaKey = $this->getPostMetaKey();
+        
+        return sanitize_text_field(wp_unslash($_POST[$postMetaKey]));
     }
 
     /**
@@ -257,7 +275,11 @@ class MetaBox
     public function saveMetaBoxEmail(): string
     {
 
-        return sanitize_email(wp_unslash($_POST[$this->args['postMetaKey']]));
+        if(!isset($this->args['postMetaKey'])||!isset($_POST[$this->args['postMetaKey']])) return '';
+
+        $postMetaKey = $this->getPostMetaKey();
+
+        return sanitize_email(wp_unslash($_POST[$postMetaKey]));
     }
 
     /**
@@ -268,7 +290,11 @@ class MetaBox
     public function saveMetaBoxUrl(): string
     {
 
-        return esc_url_raw($_POST[$this->args['postMetaKey']]);
+        if(!isset($this->args['postMetaKey'])||!isset($_POST[$this->args['postMetaKey']])) return '';
+
+        $postMetaKey = $this->getPostMetaKey();
+
+        return esc_url_raw(wp_unslash($_POST[$postMetaKey]));
     }
 
     /**
@@ -279,7 +305,11 @@ class MetaBox
     public function saveMetaBoxInt(): int
     {
 
-        return intval($_POST[$this->args['postMetaKey']]);
+        if(!isset($this->args['postMetaKey'])||!isset($_POST[$this->args['postMetaKey']])) return 0;
+
+        $postMetaKey = $this->getPostMetaKey();
+
+        return intval($_POST[$postMetaKey]);
     }
 
     /**
@@ -290,7 +320,11 @@ class MetaBox
     public function saveMetaBoxFloat(): float
     {
 
-        return floatval($_POST[$this->args['postMetaKey']]);
+        if(!isset($this->args['postMetaKey'])||!isset($_POST[$this->args['postMetaKey']])) return 0;
+
+        $postMetaKey = $this->getPostMetaKey();
+
+        return floatval($_POST[$postMetaKey]);
     }
 
     /**
@@ -301,7 +335,11 @@ class MetaBox
     public function saveMetaBoxTextarea(): string
     {
 
-        return sanitize_textarea_field($_POST[$this->args['postMetaKey']]);
+        if(!isset($this->args['postMetaKey'])||!isset($_POST[$this->args['postMetaKey']])) return '';
+
+        $postMetaKey = $this->getPostMetaKey();
+
+        return sanitize_textarea_field($_POST[$postMetaKey]);
     }
 
     /**
@@ -312,7 +350,11 @@ class MetaBox
     public function saveMetaBoxRadio(): string
     {
 
-        return sanitize_text_field(wp_unslash($_POST[$this->args['postMetaKey']]));
+        if(!isset($this->args['postMetaKey'])||!isset($_POST[$this->args['postMetaKey']])) return '';
+
+        $postMetaKey = $this->getPostMetaKey();
+
+        return sanitize_text_field(wp_unslash($_POST[$postMetaKey]));
     }
 
     /**
@@ -323,7 +365,11 @@ class MetaBox
     public function saveMetaBoxSelect(): string
     {
 
-        return sanitize_text_field(wp_unslash($_POST[$this->args['postMetaKey']]));
+        if(!isset($this->args['postMetaKey'])||!isset($_POST[$this->args['postMetaKey']])) return '';
+
+        $postMetaKey = $this->getPostMetaKey();
+
+        return sanitize_text_field(wp_unslash($_POST[$postMetaKey]));
     }
 
     /**
@@ -334,9 +380,11 @@ class MetaBox
     public function saveMetaBoxCheckbox(): string
     {
 
+        if(!isset($this->args['postMetaKey'])||!isset($_POST[$this->args['postMetaKey']])) return '';
+
         $options = [];
 
-        $postMetaKey = $this->args['postMetaKey'];
+        $postMetaKey = $this->getPostMetaKey();
 
         foreach ($_POST as $key => $value) {
 
@@ -359,7 +407,11 @@ class MetaBox
     public function saveMetaBoxImage(): int
     {
 
-        return intval($_POST[$this->args['postMetaKey']]);
+        if(!isset($this->args['postMetaKey'])||!isset($_POST[$this->args['postMetaKey']])) return 0;
+
+        $postMetaKey = $this->getPostMetaKey();
+
+        return intval($_POST[$postMetaKey]);
     }
 
     /**
@@ -372,9 +424,11 @@ class MetaBox
     public function render($post, $meta): void
     {
 
+        $postMetaKey = $this->getPostMetaKey();
+
         $metaBoxValue = get_post_meta(
             $post->ID,
-            $this->args['postMetaKey'],
+            $postMetaKey,
             true
         );
 
@@ -383,9 +437,11 @@ class MetaBox
             $metaBoxValue = $this->args['defaultValue'];
         }
 
+        $postMetaKey = $this->getPostMetaKey();
+
         if (!mxsfwnView("meta-boxes/{$this->args['metaBoxType']}", [
             'metaBoxValue' => $metaBoxValue,
-            'postMetaKey'  => $this->args['postMetaKey'],
+            'postMetaKey'  => $postMetaKey,
             'readonly'     => $this->args['readonly'],
             'options'      => $this->args['options'],
             'title'        => $this->args['title'],

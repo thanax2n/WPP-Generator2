@@ -15,24 +15,35 @@ if (!function_exists('mxsfwnDebug')) {
     {
 
         $content = mxsfwnContentToString(...$content);
+        
+        // Initialize WP_Filesystem
+		global $wp_filesystem;
+		if (empty($wp_filesystem)) {
+			require_once(ABSPATH . '/wp-admin/includes/file.php');
+			WP_Filesystem();
+		}
 
-        $dir = MXSFWN_PLUGIN_ABS_PATH . 'mx-debug';
+		$dir = MXSFWN_PLUGIN_ABS_PATH . 'mx-debug';
+		$file = $dir . '/mx-debug.txt';
 
-        $file = $dir . '/mx-debug.txt';
+		$dateLine = '>>>' . gmdate('Y/m/d H:i:s', time()) . ':' . "\n";
+		$current = "{$dateLine}{$content}\n_____________________________________\n";
 
-        $dateLine = '>>>' . gmdate('Y/m/d H:i:s', time()) . ':' . "\n";
+		// Check if directory exists, create if it doesn't
+		if (!$wp_filesystem->is_dir($dir)) {
 
-        $current = "{$dateLine}{$content}\n_____________________________________\n";
+			$wp_filesystem->mkdir($dir, 0777);
+		} else {
 
-        if (!file_exists($dir)) {
+			// Append existing content if file exists
+			if ($wp_filesystem->exists($file)) {
 
-            mkdir($dir, 0777, true);
-        } else {
+				$current .= $wp_filesystem->get_contents($file) . "\n";
+			}
+		}
 
-            $current .= file_get_contents($file) . "\n";
-        }
-
-        file_put_contents($file, $current);
+		// Write content to file
+		$wp_filesystem->put_contents($file, $current, FS_CHMOD_FILE);
     }
 }
 
@@ -96,7 +107,7 @@ if (!function_exists('mxsfwnGoBack')) {
     function mxsfwnGoBack($defaultUrl)
     {
 
-        $backLink = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : $defaultUrl;
+        $backLink = isset($_SERVER['HTTP_REFERER']) ? esc_url(wp_unslash($_SERVER['HTTP_REFERER'])) : $defaultUrl;
 
         printf('<script>;window.location.href="%s";</script>', $backLink);
     }

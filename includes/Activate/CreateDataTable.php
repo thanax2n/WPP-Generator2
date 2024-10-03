@@ -162,7 +162,9 @@ class CreateDataTable
 
         if ($this->sqlContainer === NULL) return false;
 
-        if ($this->wpdb->get_var("SHOW TABLES LIKE '" . $this->table . "'") != $this->table) {
+        $query = $this->wpdb->prepare("SHOW TABLES LIKE %s", $this->table);
+
+        if ($this->wpdb->get_var($query) != $this->table) {
 
             // Create a table
             $this->wpdb->query($this->sqlContainer);

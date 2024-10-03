@@ -96,10 +96,12 @@ class RobotsDataManager extends RobotsTable
 
         if (!$currentAction) return false;
 
-        $robotId = (int) trim(sanitize_text_field($_GET[$currentAction]));
+        $robotId = isset($_GET[wp_unslash($currentAction)]) ? (int) trim(sanitize_text_field($_GET[$currentAction])) : 0;
 
         // Check nonce
-        if (!isset($_GET["{$this->uniqueString}_nonce"]) || !wp_verify_nonce($_GET["{$this->uniqueString}_nonce"], $currentAction)) return false;
+        $uniqueString = $this->getUniqueString();
+
+        if (!isset($_GET["{$uniqueString}_nonce"]) || !wp_verify_nonce($_GET["{$uniqueString}_nonce"], $currentAction)) return false;
 
         // if method exists
         $callback = "{$currentAction}Robot";
@@ -214,8 +216,10 @@ class RobotsDataManager extends RobotsTable
     public function editRobot(): bool
     {
 
+        $uniqueString = $this->getUniqueString();
+
         // Check nonce
-        if (!isset($_POST["{$this->uniqueString}-wp-nonce"]) || !wp_verify_nonce($_POST["{$this->uniqueString}-wp-nonce"], "{$this->uniqueString}-edit")) return false;
+        if (!isset($_POST["{$uniqueString}-wp-nonce"]) || !wp_verify_nonce($_POST["{$uniqueString}-wp-nonce"], "{$uniqueString}-edit")) return false;
 
         // Check robot id
         if (!isset($_POST['edit-item']) || !is_numeric($_POST['edit-item'])) return false;
@@ -255,8 +259,10 @@ class RobotsDataManager extends RobotsTable
     public function storeRobot()
     {
 
+        $uniqueString = $this->getUniqueString();
+
         // Check nonce
-        if (!isset($_POST["{$this->uniqueString}-wp-nonce"]) || !wp_verify_nonce($_POST["{$this->uniqueString}-wp-nonce"], "{$this->uniqueString}-store")) return false;
+        if (!isset($_POST["{$uniqueString}-wp-nonce"]) || !wp_verify_nonce($_POST["{$uniqueString}-wp-nonce"], "{$uniqueString}-store")) return false;
 
         // Sanitize title
         $title = sanitize_text_field($_POST['title']);
@@ -297,8 +303,10 @@ class RobotsDataManager extends RobotsTable
     public function bulkActions()
     {
 
+        $uniqueString = $this->getUniqueString();
+
         // Check nonce
-        if (!isset($_POST["{$this->uniqueString}-wp-nonce"]) || !wp_verify_nonce($_POST["{$this->uniqueString}-wp-nonce"], "{$this->uniqueString}-bulk")) return false;
+        if (!isset($_POST["{$uniqueString}-wp-nonce"]) || !wp_verify_nonce($_POST["{$uniqueString}-wp-nonce"], "{$uniqueString}-bulk")) return false;
 
         // If an action is registered
         $bulkAction = $_POST['action'];
@@ -306,7 +314,7 @@ class RobotsDataManager extends RobotsTable
         if (!in_array($bulkAction, self::ACTIONS)) return false;
 
         // If ids isset
-        $robotsIdsIndex = "{$this->uniqueString}-robot-ids";
+        $robotsIdsIndex = "{$uniqueString}-robot-ids";
 
         if (!isset($_POST[$robotsIdsIndex])) return false;
 
@@ -374,7 +382,7 @@ class RobotsDataManager extends RobotsTable
     public function getUniqueString(): string
     {
 
-        return $this->uniqueString;
+        return wp_unslash($this->uniqueString);
     }
 
     /**

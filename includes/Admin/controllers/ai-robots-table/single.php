@@ -12,7 +12,7 @@ defined('ABSPATH') || exit;
 
 use MXSFWNWPPGNext\Admin\Utilities\Tables\RobotsDataManager;
 
-$itemId = isset($_GET['edit-item']) ? trim(sanitize_text_field($_GET['edit-item'])) : 0;
+$itemId = isset($_GET['edit-item']) ? trim(sanitize_text_field(wp_unslash($_GET['edit-item']))) : 0;
 
 if (0 === $itemId) {
 

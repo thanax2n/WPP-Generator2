@@ -137,9 +137,9 @@ class RobotsTable extends WP_List_Table
         $offset = 1 < $currentPage ? ($this->perPage * ($currentPage - 1)) : 0;
 
         // Sortable
-        $order = isset($_GET['order']) ? trim(sanitize_text_field($_GET['order'])) : 'desc';
+        $order = isset($_GET['order']) ? trim(sanitize_text_field(wp_unslash($_GET['order']))) : 'desc';
 
-        $orderBy = isset($_GET['orderby']) ? trim(sanitize_text_field($_GET['orderby'])) : 'id';
+        $orderBy = isset($_GET['orderby']) ? trim(sanitize_text_field(wp_unslash($_GET['orderby']))) : 'id';
 
         if (!empty($_REQUEST['s'])) {
 
@@ -147,7 +147,7 @@ class RobotsTable extends WP_List_Table
         }
 
         // Status
-        $itemStatus = isset($_GET['item-status']) ? trim($_GET['item-status']) : 'publish';
+        $itemStatus = isset($_GET['item-status']) ? trim(wp_unslash($_GET['item-status'])) : 'publish';
 
         $status = "AND status = '$itemStatus'";
 
@@ -304,7 +304,7 @@ class RobotsTable extends WP_List_Table
                 ), $action, "{$this->uniqueString}_nonce"));
             };
 
-            if (isset($_GET['item-status']) && trim($_GET['item-status']) === 'trash') {
+            if (isset($_GET['item-status']) && trim(wp_unslash($_GET['item-status'])) === 'trash') {
 
                 $actions['restore'] = sprintf(
                     '<a aria-label="%s" href="%s">%s</a>',
@@ -402,7 +402,7 @@ class RobotsTable extends WP_List_Table
 
         if (!current_user_can('edit_posts')) return $action;
 
-        if (isset($_GET['item-status']) && trim($_GET['item-status']) === 'trash') {
+        if (isset($_GET['item-status']) && trim(wp_unslash($_GET['item-status'])) === 'trash') {
 
             $action['restore'] = __('Restore Items', 'wpp-generator-next');
             $action['delete']  = __('Delete Permanently', 'wpp-generator-next');
@@ -448,7 +448,7 @@ class RobotsTable extends WP_List_Table
     public function no_items(): void
     {
 
-        if (isset($_GET['item-status']) && trim($_GET['item-status']) === 'trash') {
+        if (isset($_GET['item-status']) && trim(wp_unslash($_GET['item-status'])) === 'trash') {
 
             esc_html_e('No items found in trash.', 'wpp-generator-next');
         } else {
@@ -466,7 +466,7 @@ class RobotsTable extends WP_List_Table
     protected function get_views(): array
     {
 
-        $itemStatus    = isset($_GET['item-status']) ? trim($_GET['item-status']) : 'publish';
+        $itemStatus    = isset($_GET['item-status']) ? trim(wp_unslash($_GET['item-status'])) : 'publish';
         $publishNumber = $this->wpdb()->get_var("SELECT COUNT(id) FROM {$this->table} WHERE status='publish';");
         $trashNumber   = $this->wpdb()->get_var("SELECT COUNT(id) FROM {$this->table} WHERE status='trash';");
         $url           = admin_url("admin.php?page={$this->mainMenuSlug}");

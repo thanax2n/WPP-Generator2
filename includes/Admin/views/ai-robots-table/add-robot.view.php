@@ -22,17 +22,17 @@ defined('ABSPATH') || exit;
     <br>
     <br>
 
-    <div class="<?= $robotsTable->getUniqueString() ?>_block_wrap">
+    <div class="<?php echo esc_attr($robotsTable->getUniqueString()); ?>_block_wrap">
 
         <form 
-            id="<?= $robotsTable->getUniqueString() ?>_form_create"
+            id="<?php echo esc_attr($robotsTable->getUniqueString()); ?>_form_create"
             class="mx-settings"
             method="post"
-            action="<?= esc_url_raw(admin_url("admin.php?page={$robotsTable->getStoreItemSlug()}")); ?>"
+            action="<?php echo esc_url(admin_url("admin.php?page=" . urlencode($robotsTable->getStoreItemSlug()))); ?>"
         >
 
             <div>
-                <label for="<?= $robotsTable->getUniqueString() ?>-title">                    
+                <label for="<?php echo esc_attr($robotsTable->getUniqueString()); ?>-title">                    
                     <?php esc_html_e( 'Title', 'wpp-generator-next' ); ?>
                 </label>
 
@@ -41,7 +41,7 @@ defined('ABSPATH') || exit;
                 <input
                     type="text"
                     name="title"
-                    id="<?= $robotsTable->getUniqueString() ?>-title"
+                    id="<?php echo esc_attr($robotsTable->getUniqueString()); ?>-title"
                     value=""
                 />
             </div>
@@ -49,7 +49,7 @@ defined('ABSPATH') || exit;
             <br>
 
             <div>
-                <label for="<?= $robotsTable->getUniqueString() ?>-description">
+                <label for="<?php echo esc_attr($robotsTable->getUniqueString()); ?>-description">
                     <?php esc_html_e( 'Description', 'wpp-generator-next' ); ?>
                 </label>
 
@@ -57,7 +57,7 @@ defined('ABSPATH') || exit;
 
                 <textarea
                     name="description"
-                    id="<?= $robotsTable->getUniqueString() ?>-description"
+                    id="<?php echo esc_attr($robotsTable->getUniqueString()); ?>-description"
                     rows="8"
                     cols="60"
                 ></textarea>
@@ -67,15 +67,15 @@ defined('ABSPATH') || exit;
                 
                 <input
                     type="hidden"
-                    id="<?= $robotsTable->getUniqueString() ?>-wp-nonce"
-                    name="<?= $robotsTable->getUniqueString() ?>-wp-nonce"
-                    value="<?= wp_create_nonce("{$robotsTable->getUniqueString()}-store"); ?>"
+                    id="<?php echo esc_attr($robotsTable->getUniqueString()); ?>-wp-nonce"
+                    name="<?php echo esc_attr($robotsTable->getUniqueString()); ?>-wp-nonce"
+                    value="<?php echo esc_attr(wp_create_nonce($robotsTable->getUniqueString() . '-store')); ?>"
                 />
 
                 <input
                     class="button-primary"
                     type="submit"
-                    name="<?= $robotsTable->getUniqueString() ?>-submit"
+                    name="<?php echo esc_attr($robotsTable->getUniqueString()); ?>-submit"
                     value="<?php esc_html_e( 'Save', 'wpp-generator-next' ); ?>"
                 />
             </p>
