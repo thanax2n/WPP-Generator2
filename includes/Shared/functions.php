@@ -107,7 +107,7 @@ if (!function_exists('mxsfwnGoBack')) {
     function mxsfwnGoBack($defaultUrl)
     {
 
-        $backLink = isset($_SERVER['HTTP_REFERER']) ? esc_url(wp_unslash($_SERVER['HTTP_REFERER'])) : $defaultUrl;
+        $backLink = isset($_SERVER['HTTP_REFERER']) ? wp_unslash($_SERVER['HTTP_REFERER']) : $defaultUrl;
 
         printf('<script>;window.location.href="%s";</script>', $backLink);
     }
