@@ -19,6 +19,10 @@ const App = () => {
   );
 };
 
-const container = document.getElementById('mxsfwnSimpleApp');
-const root = createRoot(container);
-root.render(<App />);
+document.addEventListener('DOMContentLoaded', function() {
+  const container = document.getElementById('mxsfwnSimpleApp');
+  if (container) {
+    const root = createRoot(container);
+    root.render(<App />);
+  }
+});
