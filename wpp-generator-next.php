@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Plugin Name:       WPPG Next
- * Plugin URI:        https://github.com/Maksym-Marko/wp-plugin-skeleton
- * Description:       This is my extremely useful plugin
+ * Plugin Name:       This Plugin Name
+ * Plugin URI:        https://markomaksym.com.ua/wp-plugin-skeleton-generator/
+ * Description:       Brief description
  * Version:           1.0
  * Requires at least: 5.9
  * Requires PHP:      7.4.3
- * Author:            Maksym Marko
+ * Author:            This Plugin Author
  * Author URI:        https://github.com/Maksym-Marko
  * Text Domain:       wpp-generator-next
  * License:           GPL v2 or later

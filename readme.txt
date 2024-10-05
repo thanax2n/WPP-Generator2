@@ -1,5 +1,5 @@
-=== WPPG Next ===
-Contributors: markomaksym
+=== This Plugin Name ===
+Contributors: _markomaksym_
 Tags: create table, create CPT, add metaboxes
 Requires at least: 5.9
 Requires PHP: 7.4.3
@@ -12,11 +12,11 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
     WPPG Next Author Website: https://markomaksym.com.ua/
     WPPG Next Video Guide:    https://www.youtube.com/watch?v=K_USk6upqMA&list=PLqb2a5jr0z4W5S6YJrQzpaXHsDNt9Z5ML
 
-WPPG Next. 
+Brief description
 
 == Description ==
 
-This is my extremely useful WordPress plugin. It will make a lot of people happy
+Long description
 
 == Installation ==
 
