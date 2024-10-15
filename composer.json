@@ -1,6 +1,6 @@
 {
     "name": "wpp-generator/mxsfwn-wpp-generator-next",
-    "description": "WPP-NEXT - boilerplate for your best WordPress plugin.",
+    "description": "WPPG-NEXT - boilerplate for your best WordPress plugin.",
     "type": "project",
     "license": "GNU GENERAL PUBLIC LICENSE",
     "autoload": {
