@@ -42,8 +42,8 @@ class AdminMenu
      * and page maintenance.
      */
     protected $properties = [
-        'pageTitle'  => 'WPP Generator',
-        'menuTitle'  => 'WPP Generator',
+        'pageTitle'  => 'WPP-NEXT',
+        'menuTitle'  => 'WPP-NEXT',
         'capability' => 'manage_options',
         'menuSlug'   => 'mxsfwn-admin-page',
         'dashicons'  => 'dashicons-image-filter',
@@ -57,8 +57,8 @@ class AdminMenu
      *      'file'            Rendered file (includes/Admin/controllers/)
      *      'properties'      List of menu properties:
      *      [
-     *          'pageTitle'   Default 'WPP Generator'
-     *          'menuTitle'   Default 'WPP Generator'
+     *          'pageTitle'   Default 'WPP-NEXT'
+     *          'menuTitle'   Default 'WPP-NEXT'
      *          'capability'  Default 'manage_options' (see https://wordpress.org/documentation/article/roles-and-capabilities/)
      *          'menuSlug'    Default 'mxsfwn-admin-page'
      *          'dashicons'   Default 'dashicons-image-filter'
