@@ -78,19 +78,14 @@ abstract class AbstractRestRouteHandler implements RestRouteHandlerInterface
      * 
      * @param $request  Current request.
      * 
-     * @return mixed
+     * @return bool
      */
-    protected function verifyNonce($request): mixed
+    protected function verifyNonce($request): bool
     {
 
         $nonce = $request->get_header('X-WP-Nonce');
 
-        if (!wp_verify_nonce($nonce, $this->nonceAction)) {
-
-            return new WP_REST_Response([
-                'message' => 'Sorry, you are not allowed to do that.'
-            ], 401);
-        }
+        if (!wp_verify_nonce($nonce, $this->nonceAction)) false;
 
         return true;
     }
@@ -100,17 +95,12 @@ abstract class AbstractRestRouteHandler implements RestRouteHandlerInterface
      * 
      * @param $capability  Type of capability.
      * 
-     * @return mixed
+     * @return bool
      */
-    protected function verifyUserCapability($capability = 'edit_posts'): mixed
+    protected function verifyUserCapability($capability = 'edit_posts'): bool
     {
 
-        if (!current_user_can($capability)) {
-
-            return new WP_REST_Response([
-                'message' => 'Sorry, you do not have appropriate access.'
-            ], 403);
-        }
+        if (!current_user_can($capability)) false;
 
         return true;
     }
