@@ -85,9 +85,7 @@ abstract class AbstractRestRouteHandler implements RestRouteHandlerInterface
 
         $nonce = $request->get_header('X-WP-Nonce');
 
-        if (!wp_verify_nonce($nonce, $this->nonceAction)) false;
-
-        return true;
+        return wp_verify_nonce($nonce, $this->nonceAction);
     }
 
     /**
@@ -100,9 +98,7 @@ abstract class AbstractRestRouteHandler implements RestRouteHandlerInterface
     protected function verifyUserCapability($capability = 'edit_posts'): bool
     {
 
-        if (!current_user_can($capability)) false;
-
-        return true;
+        return current_user_can($capability);
     }
 
     /**
