@@ -2,7 +2,7 @@
 Contributors: _markomaksym_
 Tags: create table, create CPT, add metaboxes
 Requires at least: 5.9
-Requires PHP: 7.4.3
+Requires PHP: 7.4
 Tested up to: 6.6
 Stable tag: 1.0
 License: GPLv2 or later

@@ -27,14 +27,18 @@ class UpdatePostMetaImageRoute extends AbstractRestRouteHandler
 
         if ($nonceCheck !== true) {
 
-            return $nonceCheck;
+            return new WP_REST_Response([
+                'error' => 'Invalid Nonce.'
+            ], 401);
         }
 
         $capabilityCheck = $this->verifyUserCapability('edit_posts');
 
         if ($capabilityCheck !== true) {
 
-            return $capabilityCheck;
+            return new WP_REST_Response([
+                'error' => 'Invalid CapabilityCheck.'
+            ], 401);
         }
 
         $postId = (int) $request->get_param('postId');

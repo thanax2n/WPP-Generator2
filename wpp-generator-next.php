@@ -6,7 +6,7 @@
  * Description:       Brief description
  * Version:           1.0
  * Requires at least: 5.9
- * Requires PHP:      7.4.3
+ * Requires PHP:      7.4
  * Author:            This Plugin Author
  * Author URI:        https://github.com/Maksym-Marko
  * Text Domain:       wpp-generator-next
@@ -80,9 +80,9 @@ if (!defined('MXSFWN_PLUGIN_ABS_PATH')) {
 }
 
 /**
- * Run plugin if PHP >= 7.4.30
+ * Run plugin if PHP >= 7.4
  */
-if (PHP_VERSION_ID >= 70430) {
+if (PHP_VERSION_ID >= 70400) {
 
     /**
      * Autoload.
