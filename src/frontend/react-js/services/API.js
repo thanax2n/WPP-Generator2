@@ -6,13 +6,13 @@ const baseQuery = fetchBaseQuery({
     baseUrl: `${window.location.origin}/wp-json/wpp-generator/v1`,
     credentials: 'same-origin',
     prepareHeaders: (headers, { getState }) => {
-        headers.set('Content-Type', 'application/json');
-        headers.set('Accept', 'application/json');
+        headers.set('Content-Type', 'application/json')
+        headers.set('Accept', 'application/json')
 
         // Add WordPress REST API nonce
-        headers.set('X-WP-Nonce', mxsfwnReactJsLocalizer.nonce);
+        headers.set('X-WP-Nonce', mxsfwnReactJsLocalizer.nonce)
 
-        return headers;
+        return headers
     }
 })
 
@@ -20,10 +20,10 @@ const handleResponse = async (args, api, extraOptions) => {
 
     let result = await baseQuery(args, api, extraOptions)
 
-    if(result?.data?.status === 'success') {
-        
+    if (result?.data?.status === 'success') {
+
         api.dispatch(setSuccess({ message: result?.data?.message }))
-    } else if(result?.data?.status === 'warning') {
+    } else if (result?.data?.status === 'warning') {
 
         api.dispatch(setWarnings({ message: result?.data?.message }))
     } else {

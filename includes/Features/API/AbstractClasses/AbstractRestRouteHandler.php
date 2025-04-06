@@ -41,7 +41,7 @@ abstract class AbstractRestRouteHandler implements RestRouteHandlerInterface
      *
      * @var string
      */
-    protected $nonceAction;
+    protected $nonceAction = 'wp_rest';
 
     /**
      * Register new endpoint.

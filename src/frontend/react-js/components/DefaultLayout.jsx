@@ -1,20 +1,30 @@
 import { __ } from '@wordpress/i18n';
-import { Outlet, useLocation } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 import FlashMessages from "./FlashMessages"
+import { Navigation } from "./Navigation"
 
 const navigationData = [
 	{ name: 'Home', path: '/', label: 'Home' },
+	{ name: 'Bin', path: '/bin', label: 'Bin' },
 ];
 
-const DefaultLayout = () => {
+const DefaultLayout = () => {	
 
 	return (
-		<div className="mxsfwn-react-js-app-container">
 
-			<Outlet />
+		<>
+			<header className="mxsfwn-header">
+				<h1>Task Master</h1>
+				<Navigation navigation={navigationData} />
+			</header>
 
-			<FlashMessages />
-		</div>
+			<div className="mxsfwn-react-js-app-container">
+
+				<Outlet />
+
+				<FlashMessages />
+			</div>
+		</>
 	)
 }
 

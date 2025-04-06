@@ -2,17 +2,23 @@ import { createSlice } from "@reduxjs/toolkit"
 import { updateLocalStorage } from '@reactJs/helpers'
 
 const initialState = {
-    tasks: localStorage.getItem('reactJsAppTaskItems') ? JSON.parse(localStorage.getItem('reactJsAppTaskItems')) : [
-        { title: 'Buy Groceries', description: 'Milk, eggs, bread, and fresh vegetables.', isDone: false },
-        { title: 'Email Client', description: 'Send proposal and project updates by 4 PM.', isDone: false },
-        { title: 'Workout', description: '30 minutes of cardio and strength training.', isDone: false },
-    ]
+    tasks: localStorage.getItem('reactJsAppTaskItems') ? JSON.parse(localStorage.getItem('reactJsAppTaskItems')) : []
 }
 
 const taskListSlice = createSlice( {
     name: 'react-js-task-list',
     initialState,
     reducers: {
+        setTaskList: (state, action) => {
+
+            if( ! action.payload ) return
+
+            const { taskList } = action.payload
+
+            state.tasks = taskList
+
+            updateLocalStorage('reactJsAppTaskItems', state.tasks)
+        },
         addTask: ( state, action ) => {
 
             if( ! action.payload ) return
@@ -38,6 +44,7 @@ const taskListSlice = createSlice( {
 } )
 
 export const {
+    setTaskList,
     addTask,
     taskDone
 } = taskListSlice.actions

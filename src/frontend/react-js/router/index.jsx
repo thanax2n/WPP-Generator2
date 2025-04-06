@@ -4,6 +4,7 @@ import DefaultLayout from "@reactJs/components/DefaultLayout"
 
 // Pages
 import Home from "@reactJs/pages/Home"
+import Bin from "@reactJs/pages/Bin"
 import NotFound from "@reactJs/pages/NotFound"
 
 const router = createHashRouter([
@@ -14,6 +15,10 @@ const router = createHashRouter([
             {
                 index: true,
                 element: <Home />,
+            },
+            {
+                path: 'bin',
+                element: <Bin />,
             },
             {
               path: '*',

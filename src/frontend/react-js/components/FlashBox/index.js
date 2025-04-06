@@ -1,9 +1,9 @@
-export const FlashBox = ({ className = 'fo-success', children, index, onClose }) => {
+export const FlashBox = ({ className = 'wppgn-success', children, index, onClose }) => {
     return (
-        <div key={index} className={`fo-flash-message ${className}`}>
-            <div className="fo-icon">
+        <div key={index} className={`wppgn-flash-message ${className}`}>
+            <div className="wppgn-icon">
                 {
-                    className === 'fo-error' ?
+                    className === 'wppgn-error' ?
                     (
                         <svg
                             width="20"
@@ -18,7 +18,7 @@ export const FlashBox = ({ className = 'fo-success', children, index, onClose })
                             <path d="M18 6L6 18M6 6l12 12" />
                         </svg>
                     )
-                    : className === 'fo-warning' ?
+                    : className === 'wppgn-warning' ?
                     (
                         <svg
                             width="20"
@@ -41,10 +41,10 @@ export const FlashBox = ({ className = 'fo-success', children, index, onClose })
                     )
                 }
             </div>
-            <div className="fo-content">
-                <div className="fo-flash-description">{children}</div>
+            <div className="wppgn-content">
+                <div className="wppgn-flash-description">{children}</div>
             </div>
-            <button onClick={onClose} className="fo-close">
+            <button onClick={onClose} className="wppgn-close">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M18 6L6 18M6 6l12 12" />
                 </svg>

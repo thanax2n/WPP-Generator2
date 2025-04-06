@@ -5,6 +5,8 @@ defined('ABSPATH') || exit;
 use MXSFWNWPPGNext\Features\API\Routes\UpdatePostMetaImageRoute;
 use MXSFWNWPPGNext\Features\API\Routes\GetPostMetaImageRoute;
 use MXSFWNWPPGNext\Features\API\Routes\DeletePostMetaImageRoute;
+use MXSFWNWPPGNext\Features\API\Routes\TasksManager\GetTaskListRoute;
+use MXSFWNWPPGNext\Features\API\Routes\TasksManager\UpdateTaskListRoute;
 
 if (!function_exists('mxsfwnInitializeRestRoutes')) {
     /**
@@ -17,6 +19,8 @@ if (!function_exists('mxsfwnInitializeRestRoutes')) {
             new UpdatePostMetaImageRoute,
             new GetPostMetaImageRoute,
             new DeletePostMetaImageRoute,
+            new GetTaskListRoute,
+            new UpdateTaskListRoute,
         ];
 
         foreach ($routes as $route) {

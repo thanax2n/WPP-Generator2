@@ -118,6 +118,7 @@ class WPEnqueueScripts
             "{$this->uniqueString}ReactJsLocalizer",
             [
                 'ajaxURL'   => admin_url('admin-ajax.php'),
+                'nonce' => wp_create_nonce('wp_rest'),
             ]
         );
 

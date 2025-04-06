@@ -92,7 +92,7 @@ const FlashMessages = () => {
                 success.length > 0 &&
                 success.map((message, index) => (
 
-                    <FlashBox key={`success-${index}`} index={index} className="fo-success" onClose={() => handleSuccessClose('success', index)}>
+                    <FlashBox key={`success-${index}`} index={index} className="wppgn-success" onClose={() => handleSuccessClose('success', index)}>
                         {message}
                     </FlashBox>
                 ))
@@ -102,7 +102,7 @@ const FlashMessages = () => {
                 warnings.length > 0 &&
                 warnings.map((warning, index) => (
 
-                    <FlashBox key={`warning-${index}`} index={index} className="fo-warning" onClose={() => handleWarningsClose('warnings', index)}>
+                    <FlashBox key={`warning-${index}`} index={index} className="wppgn-warning" onClose={() => handleWarningsClose('warnings', index)}>
                         {warning}
                     </FlashBox>
                 ))
@@ -112,7 +112,7 @@ const FlashMessages = () => {
                 errors.length > 0 &&
                 errors.map((error, index) => (
 
-                    <FlashBox key={`error-${index}`} index={index} className="fo-error" onClose={() => handleErrorsClose('errors', index)}>
+                    <FlashBox key={`error-${index}`} index={index} className="wppgn-error" onClose={() => handleErrorsClose('errors', index)}>
                         {error}
                     </FlashBox>
                 ))
