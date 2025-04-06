@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Short Code [simle_short_code]
+ * Short Code [react_js_app_short_code]
  * 
  * Here is a HTML markup of a shortcode.
  * 
@@ -10,4 +10,4 @@
 
 defined('ABSPATH') || exit;
 
-echo '<div id="mxsfwnSimpleApp"></div>';
+echo '<div id="mxsfwnReactJsApp"></div>';

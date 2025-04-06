@@ -26,13 +26,11 @@ class ShortCodeGenerator
     public function addSimpleShortCode(): void
     {
 
-        add_shortcode('simle_short_code', function () {
+        add_shortcode('react_js_app_short_code', function () {
 
             ob_start();
-
-            printf('<p>%s</p>', esc_html__('This is a simple short code output', 'wpp-generator-next'));
-
-            mxsfwnRequireFrontendComponent('shortcode-body');
+            
+            mxsfwnRequireFrontendComponent('shortcode-react-js-app');
 
             return ob_get_clean();
         });

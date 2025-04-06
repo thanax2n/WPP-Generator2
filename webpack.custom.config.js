@@ -67,7 +67,10 @@ module.exports = (env, argv) => {
             extensions: ['.js', '.jsx', '.json'],
             alias: {
                 '@admin': path.resolve(__dirname, 'src/admin'),
-                '@frontend': path.resolve(__dirname, 'src/frontend')
+                '@frontend': path.resolve(__dirname, 'src/frontend'),
+
+                // More precious
+                '@reactJs': path.resolve(__dirname, 'src/frontend/react-js'),
             }
         },
         optimization: {
