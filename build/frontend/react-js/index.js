@@ -296,9 +296,119 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "./node_modules/@wordpress/i18n/build-module/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/dist/react-redux.mjs");
+/* harmony import */ var _reactJs_store_slices_taskList_taskListSlice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @reactJs/store/slices/taskList/taskListSlice */ "./src/frontend/react-js/store/slices/taskList/taskListSlice.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+
+
+// const { __ } = wp.i18n // this for translate, because '@wordpress/i18n' does not work to display the translate text
 
 var Home = function Home() {
-  return /*#__PURE__*/React.createElement("h1", null, "Hello!");
+  var tasks = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
+    return state.taskList.tasks;
+  });
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    console.log(tasks);
+  }, [tasks]);
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
+      title: '',
+      description: ''
+    }),
+    _useState2 = _slicedToArray(_useState, 2),
+    newTask = _useState2[0],
+    setNewTask = _useState2[1];
+  var handleDelete = function handleDelete(index) {
+    dispatch((0,_reactJs_store_slices_taskList_taskListSlice__WEBPACK_IMPORTED_MODULE_2__.taskDone)({
+      taskIndex: index
+    }));
+  };
+  var handleInputChange = function handleInputChange(e) {
+    var _e$target = e.target,
+      name = _e$target.name,
+      value = _e$target.value;
+    setNewTask(_objectSpread(_objectSpread({}, newTask), {}, _defineProperty({}, name, value)));
+  };
+  var handleAddTask = function handleAddTask(e) {
+    e.preventDefault();
+    if (!newTask.title.trim() || !newTask.description.trim()) {
+      alert((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Validation failed: All fields are required.', 'wpp-generator-next'));
+      return;
+    }
+    dispatch((0,_reactJs_store_slices_taskList_taskListSlice__WEBPACK_IMPORTED_MODULE_2__.addTask)({
+      task: newTask
+    }));
+    setNewTask({
+      title: '',
+      description: ''
+    });
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
+    className: "mxsfwn-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h2", {
+    className: "mxsfwn-category-title"
+  }, "Your Tasks"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
+    className: "mxsfwn-menu-grid"
+  }, Array.isArray(tasks) && tasks.length > 0 ? tasks.map(function (task, index) {
+    return task.isDone ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
+      className: "mxsfwn-menu-item",
+      key: index
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
+      className: "mxsfwn-menu-item-title"
+    }, task.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
+      className: "mxsfwn-menu-item-description"
+    }, task.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
+      className: "mxsfwn-task-footer"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("button", {
+      className: "mxsfwn-delete-button",
+      onClick: function onClick() {
+        return handleDelete(index);
+      }
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Done', 'wpp-generator-next'))));
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
+    className: "mxsfwn-menu-item mxsfwn-no-tasks-found"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
+    className: "mxsfwn-menu-item-title"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('No tasks found', 'wpp-generator-next')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h2", {
+    className: "mxsfwn-category-title"
+  }, "Add New Task"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("form", {
+    className: "mxsfwn-menu-item",
+    onSubmit: handleAddTask
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
+    className: "mxsfwn-menu-item-content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("input", {
+    type: "text",
+    name: "title",
+    placeholder: "Task Name",
+    value: newTask.title,
+    onChange: handleInputChange,
+    required: true
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("textarea", {
+    name: "description",
+    placeholder: "Task Description",
+    value: newTask.description,
+    onChange: handleInputChange,
+    required: true
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("button", {
+    className: "mxsfwn-add-to-cart",
+    type: "submit"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Add Task', 'wpp-generator-next')))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Home);
 
@@ -566,64 +676,66 @@ var _notifySlice$actions = notifySlice.actions,
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   addToCart: () => (/* binding */ addToCart),
+/* harmony export */   addTask: () => (/* binding */ addTask),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
-/* harmony export */   deleteFromCart: () => (/* binding */ deleteFromCart)
+/* harmony export */   taskDone: () => (/* binding */ taskDone)
 /* harmony export */ });
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.modern.mjs");
 /* harmony import */ var _reactJs_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @reactJs/helpers */ "./src/frontend/react-js/helpers/index.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
 function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
 function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 var initialState = {
-  cartItems: localStorage.getItem('reactJsAppTaskItems') ? JSON.parse(localStorage.getItem('reactJsAppTaskItems')) : []
+  tasks: localStorage.getItem('reactJsAppTaskItems') ? JSON.parse(localStorage.getItem('reactJsAppTaskItems')) : [{
+    title: 'Buy Groceries',
+    description: 'Milk, eggs, bread, and fresh vegetables.',
+    isDone: false
+  }, {
+    title: 'Email Client',
+    description: 'Send proposal and project updates by 4 PM.',
+    isDone: false
+  }, {
+    title: 'Workout',
+    description: '30 minutes of cardio and strength training.',
+    isDone: false
+  }]
 };
 var taskListSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createSlice)({
   name: 'react-js-task-list',
   initialState: initialState,
   reducers: {
-    addToCart: function addToCart(state, action) {
-      var _item$timestamps;
+    addTask: function addTask(state, action) {
       if (!action.payload) return;
-      var item = action.payload.item;
-      var itemCopy = _objectSpread(_objectSpread({}, item), {}, {
-        timestamps: _objectSpread(_objectSpread({}, item.timestamps), {}, {
-          addedToCart: _objectSpread(_objectSpread({}, ((_item$timestamps = item.timestamps) === null || _item$timestamps === void 0 ? void 0 : _item$timestamps.addedToCart) || {}), {}, {
-            utc: new Date().toISOString()
-          })
-        })
-      });
-      state.cartItems = [].concat(_toConsumableArray(state.cartItems), [itemCopy]);
-      (0,_reactJs_helpers__WEBPACK_IMPORTED_MODULE_0__.updateLocalStorage)('reactJsAppTaskItems', state.cartItems);
+      var task = action.payload.task;
+      state.tasks = [].concat(_toConsumableArray(state.tasks), [task]);
+      (0,_reactJs_helpers__WEBPACK_IMPORTED_MODULE_0__.updateLocalStorage)('reactJsAppTaskItems', state.tasks);
     },
-    deleteFromCart: function deleteFromCart(state, action) {
+    taskDone: function taskDone(state, action) {
       if (!action.payload) return;
-      var itemIndex = action.payload.itemIndex;
-
-      // Validate index is within bounds
-      if (itemIndex >= 0 && itemIndex < state.cartItems.length) {
-        state.cartItems = state.cartItems.filter(function (_, index) {
-          return index !== itemIndex;
-        });
-      }
-      (0,_reactJs_helpers__WEBPACK_IMPORTED_MODULE_0__.updateLocalStorage)('reactJsAppTaskItems', state.cartItems);
+      var taskIndex = action.payload.taskIndex;
+      state.tasks = state.tasks.map(function (task, index) {
+        return index === taskIndex ? _objectSpread(_objectSpread({}, task), {}, {
+          isDone: true
+        }) : task;
+      });
+      (0,_reactJs_helpers__WEBPACK_IMPORTED_MODULE_0__.updateLocalStorage)('reactJsAppTaskItems', state.tasks);
     }
   }
 });
 var _taskListSlice$action = taskListSlice.actions,
-  addToCart = _taskListSlice$action.addToCart,
-  deleteFromCart = _taskListSlice$action.deleteFromCart;
+  addTask = _taskListSlice$action.addTask,
+  taskDone = _taskListSlice$action.taskDone;
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (taskListSlice.reducer);
 

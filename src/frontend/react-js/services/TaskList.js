@@ -22,7 +22,7 @@ const TaskList = API.injectEndpoints({
         }),
 
         // An example of a mutation (POST)
-        deleteTaskItem: builder.mutation({
+        taskDoneItem: builder.mutation({
             query: ({ taskId }) => ({
                 url: '/delete-task-item',
                 method: 'POST',
@@ -37,5 +37,5 @@ export default TaskList
 export const {
     useGetTaskListQuery,
     useGetTaskItemQuery,
-    useDeleteTaskItemMutation
+    usetaskDoneItemMutation
 } = TaskList

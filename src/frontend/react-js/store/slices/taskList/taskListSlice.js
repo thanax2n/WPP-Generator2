@@ -1,54 +1,45 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { updateLocalStorage } from '@reactJs/helpers';
+import { updateLocalStorage } from '@reactJs/helpers'
 
 const initialState = {
-    cartItems: localStorage.getItem('reactJsAppTaskItems') ? JSON.parse(localStorage.getItem('reactJsAppTaskItems')) : []
+    tasks: localStorage.getItem('reactJsAppTaskItems') ? JSON.parse(localStorage.getItem('reactJsAppTaskItems')) : [
+        { title: 'Buy Groceries', description: 'Milk, eggs, bread, and fresh vegetables.', isDone: false },
+        { title: 'Email Client', description: 'Send proposal and project updates by 4 PM.', isDone: false },
+        { title: 'Workout', description: '30 minutes of cardio and strength training.', isDone: false },
+    ]
 }
 
 const taskListSlice = createSlice( {
     name: 'react-js-task-list',
     initialState,
     reducers: {
-        addToCart: ( state, action ) => {
+        addTask: ( state, action ) => {
 
             if( ! action.payload ) return
             
-            const { item } = action.payload
+            const { task } = action.payload
 
-            const itemCopy = {
-                ...item,
-                timestamps: {
-                    ...item.timestamps,
-                    addedToCart: {
-                        ...(item.timestamps?.addedToCart || {}),
-                        utc: new Date().toISOString()
-                    }
-                }
-            };
+            state.tasks = [...state.tasks, task]
 
-            state.cartItems = [...state.cartItems, itemCopy];
-
-            updateLocalStorage('reactJsAppTaskItems', state.cartItems);
+            updateLocalStorage('reactJsAppTaskItems', state.tasks)
         },
-        deleteFromCart: (state, action) => {
+        taskDone: (state, action) => {
             if (!action.payload) return
             
-            const { itemIndex } = action.payload
+            const { taskIndex } = action.payload
 
-            // Validate index is within bounds
-            if (itemIndex >= 0 && itemIndex < state.cartItems.length) {
-                state.cartItems = state.cartItems.filter((_, index) => index !== itemIndex);
-            }
+            state.tasks = state.tasks.map((task, index) => 
+                index === taskIndex ? { ...task, isDone: true } : task
+            )
 
-            updateLocalStorage('reactJsAppTaskItems', state.cartItems);
-
+            updateLocalStorage('reactJsAppTaskItems', state.tasks)
         },
     },
 } )
 
 export const {
-    addToCart,
-    deleteFromCart
+    addTask,
+    taskDone
 } = taskListSlice.actions
 
 export default taskListSlice.reducer

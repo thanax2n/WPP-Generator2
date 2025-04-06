@@ -1,3 +1,156 @@
-.mxsfwn-not-found {
-  
+.mxsfwn-not-found {}
+
+.mxsfwn-react-js-app-container {
+    background: #2e7d320d;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.mxsfwn-header {
+    background-color: #2E7D32;
+    color: white;
+    padding: 1rem 2rem;
+    margin: -20px -20px 20px -20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.mxsfwn-header h1 {
+    font-size: 1.5rem;
+}
+
+.mxsfwn-nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-weight: 500;
+}
+
+.mxsfwn-nav-links a:hover {
+    text-decoration: underline;
+}
+
+.mxsfwn-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.mxsfwn-category-title {
+    color: #1A2024;
+    margin: 2rem 1rem 1rem 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.mxsfwn-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.mxsfwn-menu-item {
+    background: #FFFFFF;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #FFFFFF;
+}
+
+.mxsfwn-menu-item:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #2E7D32;
+}
+
+.mxsfwn-menu-item-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1A2024;
+    margin-bottom: 0.5rem;
+}
+
+.mxsfwn-no-tasks-found {
+    justify-content: center;
+
+    &>div {
+        margin: 0;
+        text-align: center;
+    }
+}
+
+.mxsfwn-menu-item-description {
+    color: #4A5056;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.mxsfwn-task-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.mxsfwn-delete-button {
+    background-color: #2E7D32;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+}
+
+.mxsfwn-delete-button:hover {
+    background-color: #1B5E20;
+}
+
+form.mxsfwn-menu-item input,
+form.mxsfwn-menu-item textarea {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+form.mxsfwn-menu-item textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.mxsfwn-add-to-cart {
+    background-color: #2E7D32;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+}
+
+.mxsfwn-add-to-cart:hover {
+    background-color: #1B5E20;
+}
+
+.mxsfwn-restore-button {
+    background-color: #2E7D32;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.mxsfwn-restore-button:hover {
+    background-color: #1B5E20;
 }
