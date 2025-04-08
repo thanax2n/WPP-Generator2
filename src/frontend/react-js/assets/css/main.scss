@@ -180,7 +180,7 @@ form.mxsfwn-menu-item textarea {
     min-height: 80px;
 }
 
-.mxsfwn-add-to-cart {
+button.mxsfwn-add-to-cart {
     background-color: var(--wppg-next-color-accent-1);
     color: white;
     border: none;
@@ -191,7 +191,7 @@ form.mxsfwn-menu-item textarea {
     font-size: 16px;
 }
 
-.mxsfwn-add-to-cart:hover {
+button.mxsfwn-add-to-cart:hover {
     filter: brightness(0.9);
 }
 
