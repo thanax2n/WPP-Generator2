@@ -3,14 +3,14 @@ Contributors: _markomaksym_
 Tags: create table, create CPT, add metaboxes
 Requires at least: 5.9
 Requires PHP: 7.4
-Tested up to: 6.6
+Tested up to: 6.7
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
     WPPG Next Version:        1.1.0
     WPPG Next Author:         Maksym Marko
     WPPG Next Author Website: https://markomaksym.com.ua/
-    WPPG Next Video Guide:    https://www.youtube.com/watch?v=K_USk6upqMA&list=PLqb2a5jr0z4W5S6YJrQzpaXHsDNt9Z5ML
+    WPPG Next Video Guide:    https://www.youtube.com/watch?v=2FY7lDoZ0k0
 
 Brief description
 
