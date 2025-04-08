@@ -11,7 +11,7 @@ const TaskList = API.injectEndpoints({
             }),
         }),
 
-        // An example of a query with params (GET)
+        // An example of a query with params (GET). Did not use this example in the project.
         getTaskItem: builder.query({
             query: (params = {}) => ({
                 url: '/get-task-item',

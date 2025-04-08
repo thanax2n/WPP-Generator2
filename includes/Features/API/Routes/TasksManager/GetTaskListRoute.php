@@ -6,6 +6,12 @@ use MXSFWNWPPGNext\Features\API\AbstractClasses\AbstractRestRouteHandler;
 use MXSFWNWPPGNext\Shared\TasksManager;
 use WP_REST_Response;
 
+/**
+ * REST API route handler for retrieving the task list.
+ * 
+ * This class handles GET requests to retrieve the task list from the database.
+ * It verifies the nonce and returns the task list in a formatted response.
+ */
 class GetTaskListRoute extends AbstractRestRouteHandler
 {
 
