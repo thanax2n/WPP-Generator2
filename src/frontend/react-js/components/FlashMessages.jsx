@@ -65,27 +65,22 @@ const FlashMessages = () => {
 
     const handleSuccessClose = (type, index) => {
 
-        dispatch(clearSuccess({index, type}))
+        dispatch(clearSuccess({ index, type }))
     }
 
     const handleWarningsClose = (type, index) => {
 
-        dispatch(clearWarnings({index, type}))
+        dispatch(clearWarnings({ index, type }))
     }
 
     const handleErrorsClose = (type, index) => {
 
-        dispatch(clearErrors({index, type}))
+        dispatch(clearErrors({ index, type }))
     }
 
     return (success.length > 0 || warnings.length > 0 || errors.length > 0 ?
         <div
-            style={{
-                position: 'fixed',
-                right: '20px',
-                bottom: '20px',
-                zIndex: '9'
-            }}
+            className="mxsfwn-flash-box"
         >
 
             {

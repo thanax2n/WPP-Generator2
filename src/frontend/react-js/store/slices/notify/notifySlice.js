@@ -14,17 +14,17 @@ const notifySlice = createSlice({
 
             const { message } = action.payload
 
-            if(!message) return
+            if (!message) return
 
             state.success.push(message)
         },
         clearSuccess: (state, action) => {
 
-            if(action?.payload?.type && typeof action?.payload?.index === 'number') {
+            if (action?.payload?.type && typeof action?.payload?.index === 'number') {
 
-                const {type, index} = action.payload
+                const { type, index } = action.payload
 
-                state[type].splice(index, 1);
+                state[type].splice(index, 1)
             } else {
 
                 state.success = []
@@ -35,17 +35,17 @@ const notifySlice = createSlice({
 
             const { message } = action.payload
 
-            if(!message) return
+            if (!message) return
 
             state.warnings.push(message)
         },
         clearWarnings: (state, action) => {
 
-            if(action?.payload?.type && typeof action?.payload?.index === 'number') {
+            if (action?.payload?.type && typeof action?.payload?.index === 'number') {
 
-                const {type, index} = action.payload
+                const { type, index } = action.payload
 
-                state[type].splice(index, 1);
+                state[type].splice(index, 1)
             } else {
 
                 state.warnings = []
@@ -56,17 +56,17 @@ const notifySlice = createSlice({
 
             const { message } = action.payload
 
-            if(!message) return
+            if (!message) return
 
             state.errors.push(message)
         },
         clearErrors: (state, action) => {
 
-            if(action?.payload?.type && typeof action?.payload?.index === 'number') {
+            if (action?.payload?.type && typeof action?.payload?.index === 'number') {
 
-                const {type, index} = action.payload
+                const { type, index } = action.payload
 
-                state[type].splice(index, 1);
+                state[type].splice(index, 1)
             } else {
 
                 state.errors = []
@@ -75,7 +75,7 @@ const notifySlice = createSlice({
     }
 })
 
-export const { 
+export const {
     setSuccess,
     clearSuccess,
     setWarnings,

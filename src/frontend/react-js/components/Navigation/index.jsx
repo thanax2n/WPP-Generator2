@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom";
-import clsx from 'clsx';
+import { NavLink } from "react-router-dom"
+import clsx from 'clsx'
 
 export const Navigation = ({ navigation }) => {
 
@@ -17,6 +17,5 @@ export const Navigation = ({ navigation }) => {
         </NavLink>
       ))}
     </nav>
-  );
-};
-
+  )
+}

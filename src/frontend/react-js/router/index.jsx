@@ -1,4 +1,4 @@
-import { createHashRouter } from 'react-router-dom';
+import { createHashRouter } from 'react-router-dom'
 // Layouts
 import DefaultLayout from "@reactJs/components/DefaultLayout"
 
@@ -21,11 +21,11 @@ const router = createHashRouter([
                 element: <Bin />,
             },
             {
-              path: '*',
-              element: <NotFound />,
+                path: '*',
+                element: <NotFound />,
             }
         ]
     }
-]);
+])
 
 export default router

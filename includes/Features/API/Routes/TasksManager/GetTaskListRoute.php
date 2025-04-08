@@ -27,17 +27,11 @@ class GetTaskListRoute extends AbstractRestRouteHandler
         // Get user task list
         $userTaskList = TasksManager::getTaskList();
 
-        $taskList = [];
-
-        if (!empty($userTaskList)) {
-            $taskList = $userTaskList;
-        }
-
         // Return formatted response
         return new WP_REST_Response([
             // 'status' => 'success', // To display success message
             'message' => esc_html__('Task list retrieved successfully.', 'wpp-generator-next'),
-            'items' => $taskList,
+            'items' => $userTaskList,
         ], 200);
     }
 }

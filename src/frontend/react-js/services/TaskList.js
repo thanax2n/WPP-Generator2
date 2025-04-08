@@ -30,7 +30,7 @@ const TaskList = API.injectEndpoints({
             })
         }),
     })
-});
+})
 
 export default TaskList
 

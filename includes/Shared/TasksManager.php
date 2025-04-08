@@ -55,9 +55,28 @@ class TasksManager
     public static function getTaskList(): array
     {
         $taskList = get_user_meta(get_current_user_id(), self::TASK_LIST_META_KEY, true);
-        
+
         if (!is_array($taskList)) {
-            return [];
+            return [
+                [
+                    'id' => 1,
+                    'title' => 'Buy Groceries',
+                    'description' => 'Milk, eggs, bread, and fresh vegetables.',
+                    'isDone' => false,
+                ],
+                [
+                    'id' => 2,
+                    'title' => 'Email Client',
+                    'description' => 'Send proposal and project updates by 4 PM.',
+                    'isDone' => false,
+                ],
+                [
+                    'id' => 3,
+                    'title' => 'Workout',
+                    'description' => '30 minutes of cardio and strength training.',
+                    'isDone' => false,
+                ],
+            ];
         }
 
         return $taskList;

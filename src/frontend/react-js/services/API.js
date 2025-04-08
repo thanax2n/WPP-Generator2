@@ -6,12 +6,11 @@ const baseQuery = fetchBaseQuery({
     baseUrl: `${window.location.origin}/wp-json/wpp-generator/v1`,
     credentials: 'same-origin',
     prepareHeaders: (headers, { getState }) => {
+
         headers.set('Content-Type', 'application/json')
         headers.set('Accept', 'application/json')
 
-        // Add WordPress REST API nonce
         headers.set('X-WP-Nonce', mxsfwnReactJsLocalizer.nonce)
-
         return headers
     }
 })
