@@ -8,6 +8,10 @@ use MXSFWNWPPGNext\Features\API\Routes\DeletePostMetaImageRoute;
 use MXSFWNWPPGNext\Features\API\Routes\TasksManager\GetTaskListRoute;
 use MXSFWNWPPGNext\Features\API\Routes\TasksManager\UpdateTaskListRoute;
 
+// Next.js
+use MXSFWNWPPGNext\Features\API\Routes\NextJS\GetAllPagesRoute;
+use MXSFWNWPPGNext\Features\API\Routes\NextJS\GetPageBySlugRoute;
+
 if (!function_exists('mxsfwnInitializeRestRoutes')) {
     /**
      * Initialize and register all routes (endpoints).
@@ -21,6 +25,10 @@ if (!function_exists('mxsfwnInitializeRestRoutes')) {
             new DeletePostMetaImageRoute,
             new GetTaskListRoute,
             new UpdateTaskListRoute,
+
+            // Next.js
+            new GetAllPagesRoute,
+            new GetPageBySlugRoute,
         ];
 
         foreach ($routes as $route) {
