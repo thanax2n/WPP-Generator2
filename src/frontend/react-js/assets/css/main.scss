@@ -49,7 +49,7 @@
 
 .mxsfwn-header {
     background-color: var(--wppg-next-color-accent-1);
-    color: white;
+    color: var(--wppg-next-color-base);
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
@@ -59,10 +59,11 @@
 
 .mxsfwn-header h1 {
     font-size: 1.5rem;
+    color: var(--wppg-next-color-base);
 }
 
 .mxsfwn-nav-links a {
-    color: white;
+    color: var(--wppg-next-color-base);
     text-decoration: none;
     margin-left: 1.5rem;
     font-weight: 500;
@@ -146,7 +147,7 @@
 .mxsfwn-redo-button,
 .mxsfwn-delete-button {
     background-color: var(--wppg-next-color-accent-1);
-    color: white;
+    color: var(--wppg-next-color-base);
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 6px;
@@ -182,7 +183,7 @@ form.mxsfwn-menu-item textarea {
 
 button.mxsfwn-add-to-cart {
     background-color: var(--wppg-next-color-accent-1);
-    color: white;
+    color: var(--wppg-next-color-base);
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 6px;
@@ -197,7 +198,7 @@ button.mxsfwn-add-to-cart:hover {
 
 .mxsfwn-redo-button {
     background-color: var(--wppg-next-color-accent-1);
-    color: white;
+    color: var(--wppg-next-color-base);
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 6px;

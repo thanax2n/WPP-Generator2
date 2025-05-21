@@ -60,6 +60,10 @@ module.exports = (env, argv) => {
                         'css-loader',
                         'sass-loader'
                     ]
+                },
+                {
+                    test: /\.(png|jpe?g|gif|svg)$/i,
+                    type: 'asset/resource'
                 }
             ]
         },

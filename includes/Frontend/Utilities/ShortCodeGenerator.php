@@ -15,15 +15,15 @@ class ShortCodeGenerator
     public function __construct()
     {
 
-        $this->addSimpleShortCode();
+        $this->reactAppShortCode();
     }
 
     /**
-     * An example of shortcode.
+     * An example of shortcode for a react.js app.
      * 
      * @return void
      */
-    public function addSimpleShortCode(): void
+    public function reactAppShortCode(): void
     {
 
         add_shortcode('react_js_app_short_code', function () {
