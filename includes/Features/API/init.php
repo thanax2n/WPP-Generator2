@@ -11,6 +11,7 @@ use MXSFWNWPPGNext\Features\API\Routes\TasksManager\UpdateTaskListRoute;
 // Next.js
 use MXSFWNWPPGNext\Features\API\Routes\NextJS\GetAllPagesRoute;
 use MXSFWNWPPGNext\Features\API\Routes\NextJS\GetPageBySlugRoute;
+use MXSFWNWPPGNext\Features\API\Routes\NextJS\GetMenuItemsRoute;
 
 if (!function_exists('mxsfwnInitializeRestRoutes')) {
     /**
@@ -29,6 +30,7 @@ if (!function_exists('mxsfwnInitializeRestRoutes')) {
             // Next.js
             new GetAllPagesRoute,
             new GetPageBySlugRoute,
+            new GetMenuItemsRoute,
         ];
 
         foreach ($routes as $route) {

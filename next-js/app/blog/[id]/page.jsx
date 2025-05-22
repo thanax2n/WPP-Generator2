@@ -1,6 +1,6 @@
-export async function generateMetadata({params}) {
+export async function generateMetadata({ params }) {
 
-    const {id} = await params;
+    const { id } = await params
 
     const title = `Post with id = ${id}`
     const description = `Post description with id = ${id}`
@@ -15,16 +15,16 @@ export async function generateMetadata({params}) {
     }
 }
 
-const Post = async ({params}) => {
+const Post = async ({ params }) => {
 
-    const {id} = await params;
+    const { id } = await params
 
     return (
         <>
             <div>Post</div>
             <span>{id}</span>
         </>
-    );
-};
+    )
+}
 
-export default Post;
+export default Post
