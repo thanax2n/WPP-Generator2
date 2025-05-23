@@ -16,7 +16,7 @@ class GetAllPagesRoute extends AbstractRestRouteHandler
 
     public function checkPermissions(): bool
     {
-        
+
         return true;
     }
 
@@ -33,8 +33,8 @@ class GetAllPagesRoute extends AbstractRestRouteHandler
                 'slug'    => $page->post_name,
                 'title'   => get_the_title($page->ID),
                 'excerpt' => get_the_excerpt($page->ID),
-                'content' => apply_filters('the_content', $page->post_content),
                 'link'    => wp_parse_url(get_permalink($page->ID), PHP_URL_PATH),
+                'content' => apply_filters('the_content', $page->post_content),
             ];
         }, $pages);
 
