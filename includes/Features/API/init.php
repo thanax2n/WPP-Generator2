@@ -9,6 +9,7 @@ use MXSFWNWPPGNext\Features\API\Routes\TasksManager\GetTaskListRoute;
 use MXSFWNWPPGNext\Features\API\Routes\TasksManager\UpdateTaskListRoute;
 
 // Next.js
+use MXSFWNWPPGNext\Features\API\Routes\NextJS\GetStylesRoute;
 use MXSFWNWPPGNext\Features\API\Routes\NextJS\GetAllPagesRoute;
 use MXSFWNWPPGNext\Features\API\Routes\NextJS\GetPageBySlugRoute;
 use MXSFWNWPPGNext\Features\API\Routes\NextJS\GetMenuItemsRoute;
@@ -28,6 +29,7 @@ if (!function_exists('mxsfwnInitializeRestRoutes')) {
             new UpdateTaskListRoute,
 
             // Next.js
+            new GetStylesRoute,
             new GetAllPagesRoute,
             new GetPageBySlugRoute,
             new GetMenuItemsRoute,

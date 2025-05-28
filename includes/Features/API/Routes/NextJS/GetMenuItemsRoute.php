@@ -8,47 +8,80 @@ use WP_REST_Response;
 use WP_Post;
 use WP_Block_Parser_Block;
 
+/**
+ * REST API route handler for retrieving menu items from a wp_navigation post.
+ */
 class GetMenuItemsRoute extends AbstractRestRouteHandler
 {
+    /**
+     * API route with dynamic post ID for the navigation menu.
+     *
+     * @var string
+     */
     protected $route = '/menu-items/(?P<post_id>\d+)';
+
+    /**
+     * Supported HTTP method for this endpoint.
+     *
+     * @var string
+     */
     protected $methods = 'GET';
 
+    /**
+     * Check user permissions for accessing the route.
+     *
+     * @return bool
+     */
     public function checkPermissions(): bool
     {
+        // Allow public access
         return true;
     }
 
+    /**
+     * Handle the API request and return structured menu items.
+     *
+     * @param WP_REST_Request $request
+     * @return WP_REST_Response
+     */
     public function handleRequest($request): WP_REST_Response
     {
-        $post_id = absint($request['post_id']);
+        $postId = absint($request['post_id']);
 
-        $menu_post = get_post($post_id);
+        // Fetch the navigation post by ID
+        $menuPost = get_post($postId);
 
-        if (! $menu_post || $menu_post->post_type !== 'wp_navigation') {
+        // Validate post existence and type
+        if (! $menuPost || $menuPost->post_type !== 'wp_navigation') {
             return new WP_REST_Response([
                 'ok'      => false,
                 'message' => esc_html__('Navigation post not found.', 'wpp-generator-next'),
             ], 404);
         }
 
-        $blocks = parse_blocks($menu_post->post_content);
+        // Parse blocks from navigation post content
+        $blocks = parse_blocks($menuPost->post_content);
 
-        $menu_items = [];
+        $menuItems = [];
 
+        // Extract menu links from navigation blocks
         foreach ($blocks as $block) {
+            // Handle automatic page list
             if ($block['blockName'] === 'core/page-list') {
                 $pages = get_pages(['post_status' => 'publish']);
                 foreach ($pages as $page) {
-                    $menu_items[] = [
-                        'type'      => 'page',
-                        'id'        => $page->ID,
-                        'title'     => get_the_title($page->ID),
-                        'slug'      => $page->post_name,
-                        'url'       => wp_parse_url(get_permalink($page->ID), PHP_URL_PATH),
+                    $menuItems[] = [
+                        'type'  => 'page',
+                        'id'    => $page->ID,
+                        'title' => get_the_title($page->ID),
+                        'slug'  => $page->post_name,
+                        'url'   => wp_parse_url(get_permalink($page->ID), PHP_URL_PATH),
                     ];
                 }
-            } elseif ($block['blockName'] === 'core/navigation-link' && isset($block['attrs']['url'], $block['attrs']['label'])) {
-                $menu_items[] = [
+            }
+            // Handle custom navigation link
+            elseif ($block['blockName'] === 'core/navigation-link' && isset($block['attrs']['url'], $block['attrs']['label'])) {
+                $menuItems[] = [
                     'type'  => 'custom',
                     'title' => $block['attrs']['label'],
                     'url'   => wp_parse_url($block['attrs']['url'], PHP_URL_PATH),
@@ -56,9 +89,10 @@ class GetMenuItemsRoute extends AbstractRestRouteHandler
             }
         }
 
+        // Return the formatted menu items
         return new WP_REST_Response([
             'ok'    => true,
-            'items' => $menu_items,
+            'items' => $menuItems,
         ], 200);
     }
 }

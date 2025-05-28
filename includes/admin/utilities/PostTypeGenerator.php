@@ -48,17 +48,17 @@ class PostTypeGenerator extends PostType
         $postType = 'framework';
 
         $labels = [
-            'name'               => __('Frameworks', 'wpp-generator-next'),
-            'singular_name'      => __('Framework', 'wpp-generator-next'),
-            'add_new'            => __('Add a new one', 'wpp-generator-next'),
-            'add_new_item'       => __('Add a new Framework', 'wpp-generator-next'),
-            'edit_item'          => __('Edit the Framework', 'wpp-generator-next'),
-            'new_item'           => __('New Framework', 'wpp-generator-next'),
-            'view_item'          => __('See the Framework', 'wpp-generator-next'),
-            'search_items'       => __('Find a Framework', 'wpp-generator-next'),
-            'not_found'          => __('Frameworks not found', 'wpp-generator-next'),
-            'not_found_in_trash' => __('No Frameworks found in the trash', 'wpp-generator-next'),
-            'menu_name'          => __('Frameworks', 'wpp-generator-next'),
+            'name'               => 'Frameworks',
+            'singular_name'      => 'Framework',
+            'add_new'            => 'Add a new one',
+            'add_new_item'       => 'Add a new Framework',
+            'edit_item'          => 'Edit the Framework',
+            'new_item'           => 'New Framework',
+            'view_item'          => 'See the Framework',
+            'search_items'       => 'Find a Framework',
+            'not_found'          => 'Frameworks not found',
+            'not_found_in_trash' => 'No Frameworks found in the trash',
+            'menu_name'          => 'Frameworks',
         ];
 
         $properties = [

@@ -51,7 +51,7 @@ class TaxonomyGenerator extends Taxonomy
         ];
 
         $labels = [
-            'name'    => __('Programming Language', 'wpp-generator-next'),
+            'name'    => 'Programming Language',
         ];
 
         $properties = [
