@@ -6,5 +6,5 @@ export const getMenuById = async (id) => {
     try {
         const data = await API(`/menu-items/${id}`)
         return data
-    } catch (error) {}
+    } catch (error) { }
 }

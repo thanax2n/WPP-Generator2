@@ -13,8 +13,7 @@ export default async function Page({ params }) {
 
     return (
         <>
-            <h1 className="text-2xl font-semibold mb-4">{page.title}</h1>
-            <div className="prose max-w-none prose-gray" dangerouslySetInnerHTML={{ __html: page.content || '' }} />
+            <main className="wp-block-group has-global-padding is-layout-constrained wp-block-group-is-layout-constrained" dangerouslySetInnerHTML={{ __html: page.content || '' }}></main>
         </>
     )
 }

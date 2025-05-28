@@ -4,7 +4,6 @@ const prepareHeaders = () => {
     const headers = new Headers()
     headers.set('Content-Type', 'application/json')
     headers.set('Accept', 'application/json')
-    // headers.set('X-WP-Nonce', window.mxsfwnReactJsLocalizer.nonce)
 
     return headers
 }

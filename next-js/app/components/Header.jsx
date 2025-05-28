@@ -16,7 +16,7 @@ export default async function Header() {
                     <ul className="flex space-x-4">
                         {menuData.items.map(item => (
                             <li key={item.id} className="relative group">
-                                <Link href={item.url} className="text-gray-800 hover:underline">
+                                <Link href={item.url} className="text-[16px] text-gray-800 hover:underline">
                                     {item.title}
                                 </Link>
                             </li>

@@ -24,3 +24,15 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+body :where(.wp-site-blocks)>* {
+  margin-block-start: 0;
+}
+
+body a:where(:not(.wp-element-button)) {
+  text-decoration: none;
+}
+
+body .text-white {
+  color: var(--color-white);
+}
