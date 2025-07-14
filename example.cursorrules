@@ -18,7 +18,7 @@
 ## Development Guidelines
 
 ### PHP Development
-- Use existing namespace `MXSFWNWPPGNext`
+- Use namespaces instead of require/include functions for autoloading
 - Follow PSR-4 autoloading via Composer
 - Use `final` classes for main components
 - Always check `defined('ABSPATH') || exit;`

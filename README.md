@@ -2,6 +2,8 @@
 
 This plugin was generated using the [WPPG-NEXT Generator](https://wppg-next.markomaksym.com.ua/) - a comprehensive WordPress plugin boilerplate with modern development tools, Gutenberg blocks, REST API endpoints, and React frontend components.
 
+**Current Version**: WPPG Next Version 1.2.1 (Stable)
+
 **Important**: The generator automatically creates unique prefixes for all classes, functions, and constants to prevent conflicts with other plugins. This ensures your plugin can coexist safely with any other WordPress plugins.
 
 **Note**: In this codebase, you'll see placeholder strings like "MXSFWN" and "mxsfwn" - these are automatically replaced with unique strings during plugin generation based on your plugin name.
@@ -20,6 +22,9 @@ To create your own WordPress plugin, you must:
 The generator will create a customized version with unique prefixes and your specific plugin configuration.
 
 ## 🚀 Quick Start
+
+### Video Guide
+📹 **[How to Use WPPG Next Plugin Generator](https://www.youtube.com/watch?v=2FY7lDoZ0k0)** - A short guide demonstrating how to use the WPPG Next plugin generator.
 
 ### Prerequisites
 - PHP 7.4 or higher
@@ -664,24 +669,11 @@ composer dump-autoload
 
 ### About This Plugin
 
-This plugin was generated using the [WPPG-NEXT Generator](https://wppg-next.markomaksym.com.ua/). 
+This plugin was generated using the [WPPG-NEXT Generator](https://wppg-next.markomaksym.com.ua/).
+
+📹 **[Watch Video Guide](https://www.youtube.com/watch?v=2FY7lDoZ0k0)** - Learn how to use the WPPG Next plugin generator. 
 
 **Important**: This repository serves as the base template for the generator. If you need to create a new plugin, please visit the generator website to generate your own unique plugin starter kit with custom prefixes and configuration.
-
-### Development Guidelines
-
-1. **Follow the established patterns** in the codebase
-2. **Use the provided generators** for common tasks
-3. **Add proper documentation** for new features
-4. **Test thoroughly** before submitting changes
-5. **Follow WordPress coding standards**
-
-### Code Style
-
-- **PHP**: PSR-12 with WordPress standards
-- **JavaScript**: ESLint configuration included
-- **CSS/SCSS**: BEM methodology
-- **Documentation**: PHPDoc for PHP, JSDoc for JavaScript
 
 ## 📄 License
 
