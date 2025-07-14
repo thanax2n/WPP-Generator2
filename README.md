@@ -1,3 +1,176 @@
+# WPP Generator Next - WordPress Plugin
+
+This plugin was generated using the [WPPG-NEXT Generator](https://wppg-next.markomaksym.com.ua/) - a comprehensive WordPress plugin boilerplate with modern development tools, Gutenberg blocks, REST API endpoints, and React frontend components.
+
+**Important**: The generator automatically creates unique prefixes for all classes, functions, and constants to prevent conflicts with other plugins. This ensures your plugin can coexist safely with any other WordPress plugins.
+
+**Note**: In this codebase, you'll see placeholder strings like "MXSFWN" and "mxsfwn" - these are automatically replaced with unique strings during plugin generation based on your plugin name.
+
+## ⚠️ Important Notice
+
+**This repository is for demonstration purposes only!** 
+
+If you found this plugin on GitHub, please note that this is the base template used by the generator. **Do not use this repository directly for plugin development.** 
+
+To create your own WordPress plugin, you must:
+1. Visit the [WPPG-NEXT Generator](https://wppg-next.markomaksym.com.ua/)
+2. Fill in your plugin details
+3. Generate your own unique plugin starter kit
+
+The generator will create a customized version with unique prefixes and your specific plugin configuration.
+
+## 🚀 Quick Start
+
+### Prerequisites
+- PHP 7.4 or higher
+- WordPress 5.9 or higher
+- Node.js 16+ and npm
+- Composer
+
+### Installation & Setup
+
+1. **Generate your plugin** using the [WPPG-NEXT Generator](https://wppg-next.markomaksym.com.ua/):
+   - Visit the generator website
+   - Fill in your plugin details (the generator will create unique prefixes to avoid conflicts)
+   - Download the generated plugin zip file
+   - Extract to your WordPress plugins directory:
+   ```bash
+   cd wp-content/plugins/
+   unzip your-plugin-name.zip
+   cd your-plugin-name
+   ```
+
+2. **Install PHP dependencies** (autoloading):
+   ```bash
+   composer install
+   ```
+
+3. **Install JavaScript dependencies**:
+   ```bash
+   npm install
+   ```
+
+4. **Build assets for development**:
+   ```bash
+   npm run watch
+   ```
+
+5. **Build assets for production**:
+   ```bash
+   npm run build
+   ```
+
+6. **Rename example files** (important for development):
+   ```bash
+   # Rename example files to their proper names
+   mv example.gitignore .gitignore
+   mv example.env .env
+   mv example.cursorrules .cursorrules
+   ```
+
+7. **Activate the plugin** in WordPress admin panel
+
+## 🛠️ Development Workflow
+
+### Available NPM Scripts
+
+**Main Development (JavaScript/React):**
+- `npm run watch` - Build assets in development mode with file watching
+- `npm run build` - Build assets for production
+
+**Gutenberg Blocks Development:**
+- `npm run start` - Start Gutenberg blocks development (WordPress scripts)
+- `npm run build` - Build Gutenberg blocks for production
+
+**Note**: The package.json contains two script configurations:
+- `"scripts"` - For JavaScript/React development (default)
+- `"scriptsForGutenbergCompelling"` - For Gutenberg blocks development only
+
+### Development Commands
+
+**For JavaScript/React Development:**
+```bash
+# Start development with file watching
+npm run watch
+
+# Build for production
+npm run build
+```
+
+**For Gutenberg Blocks Development:**
+```bash
+# Start Gutenberg blocks development
+npm run start
+
+# Build Gutenberg blocks for production
+npm run build
+```
+
+### Switching Development Modes
+
+**To switch to Gutenberg-only development:**
+1. Open `package.json`
+2. Replace the `"scripts"` section with `"scriptsForGutenbergCompelling"`
+3. Save the file
+4. Run `npm run start` for development or `npm run build` for production
+
+**To switch back to JavaScript/React development:**
+1. Open `package.json`
+2. Replace `"scriptsForGutenbergCompelling"` with the original `"scripts"`
+3. Save the file
+4. Run `npm run watch` for development or `npm run build` for production
+
+**Important**: Only one development mode can be active at a time. Choose based on your current development focus.
+
+## 🎯 Plugin Features
+
+### Admin Panel
+- **Custom Admin Pages**: MVC pattern with controllers and views
+- **Custom Post Types**: Easy registration with `PostTypeGenerator`
+- **Custom Taxonomies**: Simple creation with `TaxonomyGenerator`
+- **Meta Boxes**: Various field types (text, email, image, select, etc.)
+- **Data Tables**: Custom database tables with migration system
+
+### Frontend Features
+- **React Components**: Modern React app with Redux Toolkit
+- **Shortcodes**: Easy shortcode generation system
+- **Asset Management**: Optimized CSS/JS loading
+
+### Gutenberg Blocks
+- **Custom Blocks**: Multiple block examples included
+- **Server-Side Rendering**: PHP-based block rendering
+- **Child Blocks**: Nested block structures
+- **Responsive Design**: Mobile-first block development
+
+### API & Integration
+- **REST API Endpoints**: Extensible API system
+- **Next.js Integration**: Headless WordPress setup
+- **Database Operations**: Secure database interactions
+
+## 🔧 Configuration
+
+### PHP Configuration
+- **Namespace**: `MXSFWNWPPGNext` (generated from your plugin name)
+- **Autoloading**: PSR-4 via Composer
+- **Constants**: `MXSFWN_PLUGIN_*` prefix (unique to your plugin)
+- **Unique Prefixes**: All classes, functions, and constants use unique prefixes to avoid conflicts
+
+### Build Configuration
+- **Webpack**: Custom configuration for multiple entry points
+- **SCSS**: Preprocessor with source maps
+- **Code Splitting**: Vendor libraries optimization
+- **Production**: Minification and optimization
+
+### Example Files Setup
+The plugin includes several example files that need to be renamed for development:
+- `example.gitignore` → `.gitignore` (Git ignore rules)
+- `example.env` → `.env` (Environment variables)
+- `example.cursorrules` → `.cursorrules` (Cursor AI rules)
+
+**Important**: These files are provided as examples and must be renamed to their proper names to work correctly.
+
+## 📁 Project Structure
+
 ### Plugin Structure
 ```bash
 wpp-generator-next/
@@ -435,3 +608,88 @@ wpp-generator-next/
 ├── webpack.custom.config.js
 └── wpp-generator-next.php
 ```
+
+## 🚨 Troubleshooting
+
+### Common Issues
+
+**Build errors:**
+```bash
+# Clear node_modules and reinstall
+rm -rf node_modules package-lock.json
+npm install
+
+# Clear build directory
+rm -rf build/
+npm run build
+```
+
+**Autoloading issues:**
+```bash
+# Regenerate autoloader
+composer dump-autoload
+```
+
+**WordPress activation errors:**
+- Check PHP version (requires 7.4+)
+- Verify WordPress version (requires 5.9+)
+- Check file permissions
+- Review error logs
+
+**Gutenberg blocks not appearing:**
+- Ensure blocks are built: `npm run build`
+- Check block registration in `CustomBlocks.php`
+- Verify `block.json` files exist
+
+**Example files not working:**
+- Rename example files: `mv example.gitignore .gitignore`
+- Ensure `.env` file exists for environment variables
+- Check `.cursorrules` file for AI development rules
+
+**Build scripts not working:**
+- Check if you're using the correct script configuration in `package.json`
+- For JavaScript/React: use `"scripts"` section
+- For Gutenberg blocks: use `"scriptsForGutenbergCompelling"` section
+- Only one development mode can be active at a time
+
+### Development Tips
+
+1. **Use the `.cursorrules` file** for AI-assisted development
+2. **Run `npm run watch`** during development for automatic rebuilding
+3. **Check browser console** for JavaScript errors
+4. **Use WordPress debug mode** for PHP errors
+5. **Test in different environments** before deployment
+
+## 🤝 Contributing
+
+### About This Plugin
+
+This plugin was generated using the [WPPG-NEXT Generator](https://wppg-next.markomaksym.com.ua/). 
+
+**Important**: This repository serves as the base template for the generator. If you need to create a new plugin, please visit the generator website to generate your own unique plugin starter kit with custom prefixes and configuration.
+
+### Development Guidelines
+
+1. **Follow the established patterns** in the codebase
+2. **Use the provided generators** for common tasks
+3. **Add proper documentation** for new features
+4. **Test thoroughly** before submitting changes
+5. **Follow WordPress coding standards**
+
+### Code Style
+
+- **PHP**: PSR-12 with WordPress standards
+- **JavaScript**: ESLint configuration included
+- **CSS/SCSS**: BEM methodology
+- **Documentation**: PHPDoc for PHP, JSDoc for JavaScript
+
+## 📄 License
+
+This project is licensed under the GPL v2 or later - see the [license.txt](license.txt) file for details.
+
+## 🙏 Acknowledgments
+
+- [WPPG-NEXT Generator](https://wppg-next.markomaksym.com.ua/) for this plugin boilerplate
+- WordPress community for the excellent documentation
+- Gutenberg team for the block editor
+- React and Redux communities for the frontend tools
