@@ -1,8 +1,32 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "mxsfwn/extending",
-  "version": "0.1.3",
-  "title": "extending",
+  "version": "0.1.4",
+  "title": "Block Extender",
+  "category": "widgets",
+  "icon": "admin-tools",
+  "description": "Extends core blocks with additional functionality",
+  "keywords": [
+    "extend",
+    "core",
+    "blocks",
+    "customization"
+  ],
+  "supports": {
+    "html": false,
+    "align": false,
+    "color": false,
+    "spacing": false
+  },
+  "attributes": {
+    "extendedSettings": {
+      "type": "object",
+      "default": {
+        "prompt": ""
+      }
+    }
+  },
+  "textdomain": "wpp-generator-next",
   "editorScript": "file:./index.js"
 }

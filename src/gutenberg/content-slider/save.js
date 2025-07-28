@@ -1,12 +1,22 @@
-import { useBlockProps, InnerBlocks } from '@wordpress/block-editor'
+import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 
 export default function save({ attributes }) {
-	const blockProps = useBlockProps.save()
+	const { autoplay, showNavigation, showDots, loop } = attributes;
+	const blockProps = useBlockProps.save({
+		className: 'wp-block-mxsfwn-content-slider'
+	});
 
-	return <div
-		{...blockProps}
-		data-autoplay-speed={attributes.autoplay}
-	>
-		<InnerBlocks.Content />
-	</div>
+	return (
+		<div
+			{...blockProps}
+			data-autoplay-speed={autoplay}
+			data-show-navigation={showNavigation}
+			data-show-dots={showDots}
+			data-loop={loop}
+		>
+			<div className="content-slider-container">
+				<InnerBlocks.Content />
+			</div>
+		</div>
+	);
 }

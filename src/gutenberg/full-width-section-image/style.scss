@@ -11,6 +11,11 @@ $width__mobile: 768px;
     height: auto;
     min-height: 600px;
 
+    @media (max-width: $width__mobile) {
+        display: flex;
+        flex-direction: column;
+    }
+
     &>div {
         width: 50%;
 
@@ -46,6 +51,8 @@ $width__mobile: 768px;
             max-width: 100%;
         }
     }
+
+
 }
 
 .wp-block-mxsfwn-full-width-section-image[data-image-to-right="1"] .wp-block-mxsfwn-full-width-section-image--image-wrapper {
@@ -62,4 +69,10 @@ $width__mobile: 768px;
 
 .wp-block-mxsfwn-full-width-section-image[data-image-to-right="1"] .wp-block-mxsfwn-full-width-section-image--text {
     padding: 0px 24px 0px 48px;
+}
+
+.wp-block-mxsfwn-full-width-section-image .wp-block-mxsfwn-full-width-section-image--text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

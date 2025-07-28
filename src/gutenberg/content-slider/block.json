@@ -1,12 +1,12 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 2,
+	"apiVersion": 3,
 	"name": "mxsfwn/content-slider",
 	"version": "0.1.0",
 	"title": "Content Slider",
 	"category": "widgets",
 	"icon": "format-gallery",
-	"description": "Add a Content Slider",
+	"description": "Add a Content Slider with autoplay functionality",
 	"supports": {
 		"html": false,
 		"align": [
@@ -22,6 +22,10 @@
 				"background": true,
 				"text": true
 			}
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true
 		}
 	},
 	"attributes": {
@@ -31,10 +35,22 @@
 			"selector": ".wp-block-mxsfwn-content-slider",
 			"attribute": "data-autoplay-speed",
 			"default": "0"
+		},
+		"showNavigation": {
+			"type": "boolean",
+			"default": true
+		},
+		"showDots": {
+			"type": "boolean",
+			"default": true
+		},
+		"loop": {
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"textdomain": "wpp-generator-next-source",
 	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css"
+	"editorStyle": "file:./editor.scss",
+	"style": "file:./style.scss"
 }

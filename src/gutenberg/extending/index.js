@@ -1,74 +1,117 @@
-import { addFilter } from '@wordpress/hooks'
-import { createHigherOrderComponent } from '@wordpress/compose'
-import { Fragment } from '@wordpress/element'
-import { InspectorControls } from '@wordpress/block-editor'
-import { PanelBody, TextareaControl } from '@wordpress/components'
+import { addFilter } from '@wordpress/hooks';
+import { createHigherOrderComponent } from '@wordpress/compose';
+import { Fragment } from '@wordpress/element';
+import { InspectorControls } from '@wordpress/block-editor';
+import { PanelBody, TextareaControl, Notice } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
 /**
- * Callback for the BlockEdit filter
+ * Clean prompt string by removing invalid characters
+ * 
+ * @param {string} string - The string to clean
+ * @returns {string} The cleaned string
+ */
+const cleanPrompt = (string) => {
+    if (!string || typeof string !== 'string') {
+        return '';
+    }
+    return string.replace(/[^A-Za-z0-9-_ .,?!]/gi, '');
+};
+
+/**
+ * Check if block should be extended
+ * 
+ * @param {string} blockName - The block name to check
+ * @returns {boolean} Whether the block should be extended
+ */
+const shouldExtendBlock = (blockName) => {
+    const extendableBlocks = ['core/paragraph', 'core/heading', 'core/button'];
+    return extendableBlocks.includes(blockName);
+};
+
+/**
+ * Higher-order component to add inspector controls
  */
 const withInspectorControls = createHigherOrderComponent((BlockEdit) => {
     return (props) => {
-        if (props.name !== 'core/paragraph' && props.name !== 'core/heading' && props.name !== 'core/button') {
-            return (
-                <BlockEdit {...props} />
-            )
+        // Only extend specific blocks
+        if (!shouldExtendBlock(props.name)) {
+            return <BlockEdit {...props} />;
         }
 
-        const { attributes, setAttributes } = props
+        const { attributes, setAttributes } = props;
+        const extendedSettings = attributes.extendedSettings || {};
 
-        const clean_prompt = (string) => {
-            return string.replace(/[^A-Za-z0-9-_ .,?]/gi, '');
-        }
+        const handlePromptChange = (prompt) => {
+            const cleanedPrompt = cleanPrompt(prompt);
+            setAttributes({
+                extendedSettings: {
+                    ...extendedSettings,
+                    prompt: cleanedPrompt
+                }
+            });
+        };
 
         return (
             <Fragment>
                 <BlockEdit {...props} />
                 <InspectorControls>
-                    <PanelBody title="Prompt" initialOpen={ false }>
+                    <PanelBody 
+                        title={__('Block Extender', 'wpp-generator-next')} 
+                        initialOpen={false}
+                    >
                         <TextareaControl
-                            help="Enter a prompt for this element"
-                            value={attributes.extendedSettings.prompt ? attributes.extendedSettings.prompt : ''}
-                            onChange={(prompt) => {
-                                prompt = clean_prompt(prompt);
-                                setAttributes({ extendedSettings: { ...attributes.extendedSettings, prompt } })
-                            }}
+                            label={__('AI Prompt', 'wpp-generator-next')}
+                            help={__('Enter a prompt to enhance this block with AI functionality', 'wpp-generator-next')}
+                            value={extendedSettings.prompt || ''}
+                            onChange={handlePromptChange}
+                            placeholder={__('Enter your prompt here...', 'wpp-generator-next')}
                         />
+                        {extendedSettings.prompt && (
+                            <Notice 
+                                status="info" 
+                                isDismissible={false}
+                            >
+                                {__('This block has been extended with AI functionality', 'wpp-generator-next')}
+                            </Notice>
+                        )}
                     </PanelBody>
                 </InspectorControls>
             </Fragment>
         );
-    }
-}, 'withInspectorControls')
+    };
+}, 'withInspectorControls');
 
 /**
- * Hook into registerBlockType to add our custom prop
+ * Add custom attributes to extendable blocks
  */
 addFilter(
     'blocks.registerBlockType',
-    'extending-gutenberg/add-attributes',
+    'mxsfwn/extending/add-attributes',
     (props, name) => {
-        if (name !== 'core/paragraph' && name !== 'core/heading' && name !== 'core/button') {
-            return props
+        if (!shouldExtendBlock(name)) {
+            return props;
         }
 
         const attributes = {
             ...props.attributes,
             extendedSettings: {
                 type: 'object',
-                default: {},
+                default: {
+                    prompt: ''
+                }
             }
-        }
+        };
 
-        return { ...props, attributes }
+        return { ...props, attributes };
     }
-)
+);
 
 /**
- * Hook into BlockEdit to add our custom inspector controls
+ * Add inspector controls to extendable blocks
  */
 addFilter(
     'editor.BlockEdit',
-    'extending-gutenberg/edit',
+    'mxsfwn/extending/add-inspector-controls',
     withInspectorControls
-)
+);

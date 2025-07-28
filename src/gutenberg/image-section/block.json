@@ -1,12 +1,12 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 2,
+	"apiVersion": 3,
 	"name": "mxsfwn/image-section",
 	"version": "0.1.0",
-	"title": "Image Section",
+	"title": "Section with Image Background",
 	"category": "widgets",
 	"icon": "smiley",
-	"description": "Add Image Section",
+	"description": "Add Section with Image Background",
 	"supports": {
 		"html": false,
 		"spacing": {
@@ -40,7 +40,7 @@
 		}
 	},
 	"attributes": {
-		"testAlignment": {
+		"textAlignment": {
 			"type": "string",
 			"source": "attribute",
 			"selector": ".mxImageSection",
@@ -81,6 +81,6 @@
 	},
 	"textdomain": "wpp-generator-next-source",
 	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css"
+	"editorStyle": "file:./editor.scss",
+	"style": "file:./style.scss"
 }

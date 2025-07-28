@@ -85,16 +85,6 @@ class CustomBlocks
         add_action('init', [$instance, 'fullWidthSectionImage']);
 
         /**
-         * Full width section
-         */
-        add_action('init', [$instance, 'fullWidthSection']);
-
-        /**
-         * Counter section
-         */
-        add_action('init', [$instance, 'counterSection']);
-
-        /**
          * Nested blocks
          */
         add_action('init', [$instance, 'nestedBlocks']);
@@ -103,6 +93,7 @@ class CustomBlocks
          * Image section
          */
         add_action('init', [$instance, 'imageSection']);
+        add_action('wp_enqueue_scripts', [$instance, 'imageSectionScripts']);
 
         /**
          * Simple image
@@ -166,7 +157,7 @@ class CustomBlocks
             return $blockContent;
         }
 
-        $blockContent = preg_replace('#^<([^>]+)>#m', '<$1 data-oa-prompt="' . esc_html($block['attrs']['extendedSettings']['prompt']) . '">', $blockContent);
+        $blockContent = preg_replace('#^<([^>]+)>#m', '<$1 data-ai-prompt="' . esc_html($block['attrs']['extendedSettings']['prompt']) . '">', $blockContent);
 
         return $blockContent;
     }
@@ -252,59 +243,6 @@ class CustomBlocks
     /**
      * GUTENBERG BLOCK.
      * 
-     * Full width section.
-     * 
-     * @return void      Create a Gutenberg block.
-     */
-    public function fullWidthSection()
-    {
-
-        register_block_type("{$this->absPath}build/gutenberg/full-width-section");
-    }
-
-    /**
-     * GUTENBERG BLOCK.
-     * 
-     * Counter section.
-     * 
-     * @return void      Create a Gutenberg block.
-     */
-    public function counterSection()
-    {
-
-        register_block_type("{$this->absPath}build/gutenberg/counter-section");
-
-        /**
-         * Children blocks
-         */
-        // Block one
-        register_block_type("{$this->absPath}build/gutenberg/counter-section/child-blocks/block-one");
-
-        /**
-         * Additional scripts and styles
-         */
-
-        // Add animation
-        wp_enqueue_style("{$this->uniqueString}-animate", "{$this->pluginURL}assets/gutenberg/counter-section/css/animate.min.css");
-
-        $assetFile = include("{$this->absPath}build/gutenberg/counter-section/index.asset.php");
-
-        // WOW
-        wp_enqueue_script("{$this->uniqueString}-counter-section-wow", "{$this->pluginURL}assets/gutenberg/counter-section/js/wow.min.js", ['jquery', ...$assetFile['dependencies']], $this->pluginVersion, true);
-
-        // WAYPOINTS
-        wp_enqueue_script("{$this->uniqueString}-counter-section-waypoints", "{$this->pluginURL}assets/gutenberg/counter-section/js/waypoints.min.js", ["{$this->uniqueString}-counter-section-wow"], $this->pluginVersion, true);
-
-        // COUNTERUP
-        wp_enqueue_script("{$this->uniqueString}-counter-section-counterup", "{$this->pluginURL}assets/gutenberg/counter-section/js/counterup.min.js", ["{$this->uniqueString}-counter-section-waypoints"], $this->pluginVersion, true);
-
-        // Main
-        wp_enqueue_script("{$this->uniqueString}-counter-section", "{$this->pluginURL}assets/gutenberg/counter-section/js/script.js", ["{$this->uniqueString}-counter-section-counterup"], $this->pluginVersion, true);
-    }
-
-    /**
-     * GUTENBERG BLOCK.
-     * 
      * Nested blocks.
      * 
      * @return void      Create a Gutenberg block.
@@ -324,7 +262,7 @@ class CustomBlocks
     /**
      * GUTENBERG BLOCK.
      * 
-     * Image section.
+     * Section with Image Background.
      * 
      * @return void      Create a Gutenberg block.
      */
@@ -332,6 +270,25 @@ class CustomBlocks
     {
 
         register_block_type("{$this->absPath}build/gutenberg/image-section");
+    }
+
+    /**
+     * Additional scripts and styles.
+     * 
+     * Image section.
+     * 
+     * @return void      enqueue scripts.
+     */
+    public function imageSectionScripts()
+    {
+        $assetFile = include("{$this->absPath}build/gutenberg/image-section/index.asset.php");
+
+        wp_enqueue_style(
+            "{$this->uniqueString}-image-section",
+            "{$this->pluginURL}build/gutenberg/image-section/style-index.css",
+            [],
+            $assetFile['version']
+        );
     }
 
     /**

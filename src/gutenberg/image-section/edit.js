@@ -171,8 +171,5 @@ export default function edit({ attributes, isSelected, setAttributes }) {
 
 			</div>
 		</div>
-
-
-
 	]);
 }
