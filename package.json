@@ -1,17 +1,12 @@
 {
 	"name": "mxsfwn-npm-handler",
-	"version": "0.1.0",
+	"version": "1.3.0",
 	"description": "NPM Handler",
 	"author": "Maksym Marko",
 	"license": "GPL-2.0-or-later",
 	"scripts": {
-		"format": "wp-scripts format",
-		"lint:css": "wp-scripts lint-style",
-		"lint:js": "wp-scripts lint-js",
-		"packages-update": "wp-scripts packages-update",
-		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start --webpack-src-dir=src/gutenberg/ --output-path=build/gutenberg/",
-		"build": "wp-scripts build --webpack-src-dir=src/gutenberg/ --output-path=build/gutenberg/"
+		"watch": "webpack --watch --mode=development --config webpack.custom.config.js",
+		"build": "webpack --mode=production --config webpack.custom.config.js"
 	},
 	"scriptsForGutenbergCompelling": {
 		"format": "wp-scripts format",

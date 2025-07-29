@@ -6,7 +6,7 @@
 	"title": "Content Slider",
 	"category": "widgets",
 	"icon": "format-gallery",
-	"description": "Add a Content Slider with autoplay functionality",
+	"description": "Add a Content Slider",
 	"supports": {
 		"html": false,
 		"align": [
@@ -22,10 +22,6 @@
 				"background": true,
 				"text": true
 			}
-		},
-		"spacing": {
-			"margin": true,
-			"padding": true
 		}
 	},
 	"attributes": {
@@ -33,20 +29,36 @@
 			"type": "string",
 			"source": "attribute",
 			"selector": ".wp-block-mxsfwn-content-slider",
-			"attribute": "data-autoplay-speed",
+			"attribute": "data-autoplay",
 			"default": "0"
 		},
-		"showNavigation": {
-			"type": "boolean",
-			"default": true
+		"autoplay_speed": {
+			"type": "string",
+			"source": "attribute",
+			"selector": ".wp-block-mxsfwn-content-slider",
+			"attribute": "data-autoplay-speed",
+			"default": "5"
 		},
-		"showDots": {
-			"type": "boolean",
-			"default": true
+		"nav": {
+			"type": "string",
+			"source": "attribute",
+			"selector": ".wp-block-mxsfwn-content-slider",
+			"attribute": "data-nav",
+			"default": "0"
+		},
+		"dots": {
+			"type": "string",
+			"source": "attribute",
+			"selector": ".wp-block-mxsfwn-content-slider",
+			"attribute": "data-dots",
+			"default": "0"
 		},
 		"loop": {
-			"type": "boolean",
-			"default": true
+			"type": "string",
+			"source": "attribute",
+			"selector": ".wp-block-mxsfwn-content-slider",
+			"attribute": "data-loop",
+			"default": "0"
 		}
 	},
 	"textdomain": "wpp-generator-next",
