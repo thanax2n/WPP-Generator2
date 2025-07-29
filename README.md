@@ -182,20 +182,12 @@ wpp-generator-next/
 ├── README.md
 ├── assets
 │   ├── gutenberg
-│   │   ├── content-slider
-│   │   │   ├── css
-│   │   │   │   └── owl.carousel.min.css
-│   │   │   └── js
-│   │   │       ├── handler.js
-│   │   │       └── owl.carousel.min.js
-│   │   └── counter-section
+│   │   └── content-slider
 │   │       ├── css
-│   │       │   └── animate.min.css
+│   │       │   └── owl.carousel.min.css
 │   │       └── js
-│   │           ├── counterup.min.js
-│   │           ├── script.js
-│   │           ├── waypoints.min.js
-│   │           └── wow.min.js
+│   │           ├── handler.js
+│   │           └── owl.carousel.min.js
 │   └── packages
 │       ├── font-awesome-4.6.3
 │       │   ├── css
@@ -238,86 +230,81 @@ wpp-generator-next/
 │   └── gutenberg
 │       ├── content-slider
 │       │   ├── block.json
+│       │   ├── index-rtl.css
 │       │   ├── index.asset.php
 │       │   ├── index.css
 │       │   ├── index.js
-│       │   └── style-index.css
-│       ├── counter-section
-│       │   ├── block.json
-│       │   ├── child-blocks
-│       │   │   └── block-one
-│       │   │       ├── block.json
-│       │   │       ├── index.asset.php
-│       │   │       ├── index.css
-│       │   │       ├── index.js
-│       │   │       └── style-index.css
-│       │   ├── index.asset.php
-│       │   ├── index.css
-│       │   ├── index.js
+│       │   ├── style-index-rtl.css
 │       │   └── style-index.css
 │       ├── extending
 │       │   ├── block.json
 │       │   ├── index.asset.php
 │       │   └── index.js
-│       ├── full-width-section
-│       │   ├── block.json
-│       │   ├── index.asset.php
-│       │   ├── index.css
-│       │   ├── index.js
-│       │   └── style-index.css
 │       ├── full-width-section-image
 │       │   ├── block.json
+│       │   ├── index-rtl.css
 │       │   ├── index.asset.php
 │       │   ├── index.css
 │       │   ├── index.js
+│       │   ├── style-index-rtl.css
 │       │   └── style-index.css
 │       ├── image-section
 │       │   ├── block.json
+│       │   ├── index-rtl.css
 │       │   ├── index.asset.php
 │       │   ├── index.css
 │       │   ├── index.js
+│       │   ├── style-index-rtl.css
 │       │   └── style-index.css
 │       ├── nested-blocks
 │       │   ├── block.json
 │       │   ├── child-blocks
 │       │   │   └── block-one
 │       │   │       ├── block.json
+│       │   │       ├── index-rtl.css
 │       │   │       ├── index.asset.php
 │       │   │       ├── index.css
 │       │   │       ├── index.js
+│       │   │       ├── style-index-rtl.css
 │       │   │       └── style-index.css
+│       │   ├── index-rtl.css
 │       │   ├── index.asset.php
 │       │   ├── index.css
 │       │   ├── index.js
+│       │   ├── style-index-rtl.css
 │       │   └── style-index.css
 │       ├── responsive-spacer
 │       │   ├── block.json
 │       │   ├── index.asset.php
-│       │   ├── index.css
 │       │   ├── index.js
+│       │   ├── style-index-rtl.css
 │       │   └── style-index.css
 │       ├── server-side-rendering
 │       │   ├── block.json
+│       │   ├── index-rtl.css
 │       │   ├── index.asset.php
 │       │   ├── index.css
 │       │   ├── index.js
+│       │   ├── style-index-rtl.css
 │       │   └── style-index.css
 │       ├── simple-image
 │       │   ├── block.json
+│       │   ├── index-rtl.css
 │       │   ├── index.asset.php
 │       │   ├── index.css
 │       │   ├── index.js
+│       │   ├── style-index-rtl.css
 │       │   └── style-index.css
 │       └── simple-text
 │           ├── block.json
 │           ├── index.asset.php
-│           ├── index.css
 │           ├── index.js
+│           ├── style-index-rtl.css
 │           └── style-index.css
 ├── composer.json
 ├── composer.lock
+├── example.cursorrules
 ├── example.gitignore
-├── generate-structure.js
 ├── includes
 │   ├── Activate
 │   │   ├── AIRobotsDataTableMigration.php
@@ -464,7 +451,6 @@ wpp-generator-next/
 │       └── window.svg
 ├── package-lock.json
 ├── package.json
-├── plugin-structure.md
 ├── readme.txt
 ├── screenshots
 │   ├── banner-1544x500.jpg
@@ -482,7 +468,6 @@ wpp-generator-next/
 │   │       ├── components
 │   │       │   └── metaboxes
 │   │       │       └── ImageUploader.js
-│   │       ├── features
 │   │       └── index.js
 │   ├── frontend
 │   │   └── react-js
@@ -527,31 +512,9 @@ wpp-generator-next/
 │       │   ├── index.js
 │       │   ├── save.js
 │       │   └── style.scss
-│       ├── counter-section
-│       │   ├── block.json
-│       │   ├── child-blocks
-│       │   │   └── block-one
-│       │   │       ├── block.json
-│       │   │       ├── edit.js
-│       │   │       ├── editor.scss
-│       │   │       ├── index.js
-│       │   │       ├── save.js
-│       │   │       └── style.scss
-│       │   ├── edit.js
-│       │   ├── editor.scss
-│       │   ├── index.js
-│       │   ├── save.js
-│       │   └── style.scss
 │       ├── extending
 │       │   ├── block.json
 │       │   └── index.js
-│       ├── full-width-section
-│       │   ├── block.json
-│       │   ├── edit.js
-│       │   ├── editor.scss
-│       │   ├── index.js
-│       │   ├── save.js
-│       │   └── style.scss
 │       ├── full-width-section-image
 │       │   ├── block.json
 │       │   ├── edit.js
@@ -611,6 +574,7 @@ wpp-generator-next/
 │           └── style.scss
 ├── uninstall.php
 ├── webpack.custom.config.js
+├── webpack.gutenberg.config.js
 └── wpp-generator-next.php
 ```
 

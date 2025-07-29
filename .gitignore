@@ -34,3 +34,6 @@ mx-debug/
 
 # vendor folder
 vendor/
+
+# generate-structure.js
+generate-structure.js
