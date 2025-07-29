@@ -1,36 +1,16 @@
 import { __ } from '@wordpress/i18n';
-import metadata from './block.json';
-import { useBlockProps } from '@wordpress/block-editor';
-import { Placeholder, TextControl } from '@wordpress/components';
-import './editor.scss';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 export default function edit({ attributes, isSelected, setAttributes }) {
 	const blockProps = useBlockProps()
 	return (
 		<div  {...blockProps}>
-			{attributes.message && !isSelected ? (
-				<></>
-			) :
-				(
-					<Placeholder
-						label={metadata.title}
-						instructions={metadata.description}
-					>
-						<TextControl
-							label={__('Message', 'wpp-generator-next-source')}
-							value={attributes.message}
-							onChange={(val) => setAttributes({ message: val })}
-						/>
-					</Placeholder>
-				)
-			}
-
-			{attributes.message ? (
-				<div data-number={attributes.number} data-size={attributes.size}>{attributes.message}</div>
-			) : (
-				<div>No Message</div>
-			)}
-
+			<RichText
+				tagName="div"
+				value={attributes.message}
+				onChange={(val) => setAttributes({ message: val })}
+				placeholder={__('Enter your text here...', 'wpp-generator-next')}
+			/>
 		</div>
 	);
 }

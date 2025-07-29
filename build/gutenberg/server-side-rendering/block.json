@@ -1,8 +1,8 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "mxsfwn/server-side-rendering",
-  "version": "0.1.3",
+  "version": "1.3.0",
   "title": "Server Side Rendering",
   "category": "widgets",
   "icon": "smiley",
@@ -13,10 +13,10 @@
   "attributes": {
     "customNumber": {
       "type": "string",
-      "default": "4"
+      "default": "3"
     }
   },
-  "textdomain": "wpp-generator-next-source",
+  "textdomain": "wpp-generator-next",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css"

@@ -57,9 +57,13 @@ export default function edit({ attributes, isSelected, setAttributes }) {
 				</Placeholder>
 			)}
 
-			{attributes.mediaId && attributes?.mediaUrl ? (
+			{attributes.mediaId && attributes.mediaUrl ? (
 
-				<img src={attributes.mediaUrl} id={attributes.mediaId} />
+				<img 
+					src={attributes.mediaUrl} 
+					id={attributes.mediaId} 
+					alt={imageData?.alt_text || __('Simple Image', 'wpp-generator-next-source')}
+				/>
 
 			) : (<h3>No image attached!</h3>)}
 

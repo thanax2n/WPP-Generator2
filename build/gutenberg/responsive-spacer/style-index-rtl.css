@@ -1,1 +1,1 @@
-.mx-responsive-block-spacer{clear:both}
+.mx-responsive-block-spacer{clear:both;display:block;overflow:hidden;width:100%}.mx-responsive-block-spacer:empty{min-height:1px}

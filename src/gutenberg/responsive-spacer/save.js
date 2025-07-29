@@ -10,11 +10,11 @@ export default function save({ attributes }) {
 			className={'mx-responsive-block-spacer ' + attributes.unique_class}
 		>
 			<style>
-				{'.' + attributes.unique_class + '{height:' + attributes.media_default + 'px;}'}
+				{'.' + attributes.unique_class + '{height:' + (attributes.media_default || 100) + 'px;}'}
 
 				{/* @media 1500 */}
 				{
-					attributes.media_1500 !== '' &&
+					attributes.media_1500 !== null && attributes.media_1500 !== '' &&
 					`@media (max-width: 1500px) {
 							.${attributes.unique_class} {
 								height: ${attributes.media_1500}px;
@@ -25,7 +25,7 @@ export default function save({ attributes }) {
 
 				{/* @media 1220 */}
 				{
-					attributes.media_1220 !== '' &&
+					attributes.media_1220 !== null && attributes.media_1220 !== '' &&
 					`@media (max-width: 1220px) {
 							.${attributes.unique_class} {
 								height: ${attributes.media_1220}px;
@@ -36,7 +36,7 @@ export default function save({ attributes }) {
 
 				{/* @media 992 */}
 				{
-					attributes.media_992 !== '' &&
+					attributes.media_992 !== null && attributes.media_992 !== '' &&
 					`@media (max-width: 992px) {
 							.${attributes.unique_class} {
 								height: ${attributes.media_992}px;
@@ -47,7 +47,7 @@ export default function save({ attributes }) {
 
 				{/* @media 768 */}
 				{
-					attributes.media_768 !== '' &&
+					attributes.media_768 !== null && attributes.media_768 !== '' &&
 					`@media (max-width: 768px) {
 							.${attributes.unique_class} {
 								height: ${attributes.media_768}px;

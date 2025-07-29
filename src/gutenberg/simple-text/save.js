@@ -1,6 +1,8 @@
-import { useBlockProps } from '@wordpress/block-editor'
+import { useBlockProps, RichText } from '@wordpress/block-editor'
 
 export default function save({ attributes }) {
 	const blockProps = useBlockProps.save()
-	return <div {...blockProps}>{attributes.message}</div>
+	return (
+		<RichText.Content {...blockProps} tagName="div" value={attributes.message} />
+	)
 }

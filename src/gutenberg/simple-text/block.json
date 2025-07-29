@@ -1,12 +1,12 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 2,
+	"apiVersion": 3,
 	"name": "mxsfwn/simple-text",
-	"version": "0.1.0",
+	"version": "1.3.0",
 	"title": "Simple Text",
 	"category": "widgets",
 	"icon": "smiley",
-	"description": "Add a simle text to a page",
+	"description": "Add a simple text to a page",
 	"supports": {
 		"html": false,
 		"align": [
@@ -28,12 +28,12 @@
 		},
 		"message": {
 			"type": "string",
-			"source": "text",
+			"source": "html",
 			"selector": "div",
 			"default": "Hello, World!"
 		}
 	},
-	"textdomain": "wpp-generator-next-source",
+	"textdomain": "wpp-generator-next",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css"

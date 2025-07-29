@@ -1,8 +1,8 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 2,
+	"apiVersion": 3,
 	"name": "mxsfwn/responsive-spacer",
-	"version": "0.1.0",
+	"version": "1.3.0",
 	"title": "Responsive Spacer",
 	"category": "widgets",
 	"icon": "smiley",
@@ -36,7 +36,7 @@
 			"default": ""
 		}
 	},
-	"textdomain": "wpp-generator-next-source",
+	"textdomain": "wpp-generator-next",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css"

@@ -6,7 +6,7 @@ import './editor.scss';
 
 export default function edit({ attributes, isSelected, setAttributes }) {
 	const blockProps = useBlockProps();
-	
+
 	const sizeOptions = [
 		{ label: 'Small', value: 'small' },
 		{ label: 'Medium', value: 'medium' },

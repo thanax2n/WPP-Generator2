@@ -339,12 +339,12 @@ class CustomBlocks
         register_block_type(
             "{$this->absPath}build/gutenberg/server-side-rendering",
             [
-                'api_version'       => 2,
+                'api_version'       => 3,
                 'category'          => 'widgets',
                 'attributes'        => [
                     'customNumber'   => [
                         'type'      => 'string',
-                        'default'   => 4
+                        'default'   => 3
                     ]
                 ],
                 'editor_script'     => "{$this->uniqueString}-server-side-rendering",
@@ -364,29 +364,38 @@ class CustomBlocks
     public function serverSideRenderingRender($block_attributes, $content)
     {
 
+        $customNumber = isset($block_attributes['customNumber']) ? intval($block_attributes['customNumber']) : 3;
+
         global $wpdb;
 
-        $customNumber = 4;
-        if (isset($block_attributes['customNumber'])) {
-            $customNumber = $block_attributes['customNumber'];
-        }
+        $tableName = $wpdb->prefix . 'ai_robots';
 
-        $table = $wpdb->prefix . 'posts';
-
-        $postsNumber = $wpdb->get_var(
-
+        // Check if table exists
+        $tableExists = $wpdb->get_var(
             $wpdb->prepare(
-                "SELECT COUNT(ID) FROM $table
-                WHERE post_status='%s'",
-                'publish'
+                "SHOW TABLES LIKE %s",
+                $tableName
             )
         );
+
+        if (!$tableExists) {
+
+            $robots = [];
+        } else {
+
+            $robots = $wpdb->get_results(
+                $wpdb->prepare(
+                    "SELECT id, title, description FROM {$tableName} WHERE status = %s ORDER BY id DESC LIMIT %d",
+                    'publish',
+                    $customNumber
+                )
+            );
+        }
 
         ob_start();
 
         mxsfwnRequireGutenbergComponent('server-side-rendering', [
-            'postsNumber' => $postsNumber,
-            'customNumber' => $customNumber
+            'robots' => $robots
         ]);
 
         return ob_get_clean();
