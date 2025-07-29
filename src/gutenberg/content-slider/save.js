@@ -14,9 +14,7 @@ export default function save({ attributes }) {
 			data-show-dots={showDots}
 			data-loop={loop}
 		>
-			<div className="content-slider-container">
-				<InnerBlocks.Content />
-			</div>
+			<InnerBlocks.Content />
 		</div>
 	);
 }
